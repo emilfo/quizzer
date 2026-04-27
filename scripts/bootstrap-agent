@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+printf 'Bootstrapping agent harness context\n'
+
+required_paths=(
+  "AGENTS.md"
+  "docs/quickstart.md"
+  "docs/architecture.md"
+  "docs/quality.md"
+  "docs/status.md"
+  "docs/agent-map.md"
+  "commands/plan"
+  "commands/status"
+  "commands/verify"
+)
+
+missing=0
+for path in "${required_paths[@]}"; do
+  if [[ ! -e "$path" ]]; then
+    printf 'Missing required path: %s\n' "$path"
+    missing=1
+  fi
+done
+
+if [[ "$missing" -ne 0 ]]; then
+  printf 'Bootstrap failed. Create the missing files above.\n'
+  exit 1
+fi
+
+printf 'Bootstrap OK\n'
+printf 'Next: read AGENTS.md, docs/quickstart.md, and docs/status.md\n'

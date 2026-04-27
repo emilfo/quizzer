@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+status_file="docs/status.md"
+
+printf 'Running milestone verification\n'
+
+if [[ $# -gt 1 ]]; then
+  printf 'Verify failed. Too many arguments.\n'
+  printf 'Remediation: run commands/verify or commands/verify m1..m5\n'
+  exit 1
+fi
+
+milestone="${1:-}"
+
+if [[ -z "$milestone" ]]; then
+  if [[ ! -f "$status_file" ]]; then
+    printf 'Verify failed. Missing %s\n' "$status_file"
+    printf 'Remediation: create docs/status.md or pass an explicit milestone argument.\n'
+    exit 1
+  fi
+  milestone="$(grep '^active_milestone:' "$status_file" | cut -d':' -f2- | xargs || true)"
+fi
+
+case "$milestone" in
+  m1) script="scripts/check-m1" ;;
+  m2) script="scripts/check-m2" ;;
+  m3) script="scripts/check-m3" ;;
+  m4) script="scripts/check-m4" ;;
+  m5) script="scripts/check-m5" ;;
+  *)
+    printf 'Verify failed. Unsupported milestone: %s\n' "$milestone"
+    printf 'Remediation: use m1, m2, m3, m4, or m5.\n'
+    exit 1
+    ;;
+esac
+
+if [[ ! -x "$script" ]]; then
+  printf 'Verify failed. Script is missing or not executable: %s\n' "$script"
+  printf 'Remediation: create the script and mark it executable.\n'
+  exit 1
+fi
+
+printf 'Using verifier: %s\n' "$script"
+"$script"
+printf 'Verify OK\n'

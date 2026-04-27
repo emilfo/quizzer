@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+status_file="docs/status.md"
+
+printf 'Showing active milestone plan\n'
+
+if [[ ! -f "$status_file" ]]; then
+  printf 'Plan failed. Missing %s\n' "$status_file"
+  printf 'Remediation: create docs/status.md and set active_milestone_file.\n'
+  exit 1
+fi
+
+active_milestone="$(grep '^active_milestone:' "$status_file" | cut -d':' -f2- | xargs || true)"
+active_plan_file="$(grep '^active_milestone_file:' "$status_file" | cut -d':' -f2- | xargs || true)"
+
+if [[ -z "$active_milestone" || -z "$active_plan_file" ]]; then
+  printf 'Plan failed. docs/status.md is missing active milestone fields.\n'
+  printf 'Remediation: set active_milestone and active_milestone_file in docs/status.md.\n'
+  exit 1
+fi
+
+if [[ ! -f "$active_plan_file" ]]; then
+  printf 'Plan failed. Active milestone file not found: %s\n' "$active_plan_file"
+  printf 'Remediation: point docs/status.md at an existing plan file under docs/plans/.\n'
+  exit 1
+fi
+
+printf 'Active milestone: %s\n' "$active_milestone"
+printf 'Active plan file: %s\n' "$active_plan_file"
+printf 'Available plans:\n'
+ls docs/plans/*milestone*.md
+printf 'Plan OK\n'

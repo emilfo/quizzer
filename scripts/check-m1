@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+printf 'Checking milestone m1: single-host authoring\n'
+
+required_files=(
+  "docs/status.md"
+  "docs/plans/2026-04-27-quizzer-v1-milestone-1-single-host-authoring.md"
+  "commands/plan"
+  "commands/status"
+  "commands/verify"
+)
+
+missing=0
+for path in "${required_files[@]}"; do
+  if [[ ! -e "$path" ]]; then
+    printf 'Missing milestone prerequisite: %s\n' "$path"
+    missing=1
+  fi
+done
+
+if [[ "$missing" -ne 0 ]]; then
+  printf 'M1 check failed. Restore the missing milestone prerequisites and retry.\n'
+  exit 1
+fi
+
+if [[ -f package.json ]]; then
+  printf 'Detected package.json. Future M1 app checks may run here.\n'
+else
+  printf 'No package.json yet. App-level M1 checks deferred until implementation starts.\n'
+fi
+
+printf 'M1 check OK\n'

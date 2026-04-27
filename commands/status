@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+status_file="docs/status.md"
+
+printf 'Showing harness execution status\n'
+
+if [[ ! -f "$status_file" ]]; then
+  printf 'Status failed. Missing %s\n' "$status_file"
+  printf 'Remediation: create docs/status.md.\n'
+  exit 1
+fi
+
+required_keys=(
+  "active_plan_set"
+  "active_milestone"
+  "active_milestone_file"
+  "current_deliverable"
+  "last_completed_deliverable"
+  "last_verification"
+  "open_blockers"
+)
+
+missing=0
+for key in "${required_keys[@]}"; do
+  if ! grep -q "^${key}:" "$status_file"; then
+    printf 'Missing status field: %s\n' "$key"
+    missing=1
+  fi
+done
+
+if [[ "$missing" -ne 0 ]]; then
+  printf 'Status failed. Add the missing fields to docs/status.md and retry.\n'
+  exit 1
+fi
+
+sed -n '1,20p' "$status_file"
+printf 'Status OK\n'
