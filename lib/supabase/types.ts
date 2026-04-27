@@ -174,6 +174,36 @@ export type Database = {
         }
         Relationships: []
       }
+      public_session_lobbies: {
+        Row: {
+          created_at: string
+          join_code: string
+          participant_count: number
+          quiz_title: string
+          session_id: string
+          state: 'lobby' | 'in_progress' | 'finished'
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          join_code: string
+          participant_count?: number
+          quiz_title: string
+          session_id: string
+          state: 'lobby' | 'in_progress' | 'finished'
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          join_code?: string
+          participant_count?: number
+          quiz_title?: string
+          session_id?: string
+          state?: 'lobby' | 'in_progress' | 'finished'
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: Record<string, never>
     Functions: {
@@ -195,6 +225,27 @@ export type Database = {
           p_question_id: string
         }
         Returns: undefined
+      }
+      get_session_participant: {
+        Args: {
+          p_participant_id: string
+          p_session_id: string
+        }
+        Returns: {
+          id: string
+          nickname: string
+        }[]
+      }
+      join_live_session: {
+        Args: {
+          p_join_code: string
+          p_nickname: string
+        }
+        Returns: {
+          nickname: string
+          participant_id: string
+          session_id: string
+        }[]
       }
       move_question_position: {
         Args: {

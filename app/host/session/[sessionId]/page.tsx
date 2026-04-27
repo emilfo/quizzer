@@ -42,7 +42,13 @@ export default async function HostSessionPage({
         </p>
       </section>
 
-      <LiveSessionPanel initialParticipants={participants} initialState={session.state} mode="host" sessionId={session.id} />
+      <LiveSessionPanel
+        initialParticipantCount={participants.length}
+        initialParticipants={participants}
+        initialState={session.state}
+        mode="host"
+        sessionId={session.id}
+      />
     </section>
   )
 }

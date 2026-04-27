@@ -15,6 +15,7 @@ const errorMessages: Record<string, string> = {
   'join-closed': 'This session is no longer accepting new players.',
   'join-failed': 'Unable to join the session right now. Retry in a moment.',
   'missing-nickname': 'Enter a nickname before joining.',
+  'nickname-too-long': 'Nickname must be 32 characters or fewer.',
   'session-not-found': 'That join code does not match an active session.',
 }
 
@@ -44,8 +45,8 @@ export default async function PlayerJoinPage({
 
   const supabase = await createClient()
   const { data: session } = await supabase
-    .from('quiz_sessions')
-    .select('id, join_code, quiz_title, state')
+    .from('public_session_lobbies')
+    .select('session_id, join_code, quiz_title, state, participant_count')
     .eq('join_code', normalizedJoinCode)
     .maybeSingle()
 
@@ -62,15 +63,17 @@ export default async function PlayerJoinPage({
     )
   }
 
-  const [{ data: participants }, cookieStore] = await Promise.all([
-    supabase.from('participants').select('id, nickname').eq('session_id', session.id).order('created_at', { ascending: true }),
-    cookies(),
-  ])
+  const cookieStore = await cookies()
 
   const participantCookie = parseParticipantCookie(cookieStore.get(PARTICIPANT_COOKIE_NAME)?.value)
   const joinedParticipant =
-    participantCookie?.sessionId === session.id
-      ? (participants ?? []).find((participant) => participant.id === participantCookie.participantId) ?? null
+    participantCookie?.sessionId === session.session_id
+      ? (
+          await supabase.rpc('get_session_participant', {
+            p_participant_id: participantCookie.participantId,
+            p_session_id: session.session_id,
+          })
+        ).data?.[0] ?? null
       : null
 
   const canJoin = isSessionJoinOpen(session.state) && !joinedParticipant
@@ -103,11 +106,12 @@ export default async function PlayerJoinPage({
         </section>
 
         <LiveSessionPanel
-          initialParticipants={participants ?? []}
+          initialParticipantCount={session.participant_count}
           initialState={session.state}
+          joinCode={session.join_code}
           joinedNickname={joinedParticipant?.nickname ?? participantCookie?.nickname ?? null}
           mode="player"
-          sessionId={session.id}
+          sessionId={session.session_id}
         />
       </div>
     </main>

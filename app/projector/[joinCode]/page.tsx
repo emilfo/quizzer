@@ -26,8 +26,8 @@ export default async function ProjectorPage({
 
   const supabase = await createClient()
   const { data: session } = await supabase
-    .from('quiz_sessions')
-    .select('id, join_code, quiz_title, state')
+    .from('public_session_lobbies')
+    .select('session_id, join_code, quiz_title, state, participant_count')
     .eq('join_code', normalizedJoinCode)
     .maybeSingle()
 
@@ -43,10 +43,7 @@ export default async function ProjectorPage({
     )
   }
 
-  const [{ data: participants }, headerStore] = await Promise.all([
-    supabase.from('participants').select('id, nickname').eq('session_id', session.id).order('created_at', { ascending: true }),
-    headers(),
-  ])
+  const headerStore = await headers()
 
   const origin = getRequestOrigin(headerStore)
   const joinUrl = buildPlayerJoinUrl(origin, session.join_code)
@@ -60,6 +57,7 @@ export default async function ProjectorPage({
           <h1>{session.quiz_title}</h1>
           <div className="join-code">{session.join_code}</div>
           <p className="muted">Scan the QR code or enter the join code at home to join the lobby.</p>
+          {/* eslint-disable-next-line @next/next/no-img-element -- QR image is served by an external generator URL. */}
           <img alt={`QR code for ${joinUrl}`} className="qr-image" height="240" src={qrSrc} width="240" />
           <Link className="button secondary" href={joinUrl}>
             Open join link
@@ -67,10 +65,11 @@ export default async function ProjectorPage({
         </section>
 
         <LiveSessionPanel
-          initialParticipants={participants ?? []}
+          initialParticipantCount={session.participant_count}
           initialState={session.state}
+          joinCode={session.join_code}
           mode="projector"
-          sessionId={session.id}
+          sessionId={session.session_id}
         />
       </div>
     </main>

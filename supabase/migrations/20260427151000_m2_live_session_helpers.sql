@@ -28,6 +28,73 @@ begin
 end;
 $$;
 
+create or replace function public.sync_public_session_lobby()
+returns trigger
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  if tg_op = 'DELETE' then
+    delete from public.public_session_lobbies
+    where session_id = old.id;
+
+    return old;
+  end if;
+
+  insert into public.public_session_lobbies (session_id, join_code, quiz_title, state, participant_count)
+  values (
+    new.id,
+    new.join_code,
+    new.quiz_title,
+    new.state,
+    (
+      select count(*)::integer
+      from public.participants
+      where participants.session_id = new.id
+    )
+  )
+  on conflict (session_id) do update
+  set join_code = excluded.join_code,
+      quiz_title = excluded.quiz_title,
+      state = excluded.state,
+      participant_count = excluded.participant_count;
+
+  return new;
+end;
+$$;
+
+create or replace function public.sync_public_session_participant_count()
+returns trigger
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  v_session_id uuid := coalesce(new.session_id, old.session_id);
+begin
+  update public.public_session_lobbies
+  set participant_count = (
+    select count(*)::integer
+    from public.participants
+    where participants.session_id = v_session_id
+  )
+  where session_id = v_session_id;
+
+  return coalesce(new, old);
+end;
+$$;
+
+create trigger quiz_sessions_sync_public_lobby
+after insert or update or delete on public.quiz_sessions
+for each row
+execute function public.sync_public_session_lobby();
+
+create trigger participants_sync_public_lobby_count
+after insert or update or delete on public.participants
+for each row
+execute function public.sync_public_session_participant_count();
+
 create or replace function public.create_live_session(p_quiz_id uuid)
 returns uuid
 language plpgsql
@@ -93,9 +160,68 @@ begin
 end;
 $$;
 
+create or replace function public.join_live_session(p_join_code text, p_nickname text)
+returns table (session_id uuid, participant_id uuid, nickname text)
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  v_session public.quiz_sessions%rowtype;
+  v_nickname text := btrim(coalesce(p_nickname, ''));
+begin
+  if v_nickname = '' then
+    raise exception 'Nickname is required';
+  end if;
+
+  if char_length(v_nickname) > 32 then
+    raise exception 'Nickname must be 32 characters or fewer';
+  end if;
+
+  select * into v_session
+  from public.quiz_sessions
+  where join_code = upper(btrim(coalesce(p_join_code, '')));
+
+  if v_session.id is null then
+    raise exception 'Session not found';
+  end if;
+
+  if v_session.state <> 'lobby' then
+    raise exception 'Session is not accepting joins';
+  end if;
+
+  insert into public.participants (session_id, nickname)
+  values (v_session.id, v_nickname)
+  returning participants.session_id, participants.id, participants.nickname
+  into session_id, participant_id, nickname;
+
+  return next;
+end;
+$$;
+
+create or replace function public.get_session_participant(p_session_id uuid, p_participant_id uuid)
+returns table (id uuid, nickname text)
+language sql
+security definer
+set search_path = public
+as $$
+  select participants.id, participants.nickname
+  from public.participants
+  join public.quiz_sessions on quiz_sessions.id = participants.session_id
+  where participants.session_id = p_session_id
+    and participants.id = p_participant_id
+    and quiz_sessions.state in ('lobby', 'in_progress');
+$$;
+
 grant select, insert, update on public.quiz_sessions to authenticated;
-grant select on public.quiz_sessions to anon;
-grant select, insert on public.participants to anon, authenticated;
+grant select on public.public_session_lobbies to anon, authenticated;
+grant insert on public.participants to anon, authenticated;
+
+alter publication supabase_realtime add table public.quiz_sessions;
+alter publication supabase_realtime add table public.participants;
+alter publication supabase_realtime add table public.public_session_lobbies;
 
 grant execute on function public.create_live_session(uuid) to authenticated;
+grant execute on function public.get_session_participant(uuid, uuid) to anon, authenticated;
+grant execute on function public.join_live_session(text, text) to anon, authenticated;
 grant execute on function public.start_live_session(uuid) to authenticated;

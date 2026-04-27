@@ -11,54 +11,85 @@ type Participant = {
 
 type LiveSessionPanelProps = {
   sessionId: string
-  initialParticipants: Participant[]
+  initialParticipantCount: number
+  initialParticipants?: Participant[]
   initialState: SessionState
+  joinCode?: string
   joinedNickname?: string | null
   mode: 'host' | 'player' | 'projector'
 }
 
 export function LiveSessionPanel({
   sessionId,
-  initialParticipants,
+  initialParticipantCount,
+  initialParticipants = [],
   initialState,
+  joinCode,
   joinedNickname,
   mode,
 }: LiveSessionPanelProps) {
   const [participants, setParticipants] = useState(initialParticipants)
+  const [participantCount, setParticipantCount] = useState(initialParticipantCount)
   const [sessionState, setSessionState] = useState(initialState)
 
   useEffect(() => {
     const supabase = createClient()
 
     const refresh = async () => {
-      const [{ data: session }, { data: nextParticipants }] = await Promise.all([
-        supabase.from('quiz_sessions').select('state').eq('id', sessionId).maybeSingle(),
-        supabase.from('participants').select('id, nickname').eq('session_id', sessionId).order('created_at', { ascending: true }),
-      ])
+      if (mode === 'host') {
+        const [{ data: session }, { data: nextParticipants }] = await Promise.all([
+          supabase.from('quiz_sessions').select('state').eq('id', sessionId).maybeSingle(),
+          supabase.from('participants').select('id, nickname').eq('session_id', sessionId).order('created_at', { ascending: true }),
+        ])
 
-      if (session?.state) {
-        setSessionState(session.state)
+        if (session?.state) {
+          setSessionState(session.state)
+        }
+
+        setParticipants(nextParticipants ?? [])
+        setParticipantCount(nextParticipants?.length ?? 0)
+        return
       }
 
-      setParticipants(nextParticipants ?? [])
+      if (!joinCode) return
+
+      const { data: lobby } = await supabase
+        .from('public_session_lobbies')
+        .select('state, participant_count')
+        .eq('join_code', joinCode)
+        .maybeSingle()
+
+      if (!lobby) return
+
+      setSessionState(lobby.state)
+      setParticipantCount(lobby.participant_count)
     }
 
-    const channel = supabase
-      .channel(`live-session:${sessionId}:${mode}`)
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'quiz_sessions', filter: `id=eq.${sessionId}` }, refresh)
-      .on(
-        'postgres_changes',
-        { event: '*', schema: 'public', table: 'participants', filter: `session_id=eq.${sessionId}` },
-        refresh,
-      )
-      .subscribe()
+    const channel =
+      mode === 'host'
+        ? supabase
+            .channel(`live-session:${sessionId}:${mode}`)
+            .on('postgres_changes', { event: '*', schema: 'public', table: 'quiz_sessions', filter: `id=eq.${sessionId}` }, refresh)
+            .on(
+              'postgres_changes',
+              { event: '*', schema: 'public', table: 'participants', filter: `session_id=eq.${sessionId}` },
+              refresh,
+            )
+            .subscribe()
+        : supabase
+            .channel(`public-session:${joinCode}:${mode}`)
+            .on(
+              'postgres_changes',
+              { event: '*', schema: 'public', table: 'public_session_lobbies', filter: `session_id=eq.${sessionId}` },
+              refresh,
+            )
+            .subscribe()
 
     return () => {
       void supabase.removeChannel(channel)
     }
-  }, [mode, sessionId])
+  }, [joinCode, mode, sessionId])
 
-  const participantCount = participants.length
   const joinedLabel = useMemo(() => joinedNickname?.trim() ?? '', [joinedNickname])
 
   if (mode === 'host') {

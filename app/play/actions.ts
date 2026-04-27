@@ -4,7 +4,6 @@ import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import {
   buildPlayerJoinPath,
-  isSessionJoinOpen,
   isValidJoinCode,
   normalizeJoinCode,
   PARTICIPANT_COOKIE_NAME,
@@ -34,30 +33,34 @@ export async function joinLiveSession(joinCode: string, formData: FormData) {
     redirect(`${buildPlayerJoinPath(normalizedJoinCode)}?error=missing-nickname`)
   }
 
+  if (nickname.length > 32) {
+    redirect(`${buildPlayerJoinPath(normalizedJoinCode)}?error=nickname-too-long`)
+  }
+
   const supabase = await createClient()
-  const { data: session } = await supabase
-    .from('quiz_sessions')
-    .select('id, join_code, state')
-    .eq('join_code', normalizedJoinCode)
-    .maybeSingle()
-
-  if (!session) {
-    redirect(`${buildPlayerJoinPath(normalizedJoinCode)}?error=session-not-found`)
-  }
-
-  if (!isSessionJoinOpen(session.state)) {
-    redirect(`${buildPlayerJoinPath(normalizedJoinCode)}?error=join-closed`)
-  }
-
-  const { data: participant, error } = await supabase
-    .from('participants')
-    .insert({ nickname, session_id: session.id })
-    .select('id, nickname, session_id')
-    .single()
+  const { data: participants, error } = await supabase.rpc('join_live_session', {
+    p_join_code: normalizedJoinCode,
+    p_nickname: nickname,
+  })
 
   if (error) {
-    const duplicateNickname = error.code === '23505'
-    redirect(`${buildPlayerJoinPath(normalizedJoinCode)}?error=${duplicateNickname ? 'duplicate-nickname' : 'join-failed'}`)
+    const errorCode =
+      error.code === '23505'
+        ? 'duplicate-nickname'
+        : error.message === 'Session not found'
+          ? 'session-not-found'
+          : error.message === 'Session is not accepting joins'
+            ? 'join-closed'
+            : error.message === 'Nickname must be 32 characters or fewer'
+              ? 'nickname-too-long'
+              : 'join-failed'
+
+    redirect(`${buildPlayerJoinPath(normalizedJoinCode)}?error=${errorCode}`)
+  }
+
+  const participant = participants[0]
+  if (!participant) {
+    redirect(`${buildPlayerJoinPath(normalizedJoinCode)}?error=join-failed`)
   }
 
   const cookieStore = await cookies()
@@ -65,13 +68,13 @@ export async function joinLiveSession(joinCode: string, formData: FormData) {
     PARTICIPANT_COOKIE_NAME,
     serializeParticipantCookie({
       sessionId: participant.session_id,
-      participantId: participant.id,
+      participantId: participant.participant_id,
       nickname: participant.nickname,
     }),
     {
-    httpOnly: true,
-    sameSite: 'lax',
-    path: '/',
+      httpOnly: true,
+      sameSite: 'lax',
+      path: '/',
     },
   )
 
