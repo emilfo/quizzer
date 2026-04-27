@@ -113,7 +113,56 @@ export type Database = {
       }
     }
     Views: Record<string, never>
-    Functions: Record<string, never>
+    Functions: {
+      add_question_with_options: {
+        Args: {
+          p_quiz_id: string
+        }
+        Returns: string
+      }
+      delete_question_and_reorder: {
+        Args: {
+          p_quiz_id: string
+          p_question_id: string
+        }
+        Returns: undefined
+      }
+      move_question_position: {
+        Args: {
+          p_quiz_id: string
+          p_question_id: string
+          p_direction: string
+        }
+        Returns: undefined
+      }
+      publish_quiz_if_valid: {
+        Args: {
+          p_quiz_id: string
+        }
+        Returns: undefined
+      }
+      quiz_is_publishable: {
+        Args: {
+          p_quiz_id: string
+        }
+        Returns: boolean
+      }
+      save_question_with_options: {
+        Args: {
+          p_quiz_id: string
+          p_question_id: string
+          p_prompt: string
+          p_options: Json
+        }
+        Returns: undefined
+      }
+      sync_quiz_status: {
+        Args: {
+          p_quiz_id: string
+        }
+        Returns: undefined
+      }
+    }
     Enums: {
       quiz_status: 'draft' | 'published'
     }

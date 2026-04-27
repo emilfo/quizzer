@@ -73,6 +73,10 @@ export function validateQuizForPublish(quiz: QuizDraft): QuizValidationResult {
     errors.push('Add at least one complete valid question before publishing.')
   }
 
+  if (questionSummaries.some((question) => !question.isValid)) {
+    errors.push('Fix invalid questions before publishing.')
+  }
+
   return {
     isPublishable: errors.length === 0 && questionSummaries.every((question) => question.isValid),
     errors,
