@@ -111,10 +111,79 @@ export type Database = {
         }
         Relationships: []
       }
+      quiz_sessions: {
+        Row: {
+          created_at: string
+          ended_at: string | null
+          host_id: string
+          id: string
+          join_code: string
+          quiz_id: string
+          quiz_title: string
+          started_at: string | null
+          state: 'lobby' | 'in_progress' | 'finished'
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          ended_at?: string | null
+          host_id: string
+          id?: string
+          join_code: string
+          quiz_id: string
+          quiz_title: string
+          started_at?: string | null
+          state?: 'lobby' | 'in_progress' | 'finished'
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          ended_at?: string | null
+          host_id?: string
+          id?: string
+          join_code?: string
+          quiz_id?: string
+          quiz_title?: string
+          started_at?: string | null
+          state?: 'lobby' | 'in_progress' | 'finished'
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      participants: {
+        Row: {
+          created_at: string
+          id: string
+          nickname: string
+          session_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          nickname: string
+          session_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          nickname?: string
+          session_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: Record<string, never>
     Functions: {
       add_question_with_options: {
+        Args: {
+          p_quiz_id: string
+        }
+        Returns: string
+      }
+      create_live_session: {
         Args: {
           p_quiz_id: string
         }
@@ -156,6 +225,12 @@ export type Database = {
         }
         Returns: undefined
       }
+      start_live_session: {
+        Args: {
+          p_session_id: string
+        }
+        Returns: undefined
+      }
       sync_quiz_status: {
         Args: {
           p_quiz_id: string
@@ -165,6 +240,7 @@ export type Database = {
     }
     Enums: {
       quiz_status: 'draft' | 'published'
+      session_state: 'lobby' | 'in_progress' | 'finished'
     }
     CompositeTypes: Record<string, never>
   }
