@@ -23,6 +23,7 @@
 - auth route protection is verified
 - schema and migrations apply cleanly
 - quiz validation enforces 4 options and 1 correct answer
+- local checks run with `npm run typecheck`, `npm run lint`, `npm test`, and `npm run build`
 
 ### M2 — joinable live session
 

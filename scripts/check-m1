@@ -9,6 +9,14 @@ required_files=(
   "commands/plan"
   "commands/status"
   "commands/verify"
+  "package.json"
+  "app/host/page.tsx"
+  "app/host/[quizId]/page.tsx"
+  "app/auth/callback/route.ts"
+  "lib/quiz-validation.ts"
+  "tests/quiz-validation.test.ts"
+  "supabase/migrations/20260427120000_m1_single_host_authoring.sql"
+  "supabase/migrations/20260427130000_m1_authoring_helpers.sql"
 )
 
 missing=0
@@ -24,10 +32,10 @@ if [[ "$missing" -ne 0 ]]; then
   exit 1
 fi
 
-if [[ -f package.json ]]; then
-  printf 'Detected package.json. Future M1 app checks may run here.\n'
-else
-  printf 'No package.json yet. App-level M1 checks deferred until implementation starts.\n'
-fi
+printf 'Running M1 app checks\n'
+npm run typecheck
+npm run lint
+npm test
+npm run build
 
 printf 'M1 check OK\n'

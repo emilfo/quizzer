@@ -1,6 +1,24 @@
 # quizzer
 
-Scaffold for an agentic development harness inspired by OpenAI's harness engineering guidance, adapted for `opencode` and `oh-my-opencode-slim`.
+Single-host quiz authoring app plus the agentic harness docs/scripts used to build it.
+
+## Milestone 1 app
+
+- Next.js App Router app for host authoring
+- Supabase SSR auth with Google sign-in
+- Supabase SQL migrations for profiles, quizzes, questions, and question options
+- Host dashboard and quiz editor with publish validation
+
+## Local app commands
+
+- `npm install`
+- `npm run dev`
+- `npm run typecheck`
+- `npm run lint`
+- `npm test`
+- `npm run build`
+
+Apply the SQL files in `supabase/migrations/` to your Supabase project before testing runtime authoring flows.
 
 ## Goals
 
@@ -17,7 +35,7 @@ Scaffold for an agentic development harness inspired by OpenAI's harness enginee
 - `docs/quality.md` — invariants and verification loop
 - `docs/agent-map.md` — commands, hooks, and execution surfaces
 
-## Proposed layout
+## Repo layout
 
 ```text
 .
@@ -33,20 +51,20 @@ Scaffold for an agentic development harness inspired by OpenAI's harness enginee
 │   ├── quality.md
 │   └── quickstart.md
 ├── hooks/
-├── scripts/
+├── app/
+├── lib/
+├── supabase/
+├── tests/
 └── src/
     └── harness/
 ```
 
-## What this scaffold assumes
+## Harness assumptions
 
 - `opencode` is the primary orchestration runtime
 - `oh-my-opencode-slim` provides lightweight shell/bootstrap ergonomics
 - future automation should prefer explicit scripts over hidden shell behavior
 
-## Next steps
+## Current verification
 
-1. Wire real `opencode` commands into `commands/`
-2. Add executable checks under `scripts/`
-3. Implement harness modules under `src/harness/`
-4. Add project-specific plans in `docs/plans/`
+Run `commands/verify m1` or `scripts/check-m1` for the local Milestone 1 verification loop.

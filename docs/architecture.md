@@ -30,6 +30,15 @@ Purpose: give lightweight entrypoints without hiding core behavior.
 
 Purpose: assemble context, route tasks, invoke tools, and manage validation.
 
+### 3b. Application layer
+
+- `app/`
+- `lib/`
+- `supabase/migrations/`
+- `tests/`
+
+Purpose: implement the quiz product itself, including host auth, authoring flows, validation, and database behavior.
+
 ### 4. Verification layer
 
 - `scripts/check-agent-context`

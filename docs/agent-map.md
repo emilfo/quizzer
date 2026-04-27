@@ -15,6 +15,7 @@ This file maps the main execution surfaces an agent or operator should use.
 - run the standard local quality loop
 - should resolve the active milestone from `docs/status.md` by default
 - should call the relevant scripts in `scripts/`
+- for M1, runs `npm run typecheck`, `npm run lint`, `npm test`, and `npm run build`
 
 ### `commands/status`
 - summarize active milestone, current deliverable, recent checks, blockers, and follow-ups
@@ -34,6 +35,7 @@ This file maps the main execution surfaces an agent or operator should use.
 - run milestone-targeted checks
 - succeed with explicit deferred notices when app-level checks are not available yet
 - fail with exact remediation steps when milestone prerequisites are missing
+- `scripts/check-m1` now validates the app files, migrations, tests, and local quality commands for single-host authoring
 
 ## Hooks
 
