@@ -8,7 +8,7 @@ Enable a quiz master to sign in, create quizzes, add valid questions, and publis
 
 Includes these atomic deliverables:
 
-- D1 — project foundation
+- D1 — project foundation: Next.js app, Supabase wiring, env/config, local startup
 - D2 — host authentication
 - D3 — database schema
 - D4 — host dashboard
@@ -27,7 +27,11 @@ Out of scope:
 
 - use Next.js + Supabase
 - host auth is Google sign-in
+- D1 is limited to app foundation and Supabase/bootstrap setup; auth starts in D2
 - quizzes must support many questions
+- quiz metadata in v1 is title only
+- published quizzes remain editable in place after publish
+- each question stores a prompt only in v1
 - each question must have exactly 4 answer options
 - each question must have exactly 1 correct answer
 - prefer small, reversible slices
@@ -41,9 +45,9 @@ Out of scope:
 4. Create `profiles`, `quizzes`, `questions`, and `question_options` schema.
 5. Add row-level security so hosts can only manage their own quiz data.
 6. Build the host dashboard with list/create/edit affordances.
-7. Build the quiz creation flow for title and draft metadata.
-8. Build question editing with validation for 4 options and 1 correct answer.
-9. Add publish validation so only complete quizzes can be published.
+7. Build the quiz creation flow for title-only draft metadata.
+8. Build question editing with prompt-only questions and validation for 4 options and 1 correct answer.
+9. Add publish validation so only quizzes with a title and at least 1 complete valid question can be published.
 
 ## 5. acceptance criteria
 
@@ -53,7 +57,8 @@ Out of scope:
 - host can create, edit, and save draft quizzes
 - host can add multiple questions to a quiz
 - invalid question structures are blocked
-- only valid quizzes can be published
+- published quizzes remain editable by their host
+- only quizzes with a title and at least 1 valid question can be published
 
 ## 6. verification
 
@@ -66,5 +71,4 @@ Out of scope:
 
 ## 7. follow-ups
 
-- define whether quiz metadata needs description, theme, or category in v1
-- decide whether published quizzes remain editable or require draft duplication
+- consider whether description, theme, category, explanation, or images should be added after v1
