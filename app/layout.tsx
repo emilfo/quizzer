@@ -3,7 +3,7 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Quizzer',
-  description: 'Single-host quiz authoring',
+  description: 'Quiz authoring and live lobby hosting',
 }
 
 export default function RootLayout({

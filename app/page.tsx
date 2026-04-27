@@ -1,11 +1,17 @@
 import Link from 'next/link'
 import { signInWithGoogle, signInWithPassword, signOut, signUpWithPassword } from '@/app/auth/actions'
+import { openJoinCode } from '@/app/play/actions'
 import { isLocalSupabaseAuthEnabled } from '@/lib/auth-mode'
 import { createClient } from '@/lib/supabase/server'
 
-export default async function HomePage() {
+export default async function HomePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ joinError?: string }>
+}) {
   const supabase = await createClient()
   const localAuthEnabled = isLocalSupabaseAuthEnabled()
+  const query = await searchParams
   const {
     data: { user },
   } = await supabase.auth.getUser()
@@ -14,10 +20,10 @@ export default async function HomePage() {
     <main className="page-shell">
       <div className="container stack">
         <section className="card stack">
-          <span className="pill">Milestone 1</span>
-          <h1>Quizzer host authoring</h1>
+          <span className="pill">Milestones 1-2</span>
+          <h1>Quizzer host console</h1>
           <p className="muted">
-            Create quizzes, add valid questions, and publish them when they are ready to host.
+            Create quizzes, publish them, and launch a live lobby that players can join from their phones.
           </p>
           {user ? (
             <div className="row">
@@ -77,6 +83,19 @@ export default async function HomePage() {
               )}
             </div>
           )}
+        </section>
+
+        <section className="card stack">
+          <span className="pill">Player join</span>
+          <h2>Enter a live join code</h2>
+          <p className="muted">Use the 6-character code shown on the projector screen.</p>
+          {query.joinError === 'invalid-code' ? <div className="error">Enter a valid 6-character join code.</div> : null}
+          <form action={openJoinCode} className="row">
+            <input maxLength={6} name="joinCode" placeholder="ABC123" style={{ textTransform: 'uppercase' }} />
+            <button className="button" type="submit">
+              Join session
+            </button>
+          </form>
         </section>
       </div>
     </main>
