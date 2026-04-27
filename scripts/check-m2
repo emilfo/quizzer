@@ -4,8 +4,20 @@ set -euo pipefail
 printf 'Checking milestone m2: joinable live session\n'
 
 required_files=(
-  "docs/plans/2026-04-27-quizzer-v1-milestone-2-joinable-live-session.md"
   "docs/status.md"
+  "docs/plans/2026-04-27-quizzer-v1-milestone-2-joinable-live-session.md"
+  "commands/verify"
+  "package.json"
+  "scripts/check-m2"
+  "app/host/session/[sessionId]/page.tsx"
+  "app/play/actions.ts"
+  "app/play/[joinCode]/page.tsx"
+  "app/projector/[joinCode]/page.tsx"
+  "components/live-session-panel.tsx"
+  "tests/live-session.test.ts"
+  "lib/live-session.ts"
+  "supabase/migrations/20260427150000_m2_live_session_schema.sql"
+  "supabase/migrations/20260427151000_m2_live_session_helpers.sql"
 )
 
 missing=0
@@ -17,9 +29,14 @@ for path in "${required_files[@]}"; do
 done
 
 if [[ "$missing" -ne 0 ]]; then
-  printf 'M2 check failed. Restore the missing milestone prerequisites and retry.\n'
+  printf 'M2 check failed. Restore the missing milestone files and retry.\n'
   exit 1
 fi
 
-printf 'Realtime and join-flow app checks are deferred until implementation exists.\n'
+printf 'Running M2 app checks\n'
+npm run typecheck
+npm run lint
+npm test
+npm run build
+
 printf 'M2 check OK\n'
