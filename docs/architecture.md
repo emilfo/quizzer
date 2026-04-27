@@ -18,9 +18,10 @@ Purpose: provide stable orientation, boundaries, milestones, and recovery paths.
 - `app/`
 - `lib/`
 - `supabase/migrations/`
+- `supabase/config.toml`
 - `tests/`
 
-Purpose: implement quizzer itself, including host auth, authoring flows, validation, and database behavior.
+Purpose: implement quizzer itself, including host auth, local auth setup, authoring flows, validation, and database behavior.
 
 ### 3. Support tooling layer
 

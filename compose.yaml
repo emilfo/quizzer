@@ -1,0 +1,17 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /app
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env.local
+    volumes:
+      - .:/app
+      - quizzer-node-modules:/app/node_modules
+    command: sh -c "npm ci && npm run dev -- --hostname 0.0.0.0"
+
+volumes:
+  quizzer-node-modules:

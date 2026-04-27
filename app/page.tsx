@@ -1,9 +1,11 @@
 import Link from 'next/link'
-import { signInWithGoogle, signOut } from '@/app/auth/actions'
+import { signInWithGoogle, signInWithPassword, signOut, signUpWithPassword } from '@/app/auth/actions'
+import { isLocalSupabaseAuthEnabled } from '@/lib/auth-mode'
 import { createClient } from '@/lib/supabase/server'
 
 export default async function HomePage() {
   const supabase = await createClient()
+  const localAuthEnabled = isLocalSupabaseAuthEnabled()
   const {
     data: { user },
   } = await supabase.auth.getUser()
@@ -29,11 +31,51 @@ export default async function HomePage() {
               </form>
             </div>
           ) : (
-            <form action={signInWithGoogle}>
-              <button className="button" type="submit">
-                Continue with Google
-              </button>
-            </form>
+            <div className="stack">
+              {localAuthEnabled ? (
+                <>
+                  <p className="muted">
+                    Local Supabase detected. Use email/password auth instead of Google for development.
+                  </p>
+                  <form action={signInWithPassword} className="stack">
+                    <label className="stack" htmlFor="email">
+                      <span>Email</span>
+                      <input id="email" name="email" type="email" defaultValue="host@example.com" required />
+                    </label>
+                    <label className="stack" htmlFor="password">
+                      <span>Password</span>
+                      <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        defaultValue="quizzer-local-password"
+                        minLength={8}
+                        required
+                      />
+                    </label>
+                    <div className="row">
+                      <button className="button" type="submit">
+                        Sign in locally
+                      </button>
+                    </div>
+                  </form>
+                  <form action={signUpWithPassword} className="stack">
+                    <input name="fullName" type="hidden" value="Local Host" />
+                    <input name="email" type="hidden" value="host@example.com" />
+                    <input name="password" type="hidden" value="quizzer-local-password" />
+                    <button className="button secondary" type="submit">
+                      Create default local host user
+                    </button>
+                  </form>
+                </>
+              ) : (
+                <form action={signInWithGoogle}>
+                  <button className="button" type="submit">
+                    Continue with Google
+                  </button>
+                </form>
+              )}
+            </div>
           )}
         </section>
       </div>

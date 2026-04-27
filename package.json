@@ -9,7 +9,8 @@
     "lint": "eslint . --ignore-pattern '.next/**' --ignore-pattern 'node_modules/**' --ignore-pattern 'next-env.d.ts'",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "local:user": "node --env-file=.env.local scripts/create-local-host-user.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.7.0",

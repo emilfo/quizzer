@@ -22,6 +22,7 @@
 
 - auth route protection is verified
 - schema and migrations apply cleanly
+- local Supabase startup and local host sign-in path are documented
 - quiz validation enforces 4 options and 1 correct answer
 - local checks run with `npm run typecheck`, `npm run lint`, `npm test`, and `npm run build`
 

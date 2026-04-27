@@ -30,6 +30,7 @@
 ## Quiz app invariants
 
 - quiz-master actions require authentication
+- local development must support a non-Google host sign-in path
 - participants join without accounts and use nickname only
 - each question must have exactly 4 answer options
 - each question must have exactly 1 correct answer

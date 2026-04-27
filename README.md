@@ -13,12 +13,14 @@ Live quiz app repository with milestone-based docs, checks, and support tooling.
 
 - `npm install`
 - `npm run dev`
+- `docker compose up app`
 - `npm run typecheck`
 - `npm run lint`
 - `npm test`
 - `npm run build`
+- `npm run local:user`
 
-Apply the SQL files in `supabase/migrations/` to your Supabase project before testing runtime authoring flows.
+For local development, start Supabase with `supabase start`, apply the repo migrations with `supabase db reset`, set `QUIZZER_ENABLE_LOCAL_AUTH=true` in `.env.local`, copy the local URL and anon key into `.env.local`, then run `npm run local:user` once to create the default local host account.
 
 ## Current focus
 
@@ -73,3 +75,9 @@ Apply the SQL files in `supabase/migrations/` to your Supabase project before te
 ## Current verification
 
 Run `commands/verify m1` or `scripts/check-m1` for the local Milestone 1 verification loop.
+
+## Local auth defaults
+
+- set `QUIZZER_ENABLE_LOCAL_AUTH=true` in `.env.local`
+- email: `host@example.com`
+- password: `quizzer-local-password`

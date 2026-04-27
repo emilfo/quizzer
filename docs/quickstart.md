@@ -7,16 +7,21 @@ Get oriented on the current quizzer milestone and run the local app verification
 ## Setup order
 
 1. install app dependencies with `npm install`
-2. configure local environment and Supabase access
-3. apply SQL files in `supabase/migrations/`
-4. read the active milestone in `docs/status.md`
-5. use `commands/` and `scripts/` for verification
+2. start local Supabase with `supabase start`
+3. apply the repo migrations with `supabase db reset`
+4. copy the local Supabase URL and anon key into `.env.local`
+5. set `QUIZZER_ENABLE_LOCAL_AUTH=true` in `.env.local`
+6. create the default local host user with `npm run local:user`
+7. run the app with `npm run dev` or `docker compose up app`
+8. read the active milestone in `docs/status.md`
+9. use `commands/` and `scripts/` for verification
 
 ## First-run checklist
 
 - confirm the agent can read `AGENTS.md`
 - confirm the agent can discover the docs tree
 - confirm the active milestone file exists and matches `docs/status.md`
+- confirm `supabase/config.toml` matches local app URLs
 - confirm at least one verification command works
 - confirm failures are visible and actionable
 
@@ -40,6 +45,9 @@ Get oriented on the current quizzer milestone and run the local app verification
 - `commands/plan`
 - `commands/status`
 - `commands/verify`
+- `supabase start`
+- `supabase db reset`
+- `npm run local:user`
 - `scripts/check-project-setup`
 - `scripts/check-repo-context`
 

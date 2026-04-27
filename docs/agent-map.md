@@ -35,7 +35,7 @@ This file maps the main execution surfaces an agent or operator should use.
 - run milestone-targeted checks
 - succeed with explicit deferred notices when app-level checks are not available yet
 - fail with exact remediation steps when milestone prerequisites are missing
-- `scripts/check-m1` now validates the app files, migrations, tests, and local quality commands for single-host authoring
+- `scripts/check-m1` now validates the app files, local Supabase config, tests, and local quality commands for single-host authoring
 
 ## Hooks
 
