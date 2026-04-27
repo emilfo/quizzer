@@ -18,10 +18,13 @@ Use this file as a startup map. Prefer linked docs and scripts over long inline 
 
 - Keep repo-local docs as the source of truth
 - Prefer small, reversible changes
+- Prefer small, atomic commits
+- Use conventional commits
 - Put policy into scripts and checks when possible
 - Fail with actionable messages
 - Update docs when structure or workflow changes
 - Escalate only when a decision needs product or architecture judgment
+- Agents are allowed to create commits when they complete a bounded slice of work
 
 ## Tooling model
 
@@ -79,3 +82,4 @@ Update these when relevant:
 - verification path is clear
 - failure modes are inspectable
 - next agent can resume without guessing
+- commit history stays small, atomic, and uses conventional commit messages

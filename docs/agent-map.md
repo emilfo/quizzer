@@ -52,3 +52,9 @@ Every command/script should:
 - print exact remediation steps on failure
 - avoid interactive prompts unless explicitly intended
 - prefer deriving state from repo files over hidden shell state
+
+## Commit policy
+
+- agents may create commits for completed bounded changes
+- prefer small atomic commits over batching unrelated work
+- use conventional commit messages

@@ -54,6 +54,8 @@
 - failures must explain how to recover
 - flaky checks should be fixed or removed
 - slow checks should be separated from fast default checks
+- commits should be small, atomic, and easy to revert
+- commit messages should follow conventional commits
 
 ## Initial acceptance criteria for this harness
 
