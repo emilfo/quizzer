@@ -1,6 +1,6 @@
 # Status
 
-This file is the active execution pointer for agents and operators.
+This file is the active execution pointer for the current quizzer milestone.
 
 active_plan_set: quizzer-v1
 active_milestone: m1

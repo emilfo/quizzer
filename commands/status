@@ -3,7 +3,7 @@ set -euo pipefail
 
 status_file="docs/status.md"
 
-printf 'Showing harness execution status\n'
+printf 'Showing quizzer milestone status\n'
 
 if [[ ! -f "$status_file" ]]; then
   printf 'Status failed. Missing %s\n' "$status_file"

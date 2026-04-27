@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-printf 'Checking agent context integrity\n'
+printf 'Checking quizzer repo context\n'
 
 required_dirs=(
   "commands"
@@ -9,7 +9,7 @@ required_dirs=(
   "docs"
   "hooks"
   "scripts"
-  "src/harness"
+  "src/tooling"
 )
 
 required_files=(
@@ -26,6 +26,8 @@ required_files=(
   "commands/plan"
   "commands/status"
   "commands/verify"
+  "scripts/check-project-setup"
+  "scripts/check-repo-context"
   "scripts/check-m1"
   "scripts/check-m2"
   "scripts/check-m3"
@@ -49,8 +51,8 @@ for path in "${required_files[@]}"; do
 done
 
 if [[ "$missing" -ne 0 ]]; then
-  printf 'Context check failed. Restore the missing paths and retry.\n'
+  printf 'Repo context check failed. Restore the missing paths and retry.\n'
   exit 1
 fi
 
-printf 'Context check OK\n'
+printf 'Repo context OK\n'

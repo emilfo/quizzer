@@ -1,6 +1,6 @@
 # Config
 
-Place harness configuration, templates, and defaults here.
+Place project configuration, templates, and defaults here.
 
 Project-local opencode skills live under `.opencode/skills/`.
 

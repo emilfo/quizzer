@@ -22,12 +22,12 @@ This file maps the main execution surfaces an agent or operator should use.
 
 ## Scripts
 
-### `scripts/bootstrap-agent`
+### `scripts/check-project-setup`
 - validate local prerequisites
 - print next steps
 - avoid mutating hidden state without explicit output
 
-### `scripts/check-agent-context`
+### `scripts/check-repo-context`
 - verify required docs and directories exist
 - fail with a clear remediation message
 

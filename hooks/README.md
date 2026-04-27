@@ -8,4 +8,4 @@ Examples:
 - post-change reminders
 - context freshness checks
 
-Keep hooks transparent and easy to disable while bootstrapping.
+Keep hooks transparent and easy to disable while iterating on the app.

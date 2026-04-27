@@ -2,7 +2,7 @@
 
 ## Intent
 
-The harness should make the repository easy for agents to navigate, act in, and recover within.
+The repository should make the quiz product, its milestones, and its verification path easy for agents and operators to navigate.
 
 ## Layers
 
@@ -11,52 +11,52 @@ The harness should make the repository easy for agents to navigate, act in, and 
 - `AGENTS.md`
 - `docs/*.md`
 
-Purpose: provide stable orientation, boundaries, and plans.
+Purpose: provide stable orientation, boundaries, milestones, and recovery paths.
 
-### 2. Shell/bootstrap layer
-
-- `oh-my-opencode-slim`
-- `commands/`
-- `hooks/`
-- `scripts/bootstrap-agent`
-
-Purpose: give lightweight entrypoints without hiding core behavior.
-
-### 3. Orchestration layer
-
-- `opencode`
-- `src/harness/`
-- `config/`
-
-Purpose: assemble context, route tasks, invoke tools, and manage validation.
-
-### 3b. Application layer
+### 2. Product layer
 
 - `app/`
 - `lib/`
 - `supabase/migrations/`
 - `tests/`
 
-Purpose: implement the quiz product itself, including host auth, authoring flows, validation, and database behavior.
+Purpose: implement quizzer itself, including host auth, authoring flows, validation, and database behavior.
 
-### 4. Verification layer
+### 3. Support tooling layer
 
-- `scripts/check-agent-context`
+- `commands/`
+- `hooks/`
+- `scripts/check-project-setup`
+- `scripts/check-repo-context`
+- `scripts/check-m*`
+
+Purpose: provide lightweight entrypoints and mechanical checks without hiding core behavior.
+
+### 4. Repo automation layer
+
+- `src/tooling/`
+- `config/`
+
+Purpose: hold repo-specific automation, templates, and observability helpers that support the app but are not the product itself.
+
+### 5. Verification layer
+
+- `scripts/check-repo-context`
 - future lint/test/build scripts
 - future boundary and contract checks
 
 Purpose: enforce invariants mechanically.
 
-### 5. Observability layer
+### 6. Observability layer
 
 - future logs, traces, task artifacts, and run summaries
 
 Purpose: let humans and agents inspect what happened and why.
 
-## Suggested `src/harness/` modules
+## Suggested `src/tooling/` modules
 
 ```text
-src/harness/
+src/tooling/
 ├── context/          # prompt/context assembly
 ├── routing/          # task → agent/tool selection
 ├── plans/            # plan loading and execution metadata
@@ -74,8 +74,8 @@ src/harness/
 
 ## Planned evolution
 
-1. document the flow
-2. wire bootstrap commands
-3. wire verification commands
-4. add task artifacts and summaries
+1. keep milestone docs aligned with shipped quiz behavior
+2. expand verification from m1 through m5
+3. add task artifacts and summaries where they help debugging
+4. keep support tooling small and legible
 5. add continuous cleanup/refinement routines

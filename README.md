@@ -1,6 +1,6 @@
 # quizzer
 
-Single-host quiz authoring app plus the agentic harness docs/scripts used to build it.
+Live quiz app repository with milestone-based docs, checks, and support tooling.
 
 ## Milestone 1 app
 
@@ -20,10 +20,15 @@ Single-host quiz authoring app plus the agentic harness docs/scripts used to bui
 
 Apply the SQL files in `supabase/migrations/` to your Supabase project before testing runtime authoring flows.
 
-## Goals
+## Current focus
+
+- Milestone 1: single-host authoring
+- Next planned milestones: live session join, question rounds, full quiz flow, and hardening
+
+## Repo goals
 
 - Keep repo-local instructions as the source of truth
-- Give agents a small, reliable entrypoint
+- Give agents and operators a small, reliable entrypoint
 - Push quality rules into scripts, checks, and structure
 - Make progress, failures, and recovery paths easy to inspect
 
@@ -31,7 +36,7 @@ Apply the SQL files in `supabase/migrations/` to your Supabase project before te
 
 - `AGENTS.md` — agent startup map
 - `docs/quickstart.md` — operator setup flow
-- `docs/architecture.md` — harness layout and responsibilities
+- `docs/architecture.md` — app structure and support tooling responsibilities
 - `docs/quality.md` — invariants and verification loop
 - `docs/agent-map.md` — commands, hooks, and execution surfaces
 
@@ -56,14 +61,14 @@ Apply the SQL files in `supabase/migrations/` to your Supabase project before te
 ├── supabase/
 ├── tests/
 └── src/
-    └── harness/
+    └── tooling/
 ```
 
-## Harness assumptions
+## Working assumptions
 
-- `opencode` is the primary orchestration runtime
-- `oh-my-opencode-slim` provides lightweight shell/bootstrap ergonomics
+- the repository itself is the source of truth for active plans and constraints
 - future automation should prefer explicit scripts over hidden shell behavior
+- support tooling should stay secondary to the quiz product code
 
 ## Current verification
 

@@ -5,9 +5,9 @@
 - decisions that affect agent behavior belong in this repository
 - avoid relying on memory-only conventions
 
-## Thin shell layer
+## Thin wrapper rule
 
-- `oh-my-opencode-slim` should stay minimal
+- command wrappers should stay minimal
 - shell shortcuts must not obscure real execution paths
 
 ## Mechanical enforcement

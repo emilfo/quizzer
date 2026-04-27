@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This repository hosts an agentic harness for building and operating `quizzer` with `opencode` and `oh-my-opencode-slim`.
+This repository hosts `quizzer`, a live quiz app with a repo-local docs and command set that helps agents work on it consistently.
 
 Use this file as a startup map. Prefer linked docs and scripts over long inline instructions.
 
@@ -26,27 +26,18 @@ Use this file as a startup map. Prefer linked docs and scripts over long inline 
 - Escalate only when a decision needs product or architecture judgment
 - Agents are allowed to create commits when they complete a bounded slice of work
 
-## Tooling model
-
-### `opencode`
-- primary orchestrator
-- composes context
-- routes work to agents
-- runs verification and repair loops
-
-### `oh-my-opencode-slim`
-- thin shell/bootstrap layer
-- exposes common commands
-- should stay legible and low-magic
-
 ## Repo map
 
-- `commands/` — agent/operator command entrypoints
-- `config/` — harness configuration and templates
+- `app/` — Next.js App Router routes and UI
+- `lib/` — shared quiz, auth, and Supabase helpers
+- `supabase/` — SQL migrations and database setup
+- `tests/` — automated checks
+- `commands/` — operator and agent entrypoints
+- `config/` — project defaults and templates
 - `docs/` — architecture, rules, plans, and onboarding
-- `hooks/` — automation triggers and guardrails
-- `scripts/` — executable verification/bootstrap tasks
-- `src/harness/` — implementation for orchestration and observability
+- `hooks/` — optional workflow guardrails
+- `scripts/` — executable verification and setup helpers
+- `src/tooling/` — repo automation/support code, not the core quiz product
 
 ## Working loop
 

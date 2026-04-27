@@ -58,11 +58,11 @@
 - commits should be small, atomic, and easy to revert
 - commit messages should follow conventional commits
 
-## Initial acceptance criteria for this harness
+## Initial repo acceptance criteria
 
 - docs map is complete enough for a fresh agent
-- bootstrap script exists
-- context-check script exists
+- app setup steps are documented
+- repo context check exists
 - command and script responsibilities are explicit
 
 ## Future enforcement ideas

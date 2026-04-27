@@ -12,8 +12,8 @@ Current milestone plan set:
 
 Suggested naming:
 
-- `YYYY-MM-DD-bootstrap-harness.md`
-- `YYYY-MM-DD-add-verification-loop.md`
+- `YYYY-MM-DD-quizzer-v1-milestone-N-topic.md`
+- `YYYY-MM-DD-follow-up-topic.md`
 
 Suggested sections:
 
