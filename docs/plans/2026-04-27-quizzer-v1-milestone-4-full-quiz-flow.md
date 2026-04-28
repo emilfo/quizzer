@@ -23,6 +23,9 @@ Out of scope:
 - host remains in manual control of progression
 - final leaderboard must use accumulated session score
 - session must transition to a stable `finished` state
+- the host advances from the last round reveal into final results with an explicit action
+- projector final results show top 3 standings
+- player finished view shows personal final placement and total score only
 
 ## 4. steps
 
@@ -47,6 +50,15 @@ Out of scope:
 - verify end-of-quiz edge case when quiz has only one question
 - verify no further round actions are accepted after finish
 - verify final leaderboard matches stored answer scores
+
+## 8. implementation checklist
+
+- [x] add host action to advance from round reveal to the next question
+- [x] finish the session when the host advances past the last saved question
+- [x] render final leaderboard state on the projector
+- [x] render personal final result on player devices while blocking new finished-session joins
+- [x] keep finished sessions readable but non-mutable
+- [x] upgrade `scripts/check-m4` to run the local quality loop
 
 ## 7. follow-ups
 

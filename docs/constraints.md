@@ -38,6 +38,7 @@
 - participants may answer at most once per question
 - answers must not be accepted after a round closes
 - correct answers must not be exposed before reveal
+- participant reconnect relies on a signed cookie carrying an opaque session token, not raw client-trusted identity
 - hosts may only manage their own quizzes and sessions
 
 ## Escalation cases

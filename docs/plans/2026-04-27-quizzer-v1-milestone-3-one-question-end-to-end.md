@@ -25,8 +25,12 @@ Out of scope:
 - host advances manually
 - answer options must keep stable colors across projector and phone
 - one answer per participant per question
-- scoring is correctness + speed bonus
+- scoring is 1000 base points for correct answers + a linear time-based speed bonus up to 500 points
 - result screen must show top 3 leaderboard and movement
+- the first question opens immediately when the host starts gameplay
+- leaderboard ties use shared rank
+- projector reveal does not show per-option answer counts in v1
+- player reveal shows submitted + correct/incorrect, but not the exact score delta
 
 ## 4. steps
 
@@ -60,5 +64,17 @@ Out of scope:
 
 ## 7. follow-ups
 
-- decide whether the projector should show answer counts per option in v1
-- decide whether players should see their exact score delta each round
+- consider signing or otherwise hardening participant identity cookies in M5
+- consider deeper database-level gameplay integrity checks if more write paths are added later
+
+## 8. implementation checklist
+
+- [x] add gameplay session fields and `answers` schema
+- [x] open the first question immediately when gameplay starts
+- [x] render the active question on projector and player screens
+- [x] add player answer submission and one-answer-per-player enforcement
+- [x] block late answers after manual round close
+- [x] compute correctness plus linear speed bonus scoring
+- [x] reveal the correct answer and top-3 leaderboard with movement
+- [x] add helper unit tests for scoring and leaderboard behavior
+- [x] upgrade `scripts/check-m3` to run the local quality loop

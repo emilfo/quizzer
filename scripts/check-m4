@@ -6,6 +6,7 @@ printf 'Checking milestone m4: full quiz flow\n'
 required_files=(
   "docs/plans/2026-04-27-quizzer-v1-milestone-4-full-quiz-flow.md"
   "docs/status.md"
+  "lib/gameplay.ts"
 )
 
 missing=0
@@ -21,5 +22,20 @@ if [[ "$missing" -ne 0 ]]; then
   exit 1
 fi
 
-printf 'Progression and final-results app checks are deferred until implementation exists.\n'
+run_step() {
+  local label="$1"
+  shift
+
+  printf '%s\n' "$label"
+  if ! "$@"; then
+    printf 'M4 check failed during: %s\n' "$label"
+    exit 1
+  fi
+}
+
+run_step 'Running typecheck...' npm run typecheck
+run_step 'Running lint...' npm run lint
+run_step 'Running tests...' npm test
+run_step 'Running build...' npm run build
+
 printf 'M4 check OK\n'

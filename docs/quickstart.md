@@ -11,10 +11,11 @@ Get oriented on the current quizzer milestone and run the local app verification
 3. apply the repo migrations with `supabase db reset`
 4. copy the local Supabase URL and anon key into `.env.local`
 5. set `QUIZZER_ENABLE_LOCAL_AUTH=true` in `.env.local`
-6. create the default local host user with `npm run local:user`
-7. run the app with `npm run dev` or `docker compose up app`
-8. read the active milestone in `docs/status.md`
-9. use `commands/` and `scripts/` for verification
+6. set `QUIZZER_PARTICIPANT_COOKIE_SECRET` in `.env.local` for production-like player-session signing
+7. create the default local host user with `npm run local:user`
+8. run the app with `npm run dev` or `docker compose up app`
+9. read the active milestone in `docs/status.md`
+10. use `commands/` and `scripts/` for verification
 
 ## First-run checklist
 

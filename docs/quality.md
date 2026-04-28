@@ -49,6 +49,7 @@
 - reconnect restores common player flows
 - correct answers do not leak before reveal
 - security boundaries and regression checks run cleanly
+- local verification includes `npm run typecheck`, `npm run lint`, `npm test`, and `npm run build`
 
 ## Quality rules
 

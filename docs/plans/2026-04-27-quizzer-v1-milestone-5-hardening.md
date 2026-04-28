@@ -25,6 +25,9 @@ Out of scope:
 - correct answers must not leak before reveal
 - checks must be runnable locally
 - docs must be sufficient for another agent or developer to resume work
+- participant reconnect identity is a signed cookie that carries an opaque session token
+- players who already answered and refresh mid-round return to a submitted waiting state
+- local verification for milestone completion includes typecheck, lint, tests, and build
 
 ## 4. steps
 
@@ -50,6 +53,14 @@ Out of scope:
 - verify security boundaries with authenticated and unauthenticated clients
 - verify tests cover core gameplay rules
 - verify docs reference real commands and current file structure
+
+## 8. implementation checklist
+
+- [x] sign participant cookies and bind player RPCs to an opaque session token
+- [x] restore joined player state across lobby, question, result, and finished screens
+- [x] keep pre-reveal correctness out of public/player/projector payloads and finished transitions
+- [x] allow public finished-state reads so projector and player refresh flows can complete cleanly
+- [x] upgrade `scripts/check-m5` to run the local quality loop
 
 ## 7. follow-ups
 
