@@ -39,13 +39,14 @@ describe('live session helpers', () => {
       sessionId: 'session-1',
       participantId: 'participant-1',
       nickname: 'Ada',
+      sessionToken: 'token-1',
     }
 
     const serialized = serializeParticipantCookie(cookie)
 
     expect(parseParticipantCookie(serialized)).toEqual(cookie)
     expect(parseParticipantCookie('')).toBeNull()
-    expect(parseParticipantCookie(encodeURIComponent(JSON.stringify({ sessionId: 'x' })))).toBeNull()
+    expect(parseParticipantCookie('tampered.signature')).toBeNull()
   })
 
   it('derives the request origin from headers', () => {

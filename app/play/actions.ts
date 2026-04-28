@@ -7,6 +7,7 @@ import {
   isValidJoinCode,
   normalizeJoinCode,
   PARTICIPANT_COOKIE_NAME,
+  parseParticipantCookie,
   serializeParticipantCookie,
 } from '@/lib/live-session'
 import { createClient } from '@/lib/supabase/server'
@@ -70,13 +71,57 @@ export async function joinLiveSession(joinCode: string, formData: FormData) {
       sessionId: participant.session_id,
       participantId: participant.participant_id,
       nickname: participant.nickname,
+      sessionToken: participant.session_token,
     }),
     {
       httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
       path: '/',
+      maxAge: 60 * 60 * 24 * 7,
     },
   )
 
   redirect(`${buildPlayerJoinPath(normalizedJoinCode)}?joined=1`)
+}
+
+export async function submitPlayerAnswer(joinCode: string, formData: FormData) {
+  const normalizedJoinCode = normalizeJoinCode(joinCode)
+
+  if (!isValidJoinCode(normalizedJoinCode)) {
+    redirect('/?joinError=invalid-code')
+  }
+
+  const optionId = String(formData.get('optionId') ?? '')
+  if (!optionId) {
+    redirect(`${buildPlayerJoinPath(normalizedJoinCode)}?error=answer-failed`)
+  }
+
+  const cookieStore = await cookies()
+  const participantCookie = parseParticipantCookie(cookieStore.get(PARTICIPANT_COOKIE_NAME)?.value)
+
+  if (!participantCookie) {
+    redirect(`${buildPlayerJoinPath(normalizedJoinCode)}?error=rejoin-required`)
+  }
+
+  const supabase = await createClient()
+  const { error } = await supabase.rpc('submit_player_answer', {
+    p_join_code: normalizedJoinCode,
+    p_participant_id: participantCookie.participantId,
+    p_option_id: optionId,
+    p_session_token: participantCookie.sessionToken,
+  })
+
+  if (error) {
+    const errorCode =
+      error.message === 'Answer already submitted'
+        ? 'duplicate-answer'
+        : error.message === 'Round is not accepting answers'
+          ? 'round-closed'
+          : 'answer-failed'
+
+    redirect(`${buildPlayerJoinPath(normalizedJoinCode)}?error=${errorCode}`)
+  }
+
+  redirect(`${buildPlayerJoinPath(normalizedJoinCode)}?answered=1`)
 }

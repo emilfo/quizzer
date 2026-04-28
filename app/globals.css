@@ -198,3 +198,162 @@ form {
   padding: 0.6rem 0.9rem;
   font-weight: 600;
 }
+
+.question-prompt {
+  margin: 0;
+  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+  line-height: 1.2;
+}
+
+.option-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.option-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 2px solid transparent;
+  text-align: left;
+  min-height: 132px;
+}
+
+.option-button {
+  cursor: pointer;
+}
+
+.option-label {
+  width: 2rem;
+  height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.8);
+  font-weight: 800;
+}
+
+.option-tone-1 {
+  background: #fff7ed;
+  color: #9a3412;
+  border-color: #fdba74;
+}
+
+.option-tone-2 {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border-color: #93c5fd;
+}
+
+.option-tone-3 {
+  background: #f0fdf4;
+  color: #15803d;
+  border-color: #86efac;
+}
+
+.option-tone-4 {
+  background: #faf5ff;
+  color: #7e22ce;
+  border-color: #d8b4fe;
+}
+
+.option-card.is-selected {
+  border-color: var(--foreground);
+  box-shadow: inset 0 0 0 2px rgba(22, 24, 29, 0.15);
+}
+
+.option-card.is-correct {
+  border-color: #15803d;
+  box-shadow: inset 0 0 0 2px rgba(34, 197, 94, 0.2);
+}
+
+.option-card.is-incorrect {
+  border-color: #be123c;
+  box-shadow: inset 0 0 0 2px rgba(225, 29, 72, 0.16);
+}
+
+.leaderboard-list,
+.status-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.leaderboard-row,
+.status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: #fff;
+}
+
+.rank-badge {
+  min-width: 3rem;
+  height: 3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #3730a3;
+  font-weight: 800;
+}
+
+.leaderboard-score {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.movement {
+  min-width: 2.5rem;
+  text-align: right;
+  font-weight: 700;
+}
+
+.movement.up {
+  color: #15803d;
+}
+
+.movement.down {
+  color: #be123c;
+}
+
+.movement.flat {
+  color: var(--muted);
+}
+
+.status-pill-success {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status-pill-muted {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+@media (max-width: 640px) {
+  .page-shell {
+    padding: 1rem;
+  }
+
+  .leaderboard-row,
+  .status-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .leaderboard-score {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

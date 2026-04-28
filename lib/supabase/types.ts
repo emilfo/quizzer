@@ -114,38 +114,98 @@ export type Database = {
       quiz_sessions: {
         Row: {
           created_at: string
+          current_question_id: string | null
+          current_question_position: number | null
           ended_at: string | null
           host_id: string
           id: string
           join_code: string
           quiz_id: string
           quiz_title: string
+          round_closed_at: string | null
+          round_started_at: string | null
+          round_state: 'waiting' | 'question_open' | 'round_results'
           started_at: string | null
           state: 'lobby' | 'in_progress' | 'finished'
           updated_at: string
         }
         Insert: {
           created_at?: string
+          current_question_id?: string | null
+          current_question_position?: number | null
           ended_at?: string | null
           host_id: string
           id?: string
           join_code: string
           quiz_id: string
           quiz_title: string
+          round_closed_at?: string | null
+          round_started_at?: string | null
+          round_state?: 'waiting' | 'question_open' | 'round_results'
           started_at?: string | null
           state?: 'lobby' | 'in_progress' | 'finished'
           updated_at?: string
         }
         Update: {
           created_at?: string
+          current_question_id?: string | null
+          current_question_position?: number | null
           ended_at?: string | null
           host_id?: string
           id?: string
           join_code?: string
           quiz_id?: string
           quiz_title?: string
+          round_closed_at?: string | null
+          round_started_at?: string | null
+          round_state?: 'waiting' | 'question_open' | 'round_results'
           started_at?: string | null
           state?: 'lobby' | 'in_progress' | 'finished'
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      answers: {
+        Row: {
+          awarded_bonus: number
+          awarded_score: number
+          created_at: string
+          id: string
+          is_correct: boolean | null
+          participant_id: string
+          question_id: string
+          question_option_id: string
+          response_ms: number
+          session_id: string
+          submitted_at: string
+          updated_at: string
+        }
+        Insert: {
+          awarded_bonus?: number
+          awarded_score?: number
+          created_at?: string
+          id?: string
+          is_correct?: boolean | null
+          participant_id: string
+          question_id: string
+          question_option_id: string
+          response_ms?: number
+          session_id: string
+          submitted_at?: string
+          updated_at?: string
+        }
+        Update: {
+          awarded_bonus?: number
+          awarded_score?: number
+          created_at?: string
+          id?: string
+          is_correct?: boolean | null
+          participant_id?: string
+          question_id?: string
+          question_option_id?: string
+          response_ms?: number
+          session_id?: string
+          submitted_at?: string
           updated_at?: string
         }
         Relationships: []
@@ -207,6 +267,12 @@ export type Database = {
     }
     Views: Record<string, never>
     Functions: {
+      advance_live_round: {
+        Args: {
+          p_session_id: string
+        }
+        Returns: undefined
+      }
       add_question_with_options: {
         Args: {
           p_quiz_id: string
@@ -219,6 +285,12 @@ export type Database = {
         }
         Returns: string
       }
+      close_live_round: {
+        Args: {
+          p_session_id: string
+        }
+        Returns: undefined
+      }
       delete_question_and_reorder: {
         Args: {
           p_quiz_id: string
@@ -226,10 +298,25 @@ export type Database = {
         }
         Returns: undefined
       }
+      get_player_session_state: {
+        Args: {
+          p_join_code: string
+          p_participant_id: string
+          p_session_token: string
+        }
+        Returns: Json
+      }
+      get_public_session_state: {
+        Args: {
+          p_join_code: string
+        }
+        Returns: Json
+      }
       get_session_participant: {
         Args: {
           p_participant_id: string
           p_session_id: string
+          p_session_token: string
         }
         Returns: {
           id: string
@@ -244,6 +331,7 @@ export type Database = {
         Returns: {
           nickname: string
           participant_id: string
+          session_token: string
           session_id: string
         }[]
       }
@@ -282,6 +370,15 @@ export type Database = {
         }
         Returns: undefined
       }
+      submit_player_answer: {
+        Args: {
+          p_join_code: string
+          p_option_id: string
+          p_participant_id: string
+          p_session_token: string
+        }
+        Returns: Json
+      }
       sync_quiz_status: {
         Args: {
           p_quiz_id: string
@@ -291,6 +388,7 @@ export type Database = {
     }
     Enums: {
       quiz_status: 'draft' | 'published'
+      round_state: 'waiting' | 'question_open' | 'round_results'
       session_state: 'lobby' | 'in_progress' | 'finished'
     }
     CompositeTypes: Record<string, never>

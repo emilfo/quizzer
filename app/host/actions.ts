@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { buildProjectorPath } from '@/lib/live-session'
+import { buildFinalLeaderboard, buildLeaderboard } from '@/lib/gameplay'
 import { createClient } from '@/lib/supabase/server'
 import { validateQuizForPublish, type QuizDraft } from '@/lib/quiz-validation'
 
@@ -91,7 +92,7 @@ async function getActiveSessionForHost(
 ) {
   const { data } = await supabase
     .from('quiz_sessions')
-    .select('id, join_code, quiz_id, quiz_title, state')
+    .select('id, join_code, quiz_id, quiz_title, state, round_state, current_question_position')
     .eq('host_id', hostId)
     .in('state', ['lobby', 'in_progress'])
     .order('created_at', { ascending: false })
@@ -150,7 +151,9 @@ async function ensureHostSessionOwnership(sessionId: string) {
 
   const { data: session } = await supabase
     .from('quiz_sessions')
-    .select('id, host_id, join_code, quiz_id, quiz_title, state')
+    .select(
+      'id, host_id, join_code, quiz_id, quiz_title, state, current_question_id, current_question_position, round_state, round_started_at, round_closed_at',
+    )
     .eq('id', sessionId)
     .maybeSingle()
 
@@ -166,6 +169,23 @@ async function refreshQuizStatus(supabase: Awaited<ReturnType<typeof createClien
 
   if (error) {
     throw new Error(error.message)
+  }
+}
+
+async function assertQuizNotInActiveSession(
+  supabase: Awaited<ReturnType<typeof createClient>>,
+  quizId: string,
+) {
+  const { data: activeSession } = await supabase
+    .from('quiz_sessions')
+    .select('id')
+    .eq('quiz_id', quizId)
+    .in('state', ['lobby', 'in_progress'])
+    .limit(1)
+    .maybeSingle()
+
+  if (activeSession) {
+    throw new Error('This quiz has an active live session. End the session before editing quiz content.')
   }
 }
 
@@ -192,6 +212,7 @@ export async function createQuiz(formData: FormData) {
 
 export async function updateQuizTitle(quizId: string, formData: FormData) {
   const { supabase } = await ensureHostOwnership(quizId)
+  await assertQuizNotInActiveSession(supabase, quizId)
   const title = String(formData.get('title') ?? '').trim()
   const { error } = await supabase.from('quizzes').update({ title }).eq('id', quizId)
 
@@ -206,6 +227,7 @@ export async function updateQuizTitle(quizId: string, formData: FormData) {
 
 export async function addQuestion(quizId: string) {
   const { supabase } = await ensureHostOwnership(quizId)
+  await assertQuizNotInActiveSession(supabase, quizId)
   const { error } = await supabase.rpc('add_question_with_options', {
     p_quiz_id: quizId,
   })
@@ -220,6 +242,7 @@ export async function addQuestion(quizId: string) {
 
 export async function saveQuestion(quizId: string, questionId: string, formData: FormData) {
   const { supabase } = await ensureHostOwnership(quizId)
+  await assertQuizNotInActiveSession(supabase, quizId)
   const prompt = String(formData.get('prompt') ?? '').trim()
   const options = [1, 2, 3, 4].map((position) => ({
     id: String(formData.get(`option-${position}-id`) ?? ''),
@@ -245,6 +268,7 @@ export async function saveQuestion(quizId: string, questionId: string, formData:
 
 export async function deleteQuestion(quizId: string, questionId: string) {
   const { supabase } = await ensureHostOwnership(quizId)
+  await assertQuizNotInActiveSession(supabase, quizId)
   const { error } = await supabase.rpc('delete_question_and_reorder', {
     p_quiz_id: quizId,
     p_question_id: questionId,
@@ -260,6 +284,7 @@ export async function deleteQuestion(quizId: string, questionId: string) {
 
 export async function moveQuestion(quizId: string, questionId: string, direction: 'up' | 'down') {
   const { supabase } = await ensureHostOwnership(quizId)
+  await assertQuizNotInActiveSession(supabase, quizId)
   const { error } = await supabase.rpc('move_question_position', {
     p_quiz_id: quizId,
     p_question_id: questionId,
@@ -316,13 +341,99 @@ export async function getHostSessionControlData(sessionId: string) {
   const { supabase, session } = await ensureHostSessionOwnership(sessionId)
   const { data: participants } = await supabase
     .from('participants')
-    .select('id, nickname')
+    .select('id, nickname, created_at')
     .eq('session_id', session.id)
     .order('created_at', { ascending: true })
 
+  const [questionResult, optionsResult, answersResult] = await Promise.all([
+    session.current_question_id
+      ? supabase.from('questions').select('id, prompt, position').eq('id', session.current_question_id).maybeSingle()
+      : Promise.resolve({ data: null }),
+    session.current_question_id
+      ? supabase
+          .from('question_options')
+          .select('id, option_text, is_correct, position')
+          .eq('question_id', session.current_question_id)
+          .order('position', { ascending: true })
+      : Promise.resolve({ data: [] }),
+    supabase
+      .from('answers')
+      .select('participant_id, question_id, question_option_id, is_correct, awarded_score')
+      .eq('session_id', session.id),
+  ])
+
+  const allAnswers = answersResult.data ?? []
+  const currentQuestionAnswers = allAnswers.filter((answer) => answer.question_id === session.current_question_id)
+  const answersByParticipant = new Map(currentQuestionAnswers.map((answer) => [answer.participant_id, answer]))
+  const totalsByParticipant = new Map<string, number>()
+
+  for (const answer of allAnswers) {
+    totalsByParticipant.set(answer.participant_id, (totalsByParticipant.get(answer.participant_id) ?? 0) + answer.awarded_score)
+  }
+
+  const leaderboard = buildLeaderboard(
+    (participants ?? []).map((participant) => {
+      const totalScore = totalsByParticipant.get(participant.id) ?? 0
+      const roundScore = currentQuestionAnswers
+        .filter((answer) => answer.participant_id === participant.id)
+        .reduce((sum, answer) => sum + answer.awarded_score, 0)
+
+      return {
+        participantId: participant.id,
+        nickname: participant.nickname,
+        joinedAt: participant.created_at,
+        totalScore,
+        previousScore: totalScore - roundScore,
+        roundScore,
+      }
+    }),
+  )
+
+  const finalLeaderboard = buildFinalLeaderboard(
+    (participants ?? []).map((participant) => ({
+      participantId: participant.id,
+      nickname: participant.nickname,
+      joinedAt: participant.created_at,
+      totalScore: totalsByParticipant.get(participant.id) ?? 0,
+    })),
+  )
+
   return {
     session,
-    participants: participants ?? [],
+    participants:
+      participants?.map((participant) => {
+        const answer = answersByParticipant.get(participant.id)
+        const totalScore = totalsByParticipant.get(participant.id) ?? 0
+        const roundScore = currentQuestionAnswers
+          .filter((row) => row.participant_id === participant.id)
+          .reduce((sum, row) => sum + row.awarded_score, 0)
+
+        return {
+          id: participant.id,
+          nickname: participant.nickname,
+          hasAnswered: Boolean(answer),
+          selectedOptionId: answer?.question_option_id ?? null,
+          isCorrect: answer?.is_correct ?? null,
+          totalScore,
+          roundScore,
+        }
+      }) ?? [],
+    answeredCount: currentQuestionAnswers.length,
+    finalLeaderboard,
+    leaderboard,
+    question: questionResult.data
+      ? {
+          id: questionResult.data.id,
+          prompt: questionResult.data.prompt,
+          position: questionResult.data.position,
+          options: (optionsResult.data ?? []).map((option) => ({
+            id: option.id,
+            text: option.option_text,
+            position: option.position,
+            isCorrect: option.is_correct,
+          })),
+        }
+      : null,
   }
 }
 
@@ -339,4 +450,37 @@ export async function startQuizSession(sessionId: string) {
   revalidatePath('/host')
   revalidatePath(`/host/session/${sessionId}`)
   revalidatePath(buildProjectorPath(session.join_code))
+  revalidatePath(`/play/${session.join_code}`)
+}
+
+export async function closeQuizRound(sessionId: string) {
+  const { supabase, session } = await ensureHostSessionOwnership(sessionId)
+  const { error } = await supabase.rpc('close_live_round', {
+    p_session_id: sessionId,
+  })
+
+  if (error) {
+    throw new Error(error.message)
+  }
+
+  revalidatePath('/host')
+  revalidatePath(`/host/session/${sessionId}`)
+  revalidatePath(buildProjectorPath(session.join_code))
+  revalidatePath(`/play/${session.join_code}`)
+}
+
+export async function advanceQuizSession(sessionId: string) {
+  const { supabase, session } = await ensureHostSessionOwnership(sessionId)
+  const { error } = await supabase.rpc('advance_live_round', {
+    p_session_id: sessionId,
+  })
+
+  if (error) {
+    throw new Error(error.message)
+  }
+
+  revalidatePath('/host')
+  revalidatePath(`/host/session/${sessionId}`)
+  revalidatePath(buildProjectorPath(session.join_code))
+  revalidatePath(`/play/${session.join_code}`)
 }
