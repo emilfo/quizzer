@@ -4,3 +4,5 @@ node_modules
 .next
 coverage
 tsconfig.tsbuildinfo
+supabase/.branches/
+supabase/.temp/
