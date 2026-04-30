@@ -1,0 +1,20 @@
+{
+  "lane": "Lane 6 — Classroom Rally",
+  "inventoryRevision": "2026-04-29",
+  "baseSystem": "docs/design/2026-04-29-keyframe-inventory-and-matrix.md",
+  "artifactRoot": "docs/design/proposals/2026-04-29-lane-6-classroom-rally/keyframes",
+  "sheetCount": 10,
+  "note": "Feedback-driven future-direction lane; intentionally changes some interaction/display assumptions from the shipped MVP.",
+  "exports": [
+    { "id": "sheet-01-entry", "file": "01-entry-sheet.png", "routes": ["/"], "states": ["unauthenticated host entry", "authenticated host entry", "invalid join code"] },
+    { "id": "sheet-02-host-dashboard", "file": "02-host-dashboard-sheet.png", "routes": ["/host"], "states": ["no active session", "active session present"] },
+    { "id": "sheet-03-host-editor", "file": "03-host-editor-sheet.png", "routes": ["/host/[quizId]"], "states": ["publishable", "blocked by validation"] },
+    { "id": "sheet-04-host-live", "file": "04-host-live-sheet.png", "routes": ["/host/session/[sessionId]"], "states": ["lobby", "question open", "round results", "finished"] },
+    { "id": "sheet-05-player-join", "file": "05-player-join-sheet.png", "routes": ["/play/[joinCode]"], "states": ["invalid/not-found", "join-open", "join-closed", "validation"] },
+    { "id": "sheet-06-player-live", "file": "06-player-live-sheet.png", "routes": ["/play/[joinCode]"], "states": ["question-open unanswered", "question-open answered", "round-results", "finished-restored-player", "reconnect / rejoin"] },
+    { "id": "sheet-07-projector-lobby", "file": "07-projector-lobby.png", "routes": ["/projector/[joinCode]"], "states": ["lobby"] },
+    { "id": "sheet-08-projector-question", "file": "08-projector-question.png", "routes": ["/projector/[joinCode]"], "states": ["question open"] },
+    { "id": "sheet-09-projector-results", "file": "09-projector-results.png", "routes": ["/projector/[joinCode]"], "states": ["round results"] },
+    { "id": "sheet-10-projector-finished", "file": "10-projector-finished.png", "routes": ["/projector/[joinCode]"], "states": ["finished"] }
+  ]
+}

@@ -4,6 +4,9 @@ import {
   buildLeaderboard,
   calculateAnswerScore,
   calculateSpeedBonus,
+  getRevealOptionCount,
+  getRevealOptionPercentage,
+  getRevealTotalResponses,
   getOptionLabel,
   getOptionToneClass,
 } from '../lib/gameplay'
@@ -104,5 +107,30 @@ describe('gameplay helpers', () => {
         movement: 0,
       },
     ])
+  })
+
+  it('derives public reveal counts and percentages by option id', () => {
+    const optionCounts = [
+      { optionId: 'o1', position: 1, count: 7 },
+      { optionId: 'o2', position: 2, count: 3 },
+      { optionId: 'o3', position: 3, count: 0 },
+      { optionId: 'o4', position: 4, count: 10 },
+    ]
+
+    expect(getRevealOptionCount(optionCounts, 'o1')).toBe(7)
+    expect(getRevealOptionCount(optionCounts, 'missing')).toBe(0)
+    expect(getRevealTotalResponses(optionCounts)).toBe(20)
+    expect(getRevealOptionPercentage(optionCounts, 'o2')).toBe(15)
+    expect(getRevealOptionPercentage(optionCounts, 'o3')).toBe(0)
+  })
+
+  it('returns zero percentage when no public responses were recorded', () => {
+    const optionCounts = [
+      { optionId: 'o1', position: 1, count: 0 },
+      { optionId: 'o2', position: 2, count: 0 },
+    ]
+
+    expect(getRevealTotalResponses(optionCounts)).toBe(0)
+    expect(getRevealOptionPercentage(optionCounts, 'o1')).toBe(0)
   })
 })

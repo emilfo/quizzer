@@ -1,0 +1,18 @@
+{
+  "lane": "Playful Signal",
+  "proposal": "2026-04-29-lane-5-playful-signal",
+  "source": "docs/design/proposals/2026-04-29-lane-5-playful-signal.md",
+  "format": "static-html-css",
+  "exports": [
+    "01-entry-sheet.png",
+    "02-host-dashboard-sheet.png",
+    "03-host-editor-sheet.png",
+    "04-host-live-sheet.png",
+    "05-player-join-sheet.png",
+    "06-player-live-sheet.png",
+    "07-projector-lobby.png",
+    "08-projector-question.png",
+    "09-projector-results.png",
+    "10-projector-finished.png"
+  ]
+}

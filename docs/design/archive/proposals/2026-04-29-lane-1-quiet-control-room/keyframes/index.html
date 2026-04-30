@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>Quiet Control Room — keyframes</title>
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="canvas">
+      <section id="sheet-01-entry" class="sheet" data-export="01-entry-sheet.png" aria-labelledby="sheet-01-title">
+        <header class="sheet-head">
+          <div>
+            <p class="eyebrow">Sheet 01 · Entry surface</p>
+            <h1 id="sheet-01-title">Quiet Control Room / disciplined fork at the door</h1>
+            <p class="lede">Route: <strong>/</strong> — the home screen splits host access, player join, and invalid-code recovery without drama.</p>
+          </div>
+          <div class="export-badge" aria-label="Export filename">
+            <strong>01</strong>
+            <span>01-entry-sheet.png</span>
+          </div>
+        </header>
+
+        <div class="sheet-stage panel-grid panel-grid--three">
+          <article class="panel panel--strong">
+            <div class="panel-head">
+              <div>
+                <div class="panel-title">Host entry</div>
+                <div class="panel-subtitle">Unauthenticated host path</div>
+              </div>
+              <span class="state-chip state-chip--accent">Ready for sign in</span>
+            </div>
+            <div class="stack">
+              <div class="hero-number">01</div>
+              <div class="body-copy">Host entry stays quiet and secure. The primary action is low-noise, with the live app identity doing the reassurance work.</div>
+              <div class="badge-row">
+                <span class="mini-pill">Auth required</span>
+                <span class="mini-pill">Local dev fallback</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel panel--quiet">
+            <div class="panel-head">
+              <div>
+                <div class="panel-title">Host access</div>
+                <div class="panel-subtitle">Authenticated host entry</div>
+              </div>
+              <span class="state-chip">Verified</span>
+            </div>
+            <div class="stack">
+              <div class="summary-card">
+                <strong>Host dashboard</strong>
+                <p>Open the control center, review quiz status, and step into active sessions with clear hierarchy.</p>
+              </div>
+              <div class="split-actions">
+                <span class="button">Open dashboard</span>
+                <span class="ghost">Sign out</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel panel--alert">
+            <div class="panel-head">
+              <div>
+                <div class="panel-title">Player join</div>
+                <div class="panel-subtitle">Invalid join code recovery</div>
+              </div>
+              <span class="state-chip state-chip--danger">Code not found</span>
+            </div>
+            <div class="form-shell">
+              <div class="field">
+                <span>Join code</span>
+                <div class="input">Q7L9X2</div>
+              </div>
+              <div class="error-copy">Session not found. Check the code and try again.</div>
+              <span class="button">Join session</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="sheet-02-host-dashboard" class="sheet" data-export="02-host-dashboard-sheet.png" aria-labelledby="sheet-02-title">
+        <header class="sheet-head">
+          <div>
+            <p class="eyebrow">Sheet 02 · Host dashboard</p>
+            <h1 id="sheet-02-title">Quiet Control Room / orderly quiz inventory</h1>
+            <p class="lede">Route: <strong>/host</strong> — the dashboard answers what exists, what is ready, and what is live.</p>
+          </div>
+          <div class="export-badge">
+            <strong>02</strong>
+            <span>02-host-dashboard-sheet.png</span>
+          </div>
+        </header>
+
+        <div class="sheet-stage panel-grid panel-grid--split">
+          <article class="panel dashboard-card panel--strong">
+            <div class="panel-head">
+              <div>
+                <div class="panel-title">No active session</div>
+                <div class="panel-subtitle">Current control state</div>
+              </div>
+              <span class="state-chip state-chip--warn">Idle</span>
+            </div>
+            <div class="summary-bar">
+              <div class="summary-metric"><strong>12</strong><span>Quizzes</span></div>
+              <div class="summary-metric"><strong>9</strong><span>Published</span></div>
+              <div class="summary-metric"><strong>0</strong><span>Live sessions</span></div>
+            </div>
+            <ul class="quiz-list">
+              <li class="quiz-item"><strong>Week 18 recap</strong><span>Draft · 4 questions</span><span class="tag">Edit</span></li>
+              <li class="quiz-item"><strong>Launch review</strong><span>Published · ready to run</span><span class="tag tag--accent">Open</span></li>
+              <li class="quiz-item"><strong>Ops check-in</strong><span>Published · session available</span><span class="tag tag--warn">Start</span></li>
+            </ul>
+          </article>
+
+          <article class="panel dashboard-card">
+            <div class="panel-head">
+              <div>
+                <div class="panel-title">Active session present</div>
+                <div class="panel-subtitle">Live center of gravity</div>
+              </div>
+              <span class="state-chip state-chip--accent">Session live</span>
+            </div>
+            <div class="summary-card">
+              <strong>Join code 47KQ2M</strong>
+              <p>Projector, join link, and host controls are grouped as one live unit.</p>
+            </div>
+            <div class="stack">
+              <div class="callout">
+                <strong>Host controls</strong>
+                <p>Open live session · open projector · share join code.</p>
+              </div>
+              <div class="callout">
+                <strong>Status readout</strong>
+                <p>Lobby · 18 participants · published quiz · ready for first question.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="sheet-03-host-editor" class="sheet" data-export="03-host-editor-sheet.png" aria-labelledby="sheet-03-title">
+        <header class="sheet-head">
+          <div>
+            <p class="eyebrow">Sheet 03 · Host editor</p>
+            <h1 id="sheet-03-title">Quiet Control Room / careful authoring with visible validation</h1>
+            <p class="lede">Route: <strong>/host/[quizId]</strong> — dense editing stays disciplined, with publish readiness exposed as a calm summary.</p>
+          </div>
+          <div class="export-badge">
+            <strong>03</strong>
+            <span>03-host-editor-sheet.png</span>
+          </div>
+        </header>
+
+        <div class="sheet-stage panel-grid panel-grid--stacked">
+          <article class="panel panel--strong">
+            <div class="panel-head">
+              <div>
+                <div class="panel-title">Publishable</div>
+                <div class="panel-subtitle">Quiz passes validation and can launch</div>
+              </div>
+              <span class="state-chip state-chip--accent">Ready to publish</span>
+            </div>
+            <div class="summary-bar">
+              <div class="summary-metric"><strong>4</strong><span>Required options</span></div>
+              <div class="summary-metric"><strong>1</strong><span>Correct answer</span></div>
+              <div class="summary-metric"><strong>0</strong><span>Blocking errors</span></div>
+            </div>
+          </article>
+
+          <div class="panel-grid panel-grid--two">
+            <article class="panel">
+              <div class="panel-head">
+                <div>
+                  <div class="panel-title">Question 1</div>
+                  <div class="panel-subtitle">Structured editor block</div>
+                </div>
+                <span class="state-chip">Clean</span>
+              </div>
+              <div class="stack">
+                <div class="rule"><label>Prompt</label><p>Which surface should stay the quietest during the live run?</p></div>
+                <div class="rule"><label>Options</label><p>Host dashboard · Player join · Projector lobby · Round results</p></div>
+                <div class="rule"><label>Correct</label><p>Projector lobby</p></div>
+              </div>
+            </article>
+
+            <article class="panel panel--alert">
+              <div class="panel-head">
+                <div>
+                  <div class="panel-title">Question 2</div>
+                  <div class="panel-subtitle">Validation block is local and direct</div>
+                </div>
+                <span class="state-chip state-chip--danger">Blocked</span>
+              </div>
+              <div class="stack">
+                <div class="rule"><label>Prompt</label><p>Too few options entered for a publishable question.</p></div>
+                <div class="rule"><label>Validation</label><p class="error-copy">Add 2 more answer choices before publishing.</p></div>
+                <div class="badge-row"><span class="mini-pill">Reorder left</span><span class="mini-pill">Reorder right</span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="sheet-04-host-live" class="sheet" data-export="04-host-live-sheet.png" aria-labelledby="sheet-04-title">
+        <header class="sheet-head">
+          <div>
+            <p class="eyebrow">Sheet 04 · Host live session</p>
+            <h1 id="sheet-04-title">Quiet Control Room / the control center at four live states</h1>
+            <p class="lede">Route: <strong>/host/session/[sessionId]</strong> — lobby, question, results, and finished stay distinct through hierarchy alone.</p>
+          </div>
+          <div class="export-badge">
+            <strong>04</strong>
+            <span>04-host-live-sheet.png</span>
+          </div>
+        </header>
+
+        <div class="sheet-stage panel-grid panel-grid--two">
+          <article class="panel">
+            <div class="panel-head"><div><div class="panel-title">Lobby</div><div class="panel-subtitle">Waiting for start</div></div><span class="state-chip state-chip--warn">Start enabled</span></div>
+            <ul class="participant-list">
+              <li class="participant"><strong>18 in room</strong><span>Roster steady</span></li>
+              <li class="participant"><strong>4 queued</strong><span>Ready to begin</span></li>
+            </ul>
+          </article>
+
+          <article class="panel panel--strong">
+            <div class="panel-head"><div><div class="panel-title">Question open</div><div class="panel-subtitle">Strongest action focus</div></div><span class="state-chip state-chip--accent">Close round</span></div>
+            <div class="hero-title">Host asks the next question</div>
+            <p class="hero-copy">Answer counts are visible but quiet. The current question remains the dominant surface object.</p>
+          </article>
+
+          <article class="panel panel--quiet">
+            <div class="panel-head"><div><div class="panel-title">Round results</div><div class="panel-subtitle">Authoritative reveal</div></div><span class="state-chip">Continue</span></div>
+            <ul class="score-list">
+              <li class="score-item"><strong>1</strong><span>Correctness and rank</span><span class="score">+1,250</span></li>
+              <li class="score-item"><strong>2</strong><span>Shared runner-up</span><span class="score">+1,100</span></li>
+            </ul>
+          </article>
+
+          <article class="panel panel--success">
+            <div class="panel-head"><div><div class="panel-title">Finished</div><div class="panel-subtitle">Stable final board</div></div><span class="state-chip">Locked</span></div>
+            <div class="summary-card">
+              <strong>Final leaderboard ready</strong>
+              <p>Gameplay is closed. The interface stays tidy and conclusive rather than celebratory.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="sheet-05-player-join" class="sheet" data-export="05-player-join-sheet.png" aria-labelledby="sheet-05-title">
+        <header class="sheet-head">
+          <div>
+            <p class="eyebrow">Sheet 05 · Player join</p>
+            <h1 id="sheet-05-title">Quiet Control Room / mobile join states with almost no noise</h1>
+            <p class="lede">Route: <strong>/play/[joinCode]</strong> — join, not-found, and closed states stay compact and factual on phone-sized surfaces.</p>
+          </div>
+          <div class="export-badge">
+            <strong>05</strong>
+            <span>05-player-join-sheet.png</span>
+          </div>
+        </header>
+
+        <div class="sheet-stage phone-row">
+          <article class="screen-shell screen-shell--phone panel--alert">
+            <div class="screen-topbar"><strong>Invalid code</strong><span class="tag tag--danger">Not found</span></div>
+            <div class="screen-body mobile-stack">
+              <div class="hero-title">Join a quiz</div>
+              <div class="form-shell">
+                <div class="field"><span>Join code</span><div class="input">Q7L9X2</div></div>
+                <div class="error-copy">Session not found. Double-check the code.</div>
+                <span class="button">Try again</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="screen-shell screen-shell--phone">
+            <div class="screen-topbar"><strong>Join open</strong><span class="tag tag--accent">Ready</span></div>
+            <div class="screen-body mobile-stack">
+              <div class="hero-title">Enter your nickname</div>
+              <div class="form-shell">
+                <div class="field"><span>Join code</span><div class="input">47KQ2M</div></div>
+                <div class="field"><span>Nickname</span><div class="input">Emil</div></div>
+                <span class="button">Join room</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="screen-shell screen-shell--phone panel--quiet">
+            <div class="screen-topbar"><strong>Join closed</strong><span class="tag tag--warn">Lobby only</span></div>
+            <div class="screen-body mobile-stack">
+              <div class="hero-title">Room is closed</div>
+              <div class="callout">
+                <strong>Recovery</strong>
+                <p>Joining is locked after the lobby ends. Wait for the next session or ask the host for a new code.</p>
+              </div>
+              <span class="ghost">Return home</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="sheet-06-player-live" class="sheet" data-export="06-player-live-sheet.png" aria-labelledby="sheet-06-title">
+        <header class="sheet-head">
+          <div>
+            <p class="eyebrow">Sheet 06 · Player live flow</p>
+            <h1 id="sheet-06-title">Quiet Control Room / answer states and recovery stay seamless</h1>
+            <p class="lede">Route: <strong>/play/[joinCode]</strong> — one-answer gameplay, round results, restoration, and rejoin-required all feel continuous.</p>
+          </div>
+          <div class="export-badge">
+            <strong>06</strong>
+            <span>06-player-live-sheet.png</span>
+          </div>
+        </header>
+
+        <div class="sheet-stage panel-grid panel-grid--two">
+          <article class="panel panel--strong">
+            <div class="panel-head"><div><div class="panel-title">Question open</div><div class="panel-subtitle">Unanswered state</div></div><span class="state-chip state-chip--accent">Tap one</span></div>
+            <div class="question">
+              <div class="prompt">Which surface should stay the quietest?</div>
+              <div class="answer-grid">
+                <div class="choice"><strong>Host dashboard</strong><span>Control-heavy</span></div>
+                <div class="choice"><strong>Player join</strong><span>Minimal</span></div>
+                <div class="choice"><strong>Projector lobby</strong><span>Distance-first</span></div>
+                <div class="choice choice--locked"><strong>Round results</strong><span>Reveal state</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-head"><div><div class="panel-title">Answered</div><div class="panel-subtitle">One answer submitted</div></div><span class="state-chip">Locked in</span></div>
+            <div class="stack">
+              <div class="choice choice--selected"><strong>Projector lobby</strong><span>Selected answer</span></div>
+              <div class="callout"><strong>Waiting for reveal</strong><p>The UI stays still, showing the selected choice without extra drama.</p></div>
+            </div>
+          </article>
+
+          <article class="panel panel--quiet">
+            <div class="panel-head"><div><div class="panel-title">Round results</div><div class="panel-subtitle">Correctness and rank</div></div><span class="state-chip state-chip--warn">+1,250</span></div>
+            <div class="stack">
+              <div class="callout"><strong>Correct</strong><p>Your answer matched the revealed result.</p></div>
+              <div class="callout"><strong>Placement</strong><p>Shared rank displayed cleanly, with no noisy score change animations.</p></div>
+            </div>
+          </article>
+
+          <article class="panel panel--success">
+            <div class="panel-head"><div><div class="panel-title">Finished / restored / rejoin</div><div class="panel-subtitle">Continuity, not interruption</div></div><span class="state-chip state-chip--accent">Recovered</span></div>
+            <div class="stack">
+              <div class="summary-card"><strong>Finished session</strong><p>Your final placement stays readable and calm.</p></div>
+              <div class="callout"><strong>Rejoin required</strong><p>If the cookie is missing, the interface asks for one clear next step.</p></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="sheet-07-projector-lobby" class="sheet" data-export="07-projector-lobby.png" aria-labelledby="sheet-07-title">
+        <header class="sheet-head">
+          <div>
+            <p class="eyebrow">Sheet 07 · Projector lobby</p>
+            <h1 id="sheet-07-title">Quiet Control Room / a room-facing waiting board</h1>
+            <p class="lede">Route: <strong>/projector/[joinCode]</strong> — lobby state is austere, distance-safe, and dominated by join code plus QR.</p>
+          </div>
+          <div class="export-badge">
+            <strong>07</strong>
+            <span>07-projector-lobby.png</span>
+          </div>
+        </header>
+
+        <article class="panel panel--projector screen-shell screen-shell--projector">
+          <div class="panel-head">
+            <div>
+              <div class="panel-title">Lobby</div>
+              <div class="panel-subtitle">Public screen · join-ready</div>
+            </div>
+            <span class="state-chip state-chip--accent">Participants syncing</span>
+          </div>
+
+          <div class="finished-board">
+            <div class="summary-stack">
+              <div class="summary-card">
+                <strong>47KQ2M</strong>
+                <p class="muted">Join code for the room. Keep it visible and unambiguous.</p>
+              </div>
+              <div class="summary-card">
+                <strong>18</strong>
+                <p class="muted">Participants in lobby</p>
+              </div>
+            </div>
+            <div class="ticket">
+              <div class="qr" aria-hidden="true"></div>
+              <div class="stack">
+                <div class="section-heading">Scan to join</div>
+                <p class="panel-copy">The QR is decorative in this artifact set, but the composition should read as a public-room invitation.</p>
+                <div class="badge-row"><span class="mini-pill">Read from distance</span><span class="mini-pill">No controls</span></div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section id="sheet-08-projector-question" class="sheet" data-export="08-projector-question.png" aria-labelledby="sheet-08-title">
+        <header class="sheet-head">
+          <div>
+            <p class="eyebrow">Sheet 08 · Projector question</p>
+            <h1 id="sheet-08-title">Quiet Control Room / oversized question with clear answer regions</h1>
+            <p class="lede">Route: <strong>/projector/[joinCode]</strong> — question state uses the most space and the least chrome.</p>
+          </div>
+          <div class="export-badge">
+            <strong>08</strong>
+            <span>08-projector-question.png</span>
+          </div>
+        </header>
+
+        <article class="panel panel--projector screen-shell screen-shell--projector">
+          <div class="panel-head">
+            <div>
+              <div class="panel-title">Question open</div>
+              <div class="panel-subtitle">Distance-first answer layout</div>
+            </div>
+            <span class="state-chip state-chip--warn">Live round</span>
+          </div>
+
+          <div class="question" style="min-height: 100%;">
+            <div class="prompt">Which surface should stay the quietest during the live run?</div>
+            <div class="answer-grid" style="margin-top: 20px;">
+              <div class="choice choice--selected"><strong>Host dashboard</strong><span>Operational center</span></div>
+              <div class="choice"><strong>Projector lobby</strong><span>Public room screen</span></div>
+              <div class="choice"><strong>Player join</strong><span>Mobile entry</span></div>
+              <div class="choice"><strong>Results board</strong><span>Reveal state</span></div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section id="sheet-09-projector-results" class="sheet" data-export="09-projector-results.png" aria-labelledby="sheet-09-title">
+        <header class="sheet-head">
+          <div>
+            <p class="eyebrow">Sheet 09 · Projector results</p>
+            <h1 id="sheet-09-title">Quiet Control Room / authoritative reveal and rank clarity</h1>
+            <p class="lede">Route: <strong>/projector/[joinCode]</strong> — results emphasize correctness, rank movement, and immediate scanability.</p>
+          </div>
+          <div class="export-badge">
+            <strong>09</strong>
+            <span>09-projector-results.png</span>
+          </div>
+        </header>
+
+        <article class="panel panel--projector screen-shell screen-shell--projector">
+          <div class="panel-head">
+            <div>
+              <div class="panel-title">Round results</div>
+              <div class="panel-subtitle">Correct answer revealed</div>
+            </div>
+            <span class="state-chip state-chip--accent">Reveal complete</span>
+          </div>
+
+          <div class="finished-board">
+            <div class="reveal summary-card">
+              <strong>Correct: Projector lobby</strong>
+              <p>The public screen now shifts into the leaderboard view without extra motion or ornament.</p>
+              <div class="badge-row" style="margin-top: 14px;"><span class="mini-pill">Shared rank</span><span class="mini-pill">Score movement</span></div>
+            </div>
+            <div class="leaderboard">
+              <div class="leaderboard-item"><strong>1</strong><div><strong>Sam</strong><em>+1,250</em></div><span class="score">7,900</span></div>
+              <div class="leaderboard-item"><strong>2</strong><div><strong>Priya</strong><em>+1,100</em></div><span class="score">7,400</span></div>
+              <div class="leaderboard-item"><strong>3</strong><div><strong>Jordan</strong><em>+1,100</em></div><span class="score">7,400</span></div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section id="sheet-10-projector-finished" class="sheet" data-export="10-projector-finished.png" aria-labelledby="sheet-10-title">
+        <header class="sheet-head">
+          <div>
+            <p class="eyebrow">Sheet 10 · Projector finished</p>
+            <h1 id="sheet-10-title">Quiet Control Room / conclusive final board</h1>
+            <p class="lede">Route: <strong>/projector/[joinCode]</strong> — the finished state is tidy, stable, and not celebratory by default.</p>
+          </div>
+          <div class="export-badge">
+            <strong>10</strong>
+            <span>10-projector-finished.png</span>
+          </div>
+        </header>
+
+        <article class="panel panel--projector screen-shell screen-shell--projector panel--success">
+          <div class="panel-head">
+            <div>
+              <div class="panel-title">Finished</div>
+              <div class="panel-subtitle">Final standings locked</div>
+            </div>
+            <span class="state-chip state-chip--accent">Session closed</span>
+          </div>
+
+          <div class="finished-board">
+            <div class="summary-stack">
+              <div class="summary-card">
+                <strong>Winner</strong>
+                <p>Sam leads the board with a calm, high-contrast finish.</p>
+              </div>
+              <div class="summary-card">
+                <strong>18 players</strong>
+                <p>Room participation and final placements stay visible for a stable ending.</p>
+              </div>
+            </div>
+            <div class="leaderboard">
+              <div class="leaderboard-item"><strong>1</strong><div><strong>Sam</strong><em>Final rank</em></div><span class="score">7,900</span></div>
+              <div class="leaderboard-item"><strong>2</strong><div><strong>Priya</strong><em>Final rank</em></div><span class="score">7,400</span></div>
+              <div class="leaderboard-item"><strong>3</strong><div><strong>Jordan</strong><em>Final rank</em></div><span class="score">7,400</span></div>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+printf 'Running follow-up implementation verification\n'
+printf 'Step 1/4: npm run typecheck\n'
+npm run typecheck
+printf 'Step 2/4: npm run lint\n'
+npm run lint
+printf 'Step 3/4: npm test\n'
+npm test
+printf 'Step 4/4: npm run build\n'
+npm run build
+printf 'Follow-up verification OK\n'

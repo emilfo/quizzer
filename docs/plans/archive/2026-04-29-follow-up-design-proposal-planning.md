@@ -4,6 +4,8 @@
 
 Create a clear, repeatable plan for auditing the shipped MVP, identifying all key user-facing frames, and drafting five distinct design proposals that stay consistent across host, player, and projector experiences.
 
+The canonical route/state inventory for this plan lives in `docs/design/2026-04-29-keyframe-inventory-and-matrix.md`.
+
 ## 2. scope
 
 Includes these deliverables:
@@ -13,16 +15,25 @@ Includes these deliverables:
 - a proposal template for five distinct design directions
 - a comparison rubric for selecting a direction to move into wireframes or high-fidelity UI
 
+Working artifacts created from this plan:
+
+- `docs/design/2026-04-29-keyframe-inventory-and-matrix.md`
+- `docs/design/2026-04-29-parallel-design-lanes-and-rubric.md`
+
 In scope keyframes:
 
 - `app/page.tsx` — home, host auth, and player join entry
+- `app/auth/error/page.tsx` — host sign-in failure state
 - `app/host/page.tsx` — host dashboard
 - `app/host/[quizId]/page.tsx` — quiz editor
 - `app/host/session/[sessionId]/page.tsx` — host live session controls
 - `app/play/[joinCode]/page.tsx` — player join and gameplay
 - `app/projector/[joinCode]/page.tsx` — projector and audience display
-- `components/live-session-panel.tsx` — shared lobby and status patterns
+
+Shared behavior constraints to account for:
+
 - `components/live-session-refresh.tsx` — sync-driven live state updates
+- cookie/session-token-based rejoin and restoration on player routes
 
 Out of scope:
 
@@ -65,8 +76,6 @@ Out of scope:
    - strengths, risks, and implementation complexity
 7. Define how each proposal must express consistency across the app, including shared navigation patterns, status language, CTA emphasis, panel styling, and live-state cues.
 8. Define an evaluation rubric to compare the five proposals against product needs such as host control clarity, player conversion and confidence, projector readability, visual distinctiveness, and implementation fit.
-9. Review the five drafted proposals against the rubric, shortlist the strongest direction, and note which traits from other proposals are worth merging.
-10. Convert the selected direction into the next design phase plan: low-fidelity keyframes, component system rules, and high-fidelity execution order.
 
 ## 5. acceptance criteria
 
@@ -77,6 +86,7 @@ Out of scope:
 - each proposal is required to cover all keyframes and remain consistent across the app
 - the plan includes a repeatable format for proposal drafting and comparison
 - another agent, designer, or developer can use the plan to produce the five proposals without needing additional product discovery
+- the keyframe inventory acts as the single shared source of truth for route/state coverage during parallel lane drafting
 
 ## 6. verification
 
@@ -85,10 +95,13 @@ Out of scope:
 - verify proposal requirements cover the known session states: lobby, question open, round results, and finished
 - verify the plan distinguishes persona needs across host, player, and projector surfaces
 - verify the document stays planning-focused and does not drift into actual proposal drafting or implementation
+- verify the working artifacts stay aligned with this plan and are specific enough for parallel lane drafting without additional product discovery
 
 ## 7. follow-ups
 
-- after approval, draft the keyframe matrix as a separate working artifact if comparison across states becomes too dense for this plan alone
+- the keyframe matrix and lane/rubric briefs now exist under `docs/design/` and should be reused as the shared brief for proposal drafting
 - consider attaching lightweight wireframe checkpoints before high-fidelity design to reduce rework
 - consider documenting a reusable design token strategy once a direction is selected
 - if the chosen direction introduces structural UI changes, update `docs/architecture.md` and `docs/status.md` when implementation begins
+- use the two design working artifacts as the shared brief before splitting lane drafting across multiple designers or agents
+- after the five proposals are drafted, review them against the rubric, shortlist the strongest direction, and convert the winner into a low-fi then high-fi execution plan

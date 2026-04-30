@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lane 5 — Playful Signal / Keyframes</title>
+    <link rel="stylesheet" href="./tokens.css" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="gallery">
+      <section class="sheet" id="01-entry-sheet" data-export="01-entry-sheet.png" aria-labelledby="entry-title">
+        <div class="sheet-header">
+          <div>
+            <div class="kicker">Sheet 01 · Entry</div>
+            <h1 class="title" id="entry-title">Playful Signal welcomes you in fast.</h1>
+            <p class="subtitle">Home screen for host sign-in and player join. The split is clear, the tone is warm, and the join code is the center of gravity.</p>
+          </div>
+          <div class="meta">
+            <div class="badge"><strong>Route</strong> /</div>
+            <div class="badge"><strong>State</strong> host auth + player join</div>
+          </div>
+        </div>
+        <div class="stage grid-2">
+          <div class="panel hero" aria-label="Host entry panel">
+            <div class="status">Host path · safe to sign in</div>
+            <h3 style="font-family: 'Palatino Linotype', 'Book Antiqua', serif; font-size: 34px; margin-top: 14px; margin-bottom: 8px;">Make a quiz, then run the room.</h3>
+            <p class="muted">Create or manage quizzes with calm confidence. The interface stays friendly, not enterprise-heavy.</p>
+            <div class="pill-row">
+              <div class="pill accent">Sign in</div>
+              <div class="pill">Open dashboard</div>
+              <div class="pill green">Trusted host flow</div>
+            </div>
+          </div>
+          <div class="panel" aria-label="Player entry panel">
+            <h3>Join a live game</h3>
+            <p>Players enter a 6-character join code and immediately see whether the room is open.</p>
+            <div class="input-shell" style="margin-top: 14px;">
+              <div class="status">Join open · no pressure</div>
+              <div class="input" aria-label="Join code field">Q 7 M A 2 P</div>
+              <div class="button-row">
+                <div class="button green">Join game</div>
+                <div class="button secondary">Need help?</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sheet-foot"><span>Friendly split entry</span><span>Signal: clear + inviting</span></div>
+      </section>
+
+      <section class="sheet" id="02-host-dashboard-sheet" data-export="02-host-dashboard-sheet.png" aria-labelledby="dashboard-title">
+        <div class="sheet-header">
+          <div>
+            <div class="kicker">Sheet 02 · Host dashboard</div>
+            <h2 class="title" id="dashboard-title">A lively control center for quiz prep.</h2>
+            <p class="subtitle">Cards feel approachable and organized, with one active session tile that reads like a live status beacon.</p>
+          </div>
+          <div class="meta">
+            <div class="badge"><strong>Route</strong> /host</div>
+            <div class="badge"><strong>State</strong> no active session + active session</div>
+          </div>
+        </div>
+        <div class="stage grid-2">
+          <div class="card-stack" aria-label="Quiz cards">
+            <div class="panel">
+              <div class="status">Published · ready to play</div>
+              <h3>Sunset Trivia</h3>
+              <p>12 questions · 48 players last run · last updated 8m ago</p>
+            </div>
+            <div class="panel">
+              <div class="status warn">Draft · needs review</div>
+              <h3>Emoji Avalanche</h3>
+              <p>Missing a correct answer on question 7.</p>
+            </div>
+          </div>
+          <div class="panel hero" aria-label="Active session tile">
+            <div class="status">Live session · lobby open</div>
+            <h3 style="font-family: 'Palatino Linotype', 'Book Antiqua', serif; font-size: 32px; margin: 14px 0 8px;">Current game is waiting for players.</h3>
+            <p class="muted">This tile feels slightly celebratory, but still trustworthy and immediate.</p>
+            <div class="grid-3" style="margin-top: 18px;">
+              <div class="card"><strong>42</strong><br><span class="tiny">joined</span></div>
+              <div class="card"><strong>Live</strong><br><span class="tiny">projector on</span></div>
+              <div class="card"><strong>Open</strong><br><span class="tiny">join link</span></div>
+            </div>
+            <div class="button-row" style="margin-top: 16px;">
+              <div class="button">Open controls</div>
+              <div class="button secondary">Projector</div>
+            </div>
+          </div>
+        </div>
+        <div class="sheet-foot"><span>Approachable dashboard</span><span>Confidence over clutter</span></div>
+      </section>
+
+      <section class="sheet" id="03-host-editor-sheet" data-export="03-host-editor-sheet.png" aria-labelledby="editor-title">
+        <div class="sheet-header">
+          <div>
+            <div class="kicker">Sheet 03 · Host editor</div>
+            <h2 class="title" id="editor-title">Structured editing with a softer touch.</h2>
+            <p class="subtitle">The authoring surface stays precise, but the blocks feel modular, forgiving, and easy to scan before publish.</p>
+          </div>
+          <div class="meta">
+            <div class="badge"><strong>Route</strong> /host/[quizId]</div>
+            <div class="badge"><strong>State</strong> publishable + validation blocked</div>
+          </div>
+        </div>
+        <div class="stage grid-2">
+          <div class="panel" aria-label="Validation summary">
+            <div class="status bad">Validation fix needed</div>
+            <div class="card-stack" style="margin-top: 14px;">
+              <div class="row"><strong>Question 3</strong><small>Missing correct answer</small></div>
+              <div class="row"><strong>Question 8</strong><small>Too few options</small></div>
+              <div class="row"><strong>Publish</strong><small>Blocked until resolved</small></div>
+            </div>
+          </div>
+          <div class="card-stack" aria-label="Question blocks">
+            <div class="panel">
+              <h3>Question 1</h3>
+              <p>Prompt, four options, and a neat publish-ready status chip.</p>
+            </div>
+            <div class="panel">
+              <h3>Question 2</h3>
+              <p>Order controls feel like tidy tools, not a spreadsheet.</p>
+            </div>
+          </div>
+        </div>
+        <div class="sheet-foot"><span>Editorial enough to trust</span><span>Still welcoming</span></div>
+      </section>
+
+      <section class="sheet" id="04-host-live-sheet" data-export="04-host-live-sheet.png" aria-labelledby="live-title">
+        <div class="sheet-header">
+          <div>
+            <div class="kicker">Sheet 04 · Host live</div>
+            <h2 class="title" id="live-title">The control room stays playful, never fuzzy.</h2>
+            <p class="subtitle">Live operation surfaces the current question, answer count, and next action first. Delight stays in the frame edges.</p>
+          </div>
+          <div class="meta">
+            <div class="badge"><strong>Route</strong> /host/session/[sessionId]</div>
+            <div class="badge"><strong>State</strong> lobby / question open / results / finished</div>
+          </div>
+        </div>
+        <div class="stage grid-2">
+          <div class="panel">
+            <div class="status">Lobby · 42 waiting</div>
+            <h3>Next question is queued.</h3>
+            <p>Primary control stays obvious; the room status is visible at a glance.</p>
+            <div class="button-row" style="margin-top: 14px;">
+              <div class="button green">Start quiz</div>
+              <div class="button secondary">Open projector</div>
+            </div>
+          </div>
+          <div class="card-stack">
+            <div class="panel">
+              <div class="status warn">Question open</div>
+              <p>Answers received: 31 / 42</p>
+            </div>
+            <div class="panel">
+              <div class="status">Round results</div>
+              <p>Leaderboard visible, continue button ready.</p>
+            </div>
+          </div>
+        </div>
+        <div class="sheet-foot"><span>Calm control</span><span>Action always visible</span></div>
+      </section>
+
+      <section class="sheet" id="05-player-join-sheet" data-export="05-player-join-sheet.png" aria-labelledby="join-title">
+        <div class="sheet-header">
+          <div>
+            <div class="kicker">Sheet 05 · Player join</div>
+            <h2 class="title" id="join-title">Joining feels like entering the game, not a form.</h2>
+            <p class="subtitle">The field, nickname, and feedback all stay bold and reassuring, with gentle correction for invalid codes.</p>
+          </div>
+          <div class="meta">
+            <div class="badge"><strong>Route</strong> /play/[joinCode]</div>
+            <div class="badge"><strong>State</strong> join-open + invalid code</div>
+          </div>
+        </div>
+        <div class="stage grid-2">
+          <div class="hero">
+            <div class="status">Join open · quick start</div>
+            <h3 style="font-family: 'Palatino Linotype', 'Book Antiqua', serif; font-size: 36px; margin: 14px 0 8px;">Pick a nickname, then play.</h3>
+            <p class="muted">Big tap targets, strong answer rhythm, and a friendly nudge if the code is wrong.</p>
+            <div class="input-shell" style="margin-top: 16px; color: var(--ink);">
+              <div class="status bad">Invalid code · check the room code</div>
+              <div class="input">N I C K N A M E</div>
+              <div class="button-row"><div class="button green">Enter room</div><div class="button secondary">Paste code</div></div>
+            </div>
+          </div>
+          <div class="card-stack">
+            <div class="panel"><h3>Rejoin ready</h3><p>The app remembers progress and restores the player smoothly.</p></div>
+            <div class="panel"><h3>Join closed</h3><p>Helpful message, no scolding, clear next step.</p></div>
+          </div>
+        </div>
+        <div class="sheet-foot"><span>Welcoming on mobile</span><span>Errors stay helpful</span></div>
+      </section>
+
+      <section class="sheet" id="06-player-live-sheet" data-export="06-player-live-sheet.png" aria-labelledby="player-live-title">
+        <div class="sheet-header">
+          <div>
+            <div class="kicker">Sheet 06 · Player live</div>
+            <h2 class="title" id="player-live-title">Question open, answer bold, feedback immediate.</h2>
+            <p class="subtitle">This is the emotional center: the answer grid is vivid, touch-friendly, and easy to commit to quickly.</p>
+          </div>
+          <div class="meta">
+            <div class="badge"><strong>Route</strong> /play/[joinCode]</div>
+            <div class="badge"><strong>State</strong> question open + round results</div>
+          </div>
+        </div>
+        <div class="stage grid-2">
+          <div class="panel" aria-label="Question and answers">
+            <div class="status">Question open · answer now</div>
+            <h3>Which signal is strongest?</h3>
+            <div class="answer-grid" style="margin-top: 14px;">
+              <div class="answer a"><strong>Thunder</strong><span>Loud, but noisy</span></div>
+              <div class="answer b"><strong>Beacon</strong><span>Bright and clear</span></div>
+              <div class="answer c"><strong>Pulse</strong><span>Fast and rhythmic</span></div>
+              <div class="answer d"><strong>Glow</strong><span>Warm and steady</span></div>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="status">Round results · your answer locked</div>
+            <div class="card-stack" style="margin-top: 14px;">
+              <div class="row"><strong>Correct</strong><small>Beacon</small></div>
+              <div class="row"><strong>Your pick</strong><small>Pulse</small></div>
+              <div class="row"><strong>Feedback</strong><small>Close enough to feel good, clear enough to learn</small></div>
+            </div>
+          </div>
+        </div>
+        <div class="sheet-foot"><span>Fast and friendly</span><span>Player confidence first</span></div>
+      </section>
+
+      <section class="sheet" id="07-projector-lobby" data-export="07-projector-lobby.png" aria-labelledby="projector-lobby-title">
+        <div class="sheet-header">
+          <div>
+            <div class="kicker">Sheet 07 · Projector lobby</div>
+            <h2 class="title" id="projector-lobby-title">A room-facing welcome that reads from across the hall.</h2>
+            <p class="subtitle">The projector keeps the join code and QR equivalent front and center while still feeling lively and inviting.</p>
+          </div>
+          <div class="meta">
+            <div class="badge"><strong>Route</strong> /projector/[joinCode]</div>
+            <div class="badge"><strong>State</strong> lobby</div>
+          </div>
+        </div>
+        <div class="projector" aria-label="Lobby projector screen">
+          <div class="grid-2">
+            <div>
+              <div class="status">Lobby open</div>
+              <h3 style="font-family: 'Palatino Linotype', 'Book Antiqua', serif; font-size: 58px; margin: 14px 0 8px;">Join code<br />Q7MA2P</h3>
+              <p class="muted" style="font-size: 22px; max-width: 20ch;">Scan the code or type it into the app.</p>
+            </div>
+            <div class="panel" style="align-self: start; justify-self: end; width: min(100%, 320px);">
+              <h3>QR / audience area</h3>
+              <div style="height: 220px; border-radius: 24px; background: linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,.06)); border: 1px dashed rgba(255,255,255,.22);"></div>
+              <p class="tiny" style="margin-top: 10px;">Participant count and room context stay simple and legible.</p>
+            </div>
+          </div>
+        </div>
+        <div class="sheet-foot"><span>Distance-safe welcome</span><span>Code first, charm second</span></div>
+      </section>
+
+      <section class="sheet" id="08-projector-question" data-export="08-projector-question.png" aria-labelledby="projector-question-title">
+        <div class="sheet-header">
+          <div>
+            <div class="kicker">Sheet 08 · Projector question</div>
+            <h2 class="title" id="projector-question-title">Big question energy without losing scan speed.</h2>
+            <p class="subtitle">This sheet prioritizes the prompt and answer hierarchy, with bold color and a crisp room-scale composition.</p>
+          </div>
+          <div class="meta">
+            <div class="badge"><strong>Route</strong> /projector/[joinCode]</div>
+            <div class="badge"><strong>State</strong> question open</div>
+          </div>
+        </div>
+        <div class="projector" aria-label="Question projector screen">
+          <div class="status">Question open · live</div>
+          <h3 style="font-family: 'Palatino Linotype', 'Book Antiqua', serif; font-size: 48px; margin: 14px 0 18px; max-width: 18ch;">Which launch color feels most like a signal?</h3>
+          <div class="answer-grid">
+            <div class="answer a"><strong>Coral</strong><span>Warm and instant</span></div>
+            <div class="answer b"><strong>Mint</strong><span>Fresh and calm</span></div>
+            <div class="answer c"><strong>Indigo</strong><span>Quiet, electric</span></div>
+            <div class="answer d"><strong>Gold</strong><span>Bright and celebratory</span></div>
+          </div>
+        </div>
+        <div class="sheet-foot"><span>Energized and simple</span><span>Readable at distance</span></div>
+      </section>
+
+      <section class="sheet" id="09-projector-results" data-export="09-projector-results.png" aria-labelledby="projector-results-title">
+        <div class="sheet-header">
+          <div>
+            <div class="kicker">Sheet 09 · Projector results</div>
+            <h2 class="title" id="projector-results-title">Results feel like a celebratory reveal, not a victory lap.</h2>
+            <p class="subtitle">The leaderboard is clear and buoyant, with the winning answer and score order impossible to miss.</p>
+          </div>
+          <div class="meta">
+            <div class="badge"><strong>Route</strong> /projector/[joinCode]</div>
+            <div class="badge"><strong>State</strong> round results</div>
+          </div>
+        </div>
+        <div class="projector" aria-label="Results projector screen">
+          <div class="grid-2">
+            <div class="panel">
+              <div class="status">Correct answer</div>
+              <h3>Beacon</h3>
+              <p>41 players selected it. The room gets a clean, uplifting readback.</p>
+            </div>
+            <div class="panel">
+              <div class="status">Leaderboard</div>
+              <div class="leaderboard" style="margin-top: 12px;">
+                <div class="row"><div class="rank gold">1</div><strong>Nova</strong><small>980 pts</small></div>
+                <div class="row"><div class="rank silver">2</div><strong>Jules</strong><small>940 pts</small></div>
+                <div class="row"><div class="rank bronze">3</div><strong>Rina</strong><small>910 pts</small></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sheet-foot"><span>Clear reveal</span><span>Score hierarchy intact</span></div>
+      </section>
+
+      <section class="sheet" id="10-projector-finished" data-export="10-projector-finished.png" aria-labelledby="projector-finished-title">
+        <div class="sheet-header">
+          <div>
+            <div class="kicker">Sheet 10 · Projector finished</div>
+            <h2 class="title" id="projector-finished-title">A friendly finish line with no dead-end feeling.</h2>
+            <p class="subtitle">The final readout stays clean and optimistic, closing the game with a calm, memorable ending.</p>
+          </div>
+          <div class="meta">
+            <div class="badge"><strong>Route</strong> /projector/[joinCode]</div>
+            <div class="badge"><strong>State</strong> finished</div>
+          </div>
+        </div>
+        <div class="projector" aria-label="Finished projector screen">
+          <div class="hero" style="margin-bottom: 18px;">
+            <div class="status">Finished · thanks for playing</div>
+            <h3 style="font-family: 'Palatino Linotype', 'Book Antiqua', serif; font-size: 54px; margin: 14px 0 8px;">Final score: 12 / 12</h3>
+            <p class="muted" style="font-size: 18px;">The experience ends like a clean, friendly applause cue.</p>
+          </div>
+          <div class="grid-3">
+            <div class="panel"><h3>Winner</h3><p>Nova · 1540 pts</p></div>
+            <div class="panel"><h3>Best streak</h3><p>8 correct in a row</p></div>
+            <div class="panel"><h3>Next step</h3><p>Return to host dashboard</p></div>
+          </div>
+        </div>
+        <div class="sheet-foot"><span>Clean finish line</span><span>Memorable, not abrupt</span></div>
+      </section>
+    </main>
+  </body>
+</html>

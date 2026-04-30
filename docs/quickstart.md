@@ -14,7 +14,7 @@ Get oriented on the current quizzer milestone and run the local app verification
 6. set `QUIZZER_PARTICIPANT_COOKIE_SECRET` in `.env.local` for production-like player-session signing
 7. create the default local host user with `npm run local:user`
 8. run the app with `npm run dev` or `docker compose up app`
-9. read the active milestone in `docs/status.md`
+9. read the active milestone and active plan path in `docs/status.md`
 10. use `commands/` and `scripts/` for verification
 
 ## First-run checklist
@@ -31,10 +31,10 @@ Get oriented on the current quizzer milestone and run the local app verification
 1. open task
 2. read `AGENTS.md`
 3. read `docs/status.md`
-4. read the active milestone plan in `docs/plans/`
+4. read the active milestone plan path from `docs/status.md`
 5. implement the smallest useful slice
 6. run `commands/verify` for the active milestone
-7. record follow-up work in `docs/status.md` and the relevant plan
+7. record follow-up work in `docs/status.md` and move the plan between `docs/plans/backlog/`, `docs/plans/in-progress/`, and `docs/plans/archive/` as its state changes
 
 ## Main local commands
 

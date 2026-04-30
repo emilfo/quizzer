@@ -18,7 +18,7 @@
 ## Change strategy
 
 - prefer narrow slices
-- avoid broad refactors without a plan in `docs/plans/`
+- avoid broad refactors without a plan in `docs/plans/in-progress/` or `docs/plans/backlog/`
 - document architecture-impacting changes immediately
 
 ## Milestone execution

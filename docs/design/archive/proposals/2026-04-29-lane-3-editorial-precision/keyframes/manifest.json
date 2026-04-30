@@ -1,0 +1,70 @@
+{
+  "lane": "Lane 3 — Editorial Precision",
+  "proposalDoc": "docs/design/proposals/2026-04-29-lane-3-editorial-precision.md",
+  "inventoryDoc": "docs/design/2026-04-29-keyframe-inventory-and-matrix.md",
+  "format": "static-html-css",
+  "captureViewport": "1600x900",
+  "sheetCount": 10,
+  "exports": [
+    {
+      "id": "sheet-01",
+      "filename": "01-entry-sheet.png",
+      "title": "Entry sheet",
+      "states": ["/", "/auth/error", "invalid join code"]
+    },
+    {
+      "id": "sheet-02",
+      "filename": "02-host-dashboard-sheet.png",
+      "title": "Host dashboard sheet",
+      "states": ["no active session", "active session present"]
+    },
+    {
+      "id": "sheet-03",
+      "filename": "03-host-editor-sheet.png",
+      "title": "Host editor sheet",
+      "states": ["publishable", "blocked by validation"]
+    },
+    {
+      "id": "sheet-04",
+      "filename": "04-host-live-sheet.png",
+      "title": "Host live sheet",
+      "states": ["lobby", "question open", "round results", "finished"]
+    },
+    {
+      "id": "sheet-05",
+      "filename": "05-player-join-sheet.png",
+      "title": "Player join sheet",
+      "states": ["invalid/not-found", "join-open", "join-closed"]
+    },
+    {
+      "id": "sheet-06",
+      "filename": "06-player-live-sheet.png",
+      "title": "Player live sheet",
+      "states": ["question-open unanswered", "question-open answered", "round-results", "finished-restored-player", "rejoin-required"]
+    },
+    {
+      "id": "sheet-07",
+      "filename": "07-projector-lobby.png",
+      "title": "Projector lobby",
+      "states": ["lobby"]
+    },
+    {
+      "id": "sheet-08",
+      "filename": "08-projector-question.png",
+      "title": "Projector question",
+      "states": ["question open"]
+    },
+    {
+      "id": "sheet-09",
+      "filename": "09-projector-results.png",
+      "title": "Projector results",
+      "states": ["round results"]
+    },
+    {
+      "id": "sheet-10",
+      "filename": "10-projector-finished.png",
+      "title": "Projector finished",
+      "states": ["finished"]
+    }
+  ]
+}

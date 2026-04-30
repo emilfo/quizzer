@@ -10,8 +10,10 @@ The repository should make the quiz product, its milestones, and its verificatio
 
 - `AGENTS.md`
 - `docs/*.md`
+- `docs/design/*.md`
+- `docs/plans/in-progress/`, `docs/plans/backlog/`, and `docs/plans/archive/`
 
-Purpose: provide stable orientation, boundaries, milestones, and recovery paths.
+Purpose: provide stable orientation, boundaries, milestones, recovery paths, and design-planning artifacts.
 
 ### 2. Product layer
 
@@ -43,8 +45,9 @@ Purpose: hold repo-specific automation, templates, and observability helpers tha
 ### 5. Verification layer
 
 - `scripts/check-repo-context`
-- future lint/test/build scripts
-- future boundary and contract checks
+- `commands/verify`
+- `scripts/check-m*`
+- current lint/typecheck/test/build commands plus future boundary and contract checks
 
 Purpose: enforce invariants mechanically.
 

@@ -1,0 +1,81 @@
+{
+  "lane": "Quiet Control Room",
+  "revision": "2026-04-29",
+  "source": {
+    "proposal": "docs/design/proposals/2026-04-29-lane-1-quiet-control-room.md",
+    "inventory": "docs/design/2026-04-29-keyframe-inventory-and-matrix.md"
+  },
+  "format": "static-html-css",
+  "sheets": [
+    {
+      "id": "sheet-01-entry",
+      "export": "01-entry-sheet.png",
+      "route": "/",
+      "title": "Entry / host auth / invalid join",
+      "states": ["unauthenticated host entry", "authenticated host entry", "invalid join code"]
+    },
+    {
+      "id": "sheet-02-host-dashboard",
+      "export": "02-host-dashboard-sheet.png",
+      "route": "/host",
+      "title": "Host dashboard",
+      "states": ["no active session", "active session present"]
+    },
+    {
+      "id": "sheet-03-host-editor",
+      "export": "03-host-editor-sheet.png",
+      "route": "/host/[quizId]",
+      "title": "Quiz editor",
+      "states": ["publishable", "blocked by validation"]
+    },
+    {
+      "id": "sheet-04-host-live",
+      "export": "04-host-live-sheet.png",
+      "route": "/host/session/[sessionId]",
+      "title": "Host live session",
+      "states": ["lobby", "question open", "round results", "finished"]
+    },
+    {
+      "id": "sheet-05-player-join",
+      "export": "05-player-join-sheet.png",
+      "route": "/play/[joinCode]",
+      "title": "Player join",
+      "states": ["invalid join code / session not found", "join-open", "join-closed"]
+    },
+    {
+      "id": "sheet-06-player-live",
+      "export": "06-player-live-sheet.png",
+      "route": "/play/[joinCode]",
+      "title": "Player live flow",
+      "states": ["question-open unanswered", "question-open answered", "round-results", "finished-restored-player", "rejoin-required"]
+    },
+    {
+      "id": "sheet-07-projector-lobby",
+      "export": "07-projector-lobby.png",
+      "route": "/projector/[joinCode]",
+      "title": "Projector lobby",
+      "states": ["lobby"]
+    },
+    {
+      "id": "sheet-08-projector-question",
+      "export": "08-projector-question.png",
+      "route": "/projector/[joinCode]",
+      "title": "Projector question",
+      "states": ["question open"]
+    },
+    {
+      "id": "sheet-09-projector-results",
+      "export": "09-projector-results.png",
+      "route": "/projector/[joinCode]",
+      "title": "Projector results",
+      "states": ["round results"]
+    },
+    {
+      "id": "sheet-10-projector-finished",
+      "export": "10-projector-finished.png",
+      "route": "/projector/[joinCode]",
+      "title": "Projector finished",
+      "states": ["finished"]
+    }
+  ]
+}

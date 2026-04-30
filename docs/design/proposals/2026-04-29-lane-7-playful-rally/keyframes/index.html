@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Quizzer — Playful Rally Keyframes</title>
+    <link rel="stylesheet" href="./tokens.css" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="intro">
+        <p class="intro__kicker">Lane 7 · Playful Rally · merged lane</p>
+        <h1>Lane 5 friendliness fused with Lane 6 classroom gameplay</h1>
+        <p class="intro__copy">
+          This board merges Playful Signal’s warmth and memorable look with Classroom
+          Rally’s projector-led, color-first interaction model. The result is cheerful,
+          classroom-ready, and optimized for quick tapping on phone and iPad.
+        </p>
+        <div class="intro__meta" aria-label="Artifact metadata">
+          <span class="meta-pill">10 export sheets</span>
+          <span class="meta-pill">Static HTML + CSS</span>
+          <span class="meta-pill">Color-first gameplay</span>
+          <span class="meta-pill">Kid / youth friendly</span>
+        </div>
+      </header>
+
+      <main class="keyframes">
+        <section id="sheet-01-entry" class="sheet" data-export="01-entry-sheet.png" aria-labelledby="sheet-01-title">
+          <div class="sheet__mast">
+            <div>
+              <p class="sheet__kicker">01 · entry sheet</p>
+              <h2 id="sheet-01-title" class="sheet__title">/ — friendly front door for host and player</h2>
+              <p class="sheet__subline">Warm, inviting, and quick to understand: the player path remains the star, the host path stays safe, and invalid codes recover gently.</p>
+              <p class="sheet__meta">states covered: unauthenticated host entry · authenticated host entry · invalid join code</p>
+            </div>
+            <div class="sheet__export">data-export: 01-entry-sheet.png</div>
+          </div>
+
+          <div class="sheet__grid grid--entry">
+            <article class="panel panel--hero">
+              <p class="panel__eyebrow">host path</p>
+              <h3 class="panel__title">Easy access to setup</h3>
+              <p class="panel__copy">A calm, reassuring sign-in path that still feels lively and modern.</p>
+              <div class="panel__footer">
+                <span class="chip chip--cyan">sign in / sign up</span>
+                <span class="chip chip--mint">host dashboard</span>
+              </div>
+            </article>
+
+            <article class="panel panel--calm">
+              <p class="panel__eyebrow">player path</p>
+              <h3 class="panel__title">Join fast, feel welcome</h3>
+              <p class="panel__copy">The entry screen makes the player path obvious and friendly, with low-pressure copy and a cheerful tone.</p>
+              <div class="panel__footer">
+                <span class="chip chip--mint">6-character code</span>
+                <span class="chip chip--violet">nickname next</span>
+                <span class="chip chip--pink">join fast</span>
+              </div>
+            </article>
+
+            <article class="panel panel--danger">
+              <p class="panel__eyebrow">recovery</p>
+              <h3 class="panel__title">Session not found</h3>
+              <p class="panel__copy">A friendly correction that keeps momentum rather than creating friction.</p>
+              <div class="panel__footer">
+                <span class="chip chip--coral">invalid code</span>
+                <span class="chip chip--pink">retry</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="sheet-02-host-dashboard" class="sheet" data-export="02-host-dashboard-sheet.png" aria-labelledby="sheet-02-title">
+          <div class="sheet__mast">
+            <div>
+              <p class="sheet__kicker">02 · host dashboard sheet</p>
+              <h2 id="sheet-02-title" class="sheet__title">/host — lively but organized dashboard</h2>
+              <p class="sheet__subline">Inventory and live session status remain easy to scan, while the color and tone stay lighter and more inviting than the classroom-only lane.</p>
+              <p class="sheet__meta">states covered: no active session · active session present</p>
+            </div>
+            <div class="sheet__export">data-export: 02-host-dashboard-sheet.png</div>
+          </div>
+
+          <div class="sheet__grid grid--dashboard">
+            <article class="panel panel--hero">
+              <p class="panel__eyebrow">no active session</p>
+              <h3 class="panel__title">Readiness cards stay crisp</h3>
+              <div class="line"></div>
+              <div class="stack stack--tight">
+                <div class="record"><div class="record__row"><h4 class="record__title">Ready quiz</h4><span class="chip chip--lime">published</span></div><p class="record__sub">Prepared for a quick classroom round.</p></div>
+                <div class="record"><div class="record__row"><h4 class="record__title">Draft quiz</h4><span class="chip chip--yellow">needs edits</span></div><p class="record__sub">Validation remains clear but kind.</p></div>
+              </div>
+            </article>
+
+            <article class="panel panel--calm">
+              <p class="panel__eyebrow">active session</p>
+              <h3 class="panel__title">Launch tile for the live room</h3>
+              <div class="line"></div>
+              <div class="stack stack--tight">
+                <div class="record"><div class="record__row"><h4 class="record__title">Current room</h4><span class="chip chip--mint">lobby</span></div><p class="record__sub">One active session, one obvious next move.</p></div>
+                <div class="record"><div class="record__row"><h4 class="record__title">Room actions</h4><span class="chip chip--cyan">projector</span></div><p class="record__sub">The room-facing experience stays front and center.</p></div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="sheet-03-host-editor" class="sheet" data-export="03-host-editor-sheet.png" aria-labelledby="sheet-03-title">
+          <div class="sheet__mast">
+            <div>
+              <p class="sheet__kicker">03 · host editor sheet</p>
+              <h2 id="sheet-03-title" class="sheet__title">/host/[quizId] — quick setup and validation</h2>
+              <p class="sheet__subline">The editor keeps the setup light and modular so the host can prep quickly, with clear validation and a cheerful tone.</p>
+              <p class="sheet__meta">states covered: publishable · blocked by validation</p>
+            </div>
+            <div class="sheet__export">data-export: 03-host-editor-sheet.png</div>
+          </div>
+
+          <div class="sheet__grid grid--editor">
+            <article class="panel panel--hero">
+              <p class="panel__eyebrow">publishable</p>
+              <h3 class="panel__title">Quiz structure stays easy to scan</h3>
+              <p class="panel__copy">The layout feels like setup for a game, not a burden.</p>
+              <div class="panel__footer">
+                <span class="chip chip--mint">ready</span>
+                <span class="chip chip--cyan">save</span>
+                <span class="chip chip--violet">publish</span>
+              </div>
+              <div class="line"></div>
+              <div class="stack stack--tight">
+                <div class="record"><div class="record__row"><h4 class="record__title">Question block A</h4><span class="chip">prompt / answers</span></div><p class="record__sub">Modular and friendly.</p></div>
+                <div class="record"><div class="record__row"><h4 class="record__title">Question block B</h4><span class="chip">correct answer</span></div><p class="record__sub">Easy to compare.</p></div>
+              </div>
+            </article>
+
+            <article class="panel panel--warm">
+              <p class="panel__eyebrow">blocked by validation</p>
+              <h3 class="panel__title">Constructive fix-it state</h3>
+              <p class="panel__copy">Error treatment stays helpful and compact so the host can keep moving.</p>
+              <div class="panel__footer">
+                <span class="chip chip--yellow">missing field</span>
+                <span class="chip chip--coral">validation</span>
+                <span class="chip chip--mint">fix now</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="sheet-04-host-live" class="sheet" data-export="04-host-live-sheet.png" aria-labelledby="sheet-04-title">
+          <div class="sheet__mast">
+            <div>
+              <p class="sheet__kicker">04 · host live sheet</p>
+              <h2 id="sheet-04-title" class="sheet__title">/host/session/[sessionId] — control room support</h2>
+              <p class="sheet__subline">The host sees state, timing, and progress, but the projector handles the question/answer storytelling and the big reveal moments.</p>
+              <p class="sheet__meta">states covered: lobby · question open · round results · finished</p>
+            </div>
+            <div class="sheet__export">data-export: 04-host-live-sheet.png</div>
+          </div>
+
+          <div class="sheet__grid grid--host-live">
+            <article class="state-card panel--calm">
+              <div class="state-card__top"><p class="state-card__label">state</p><span class="chip chip--mint">lobby</span></div>
+              <h3 class="state-card__state">Waiting room feels ready</h3>
+              <p class="state-card__note">The room count and start cue are visible without adding stress.</p>
+              <div class="state-card__meta"><span class="chip chip--cyan">start quiz</span><span class="chip">participant list</span></div>
+            </article>
+            <article class="state-card panel--hero">
+              <div class="state-card__top"><p class="state-card__label">state</p><span class="chip chip--cyan">question open</span></div>
+              <h3 class="state-card__state">Projector carries the question</h3>
+              <p class="state-card__note">Host controls stay clean while the room display does the heavy visual lifting.</p>
+              <div class="state-card__meta"><span class="chip chip--violet">close round</span><span class="chip chip--yellow">answers received</span></div>
+            </article>
+            <article class="state-card panel--success">
+              <div class="state-card__top"><p class="state-card__label">state</p><span class="chip chip--lime">round results</span></div>
+              <h3 class="state-card__state">Answer graph and leaderboard shifts</h3>
+              <p class="state-card__note">The results state should clearly show how the room answered before revealing podium movement.</p>
+              <div class="state-card__meta"><span class="chip chip--lime">graph</span><span class="chip chip--mint">top 3 shifts</span></div>
+            </article>
+            <article class="state-card panel--warm">
+              <div class="state-card__top"><p class="state-card__label">state</p><span class="chip chip--yellow">finished</span></div>
+              <h3 class="state-card__state">Happy finish line</h3>
+              <p class="state-card__note">The closing state feels upbeat and complete, with the same playful tone carried through to the end.</p>
+              <div class="state-card__meta"><span class="chip chip--mint">review results</span><span class="chip chip--pink">game over</span></div>
+            </article>
+          </div>
+        </section>
+
+        <section id="sheet-05-player-join" class="sheet" data-export="05-player-join-sheet.png" aria-labelledby="sheet-05-title">
+          <div class="sheet__mast">
+            <div>
+              <p class="sheet__kicker">05 · player join sheet</p>
+              <h2 id="sheet-05-title" class="sheet__title">/play/[joinCode] — color-first join on phone or iPad</h2>
+              <p class="sheet__subline">The player path is fast, friendly, and inviting. Large colored blocks help the player get ready without reading a lot of text.</p>
+              <p class="sheet__meta">states covered: invalid/not-found · join-open · join-closed · validation</p>
+            </div>
+            <div class="sheet__export">data-export: 05-player-join-sheet.png</div>
+          </div>
+
+          <div class="sheet__grid grid--player-join">
+            <article class="state-card panel--danger">
+              <div class="state-card__top"><p class="state-card__label">state</p><span class="chip chip--coral">invalid / not found</span></div>
+              <h3 class="state-card__state">Friendly recovery</h3>
+              <p class="state-card__note">The error state feels like a helpful nudge rather than a hard stop.</p>
+              <div class="state-card__meta"><span class="chip chip--pink">retry</span><span class="chip chip--coral">session not found</span></div>
+            </article>
+            <article class="state-card panel--hero">
+              <div class="state-card__top"><p class="state-card__label">state</p><span class="chip chip--mint">join-open</span></div>
+              <h3 class="state-card__state">Big color blocks for fast tapping</h3>
+              <p class="state-card__note">The interface is intentionally reduced so kids and youth can move quickly.</p>
+              <div class="state-card__meta"><span class="chip chip--mint">tap fast</span><span class="chip chip--violet">nickname next</span></div>
+            </article>
+            <article class="state-card panel--warm">
+              <div class="state-card__top"><p class="state-card__label">state</p><span class="chip chip--yellow">join-closed</span></div>
+              <h3 class="state-card__state">Locked for the moment</h3>
+              <p class="state-card__note">A clear wait state keeps the player oriented and ready for the next round.</p>
+              <div class="state-card__meta"><span class="chip chip--yellow">wait</span><span class="chip chip--mint">next lobby</span></div>
+            </article>
+            <article class="state-card panel--calm">
+              <div class="state-card__top"><p class="state-card__label">state</p><span class="chip">validation</span></div>
+              <h3 class="state-card__state">Nickname rules stay local</h3>
+              <p class="state-card__note">Short helper text keeps the device feeling responsive and low-pressure.</p>
+              <div class="state-card__meta"><span class="chip chip--mint">required</span><span class="chip chip--cyan">easy fix</span></div>
+            </article>
+          </div>
+        </section>
+
+        <section id="sheet-06-player-live" class="sheet" data-export="06-player-live-sheet.png" aria-labelledby="sheet-06-title">
+          <div class="sheet__mast">
+            <div>
+              <p class="sheet__kicker">06 · player live sheet</p>
+              <h2 id="sheet-06-title" class="sheet__title">/play/[joinCode] — large colored tap targets only</h2>
+              <p class="sheet__subline">Players see only big colored boxes in the same order and colors as the projector, optimized for quick tapping on phone and iPad.</p>
+              <p class="sheet__meta">states covered: question-open unanswered · question-open answered · round-results · finished-restored-player · reconnect / rejoin</p>
+            </div>
+            <div class="sheet__export">data-export: 06-player-live-sheet.png</div>
+          </div>
+
+          <div class="sheet__grid grid--player-live">
+            <article class="state-card panel--hero">
+              <div class="state-card__top"><p class="state-card__label">state</p><span class="chip chip--mint">question open</span></div>
+              <h3 class="state-card__state">Tap the color, not the text</h3>
+              <p class="state-card__note">A hurry-friendly board that rewards quick decisions on mobile and tablet.</p>
+              <div class="tap-grid" aria-label="player answer tiles">
+                <div class="tap-tile tap-tile--a"><div class="tap-tile__label">A</div><div class="tap-tile__symbol">●</div><div class="tap-tile__hint">mint</div></div>
+                <div class="tap-tile tap-tile--b"><div class="tap-tile__label">B</div><div class="tap-tile__symbol">■</div><div class="tap-tile__hint">blue</div></div>
+                <div class="tap-tile tap-tile--c"><div class="tap-tile__label">C</div><div class="tap-tile__symbol">◆</div><div class="tap-tile__hint">violet</div></div>
+                <div class="tap-tile tap-tile--d"><div class="tap-tile__label">D</div><div class="tap-tile__symbol">▲</div><div class="tap-tile__hint">yellow</div></div>
+              </div>
+            </article>
+
+            <article class="state-card panel--calm">
+              <div class="state-card__top"><p class="state-card__label">state</p><span class="chip">answered</span></div>
+              <h3 class="state-card__state">Locked choice stays visible</h3>
+              <p class="state-card__note">The same colored tile confirms the answer without asking the player to re-read the prompt.</p>
+              <div class="state-card__meta"><span class="chip chip--lime">submitted</span><span class="chip chip--mint">waiting for reveal</span></div>
+            </article>
+
+            <article class="state-card panel--success">
+              <div class="state-card__top"><p class="state-card__label">state</p><span class="chip chip--lime">round-results</span></div>
+              <h3 class="state-card__state">Result feedback and score growth</h3>
+              <p class="state-card__note">The reveal should feel rewarding while staying readable for the next round.</p>
+              <div class="state-card__meta"><span class="chip chip--mint">graph next</span><span class="chip chip--yellow">score update</span></div>
+            </article>
+
+            <article class="state-card panel--warm">
+              <div class="state-card__top"><p class="state-card__label">state</p><span class="chip chip--yellow">finished-restored-player</span></div>
+              <h3 class="state-card__state">The game remembers the player</h3>
+              <p class="state-card__note">Returning after refresh lands the player back into the same finish state.
+              </p>
+              <div class="state-card__meta"><span class="chip chip--cyan">restore</span><span class="chip chip--pink">final placement</span></div>
+            </article>
+
+            <article class="state-card panel--danger">
+              <div class="state-card__top"><p class="state-card__label">state</p><span class="chip chip--coral">reconnect / rejoin</span></div>
+              <h3 class="state-card__state">Continuity over technical drama</h3>
+              <p class="state-card__note">A brief, reassuring recovery state keeps the pace up when the connection drops.</p>
+              <div class="state-card__meta"><span class="chip chip--mint">refresh safe</span><span class="chip chip--pink">resume play</span></div>
+            </article>
+          </div>
+        </section>
+
+        <section id="sheet-07-projector-lobby" class="sheet" data-export="07-projector-lobby.png" aria-labelledby="sheet-07-title">
+          <div class="sheet__mast">
+            <div>
+              <p class="sheet__kicker">07 · projector lobby sheet</p>
+              <h2 id="sheet-07-title" class="sheet__title">/projector/[joinCode] — welcoming game stage</h2>
+              <p class="sheet__subline">The projector is the hero surface: join code, QR, and room readiness set the tone for the round.</p>
+              <p class="sheet__meta">state covered: lobby</p>
+            </div>
+            <div class="sheet__export">data-export: 07-projector-lobby.png</div>
+          </div>
+
+          <div class="sheet__grid grid--projector-wide">
+            <article class="panel panel--hero screen-shell screen-shell--projector">
+              <div class="screen-title">
+                <div>
+                  <p class="panel__eyebrow">room display</p>
+                  <h3 class="panel__title">Join code + QR hero module</h3>
+                </div>
+                <span class="chip chip--mint">lobby</span>
+              </div>
+              <div class="join-box join-box--projector">
+                <div class="join-code__label">join code</div>
+                <div class="join-code__value">RALLY7</div>
+                <p class="panel__copy">Ask players to scan or type the code. The room should feel ready to launch.</p>
+              </div>
+              <div class="panel__footer">
+                <span class="chip chip--cyan">participant count</span>
+                <span class="chip chip--lime">ready to start</span>
+              </div>
+            </article>
+
+            <article class="panel panel--calm">
+              <p class="panel__eyebrow">support</p>
+              <h3 class="panel__title">Simple room cues</h3>
+              <div class="line"></div>
+              <div class="stack stack--tight">
+                <div class="record"><div class="record__row"><h4 class="record__title">How to join</h4><span class="chip chip--mint">scan qr</span></div><p class="record__sub">One instruction, no clutter.</p></div>
+                <div class="record"><div class="record__row"><h4 class="record__title">Room status</h4><span class="chip chip--yellow">waiting</span></div><p class="record__sub">Feels active and welcoming.</p></div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="sheet-08-projector-question" class="sheet" data-export="08-projector-question.png" aria-labelledby="sheet-08-title">
+          <div class="sheet__mast">
+            <div>
+              <p class="sheet__kicker">08 · projector question sheet</p>
+              <h2 id="sheet-08-title" class="sheet__title">/projector/[joinCode] — question plus answer text</h2>
+              <p class="sheet__subline">Questions and answer text live on the projector, each option getting a strong distinct color so the whole room can read the board fast.</p>
+              <p class="sheet__meta">state covered: question open</p>
+            </div>
+            <div class="sheet__export">data-export: 08-projector-question.png</div>
+          </div>
+
+          <div class="sheet__grid grid--projector">
+            <article class="panel panel--hero screen-shell screen-shell--projector">
+              <div class="screen-title">
+                <div>
+                  <p class="panel__eyebrow">live cue</p>
+                  <h3 class="panel__title">Question text stays big and clear</h3>
+                </div>
+                <span class="chip chip--mint">question open</span>
+              </div>
+              <div class="join-box join-box--projector">
+                <div class="join-code__label">question prompt</div>
+                <div class="join-code__value" style="letter-spacing:-0.04em; font-size: clamp(2rem, 4.2vw, 4rem);">Which answer feels fastest?</div>
+                <p class="panel__copy">Big type, minimal chrome, and a clear reading order from the back of the room.</p>
+              </div>
+            </article>
+
+            <article class="panel panel--calm">
+              <p class="panel__eyebrow">answer region</p>
+              <h3 class="panel__title">Distinct colors for every option</h3>
+              <div class="line"></div>
+              <div class="projector-answers">
+                <div class="projector-answer projector-answer--a"><div class="projector-answer__head"><div class="projector-answer__letter">A · mint</div><div class="chip chip--mint">active</div></div><div class="projector-answer__text">Option A</div></div>
+                <div class="projector-answer projector-answer--b"><div class="projector-answer__head"><div class="projector-answer__letter">B · blue</div><div class="chip chip--cyan">active</div></div><div class="projector-answer__text">Option B</div></div>
+                <div class="projector-answer projector-answer--c"><div class="projector-answer__head"><div class="projector-answer__letter">C · violet</div><div class="chip chip--violet">active</div></div><div class="projector-answer__text">Option C</div></div>
+                <div class="projector-answer projector-answer--d"><div class="projector-answer__head"><div class="projector-answer__letter">D · yellow</div><div class="chip chip--yellow">active</div></div><div class="projector-answer__text">Option D</div></div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="sheet-09-projector-results" class="sheet" data-export="09-projector-results.png" aria-labelledby="sheet-09-title">
+          <div class="sheet__mast">
+            <div>
+              <p class="sheet__kicker">09 · projector results sheet</p>
+              <h2 id="sheet-09-title" class="sheet__title">/projector/[joinCode] — answer graph and podium movement</h2>
+              <p class="sheet__subline">Results show how many players chose each option, then move into visible top-3 shifts so the room can track the competition.</p>
+              <p class="sheet__meta">state covered: round results</p>
+            </div>
+            <div class="sheet__export">data-export: 09-projector-results.png</div>
+          </div>
+
+          <div class="sheet__grid grid--projector-wide">
+            <article class="panel panel--success screen-shell screen-shell--projector">
+              <div class="screen-title">
+                <div>
+                  <p class="panel__eyebrow">answer graph</p>
+                  <h3 class="panel__title">Per-option counts first</h3>
+                </div>
+                <span class="chip chip--lime">round results</span>
+              </div>
+              <div class="graph">
+                <div class="graph__row"><div class="legend">A</div><div class="graph__bar"><div class="graph__fill graph__fill--a"></div></div><div class="graph__value">38</div></div>
+                <div class="graph__row"><div class="legend">B</div><div class="graph__bar"><div class="graph__fill graph__fill--b"></div></div><div class="graph__value">24</div></div>
+                <div class="graph__row"><div class="legend">C</div><div class="graph__bar"><div class="graph__fill graph__fill--c"></div></div><div class="graph__value">17</div></div>
+                <div class="graph__row"><div class="legend">D</div><div class="graph__bar"><div class="graph__fill graph__fill--d"></div></div><div class="graph__value">42</div></div>
+              </div>
+            </article>
+
+            <article class="panel panel--calm">
+              <p class="panel__eyebrow">top 3 movement</p>
+              <h3 class="panel__title">Podium shifts stay visible</h3>
+              <div class="line"></div>
+              <div class="podium">
+                <div class="podium__row"><span class="podium__rank">01</span><span class="podium__name">Mina</span><span class="podium__score">1200</span><span class="podium__shift">+1</span></div>
+                <div class="podium__row"><span class="podium__rank">02</span><span class="podium__name">Ari</span><span class="podium__score">1110</span><span class="podium__shift">-1</span></div>
+                <div class="podium__row"><span class="podium__rank">03</span><span class="podium__name">Jon</span><span class="podium__score">980</span><span class="podium__shift">new</span></div>
+              </div>
+              <div class="panel__footer">
+                <span class="chip chip--mint">shifts visible</span>
+                <span class="chip chip--cyan">next round</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="sheet-10-projector-finished" class="sheet" data-export="10-projector-finished.png" aria-labelledby="sheet-10-title">
+          <div class="sheet__mast">
+            <div>
+              <p class="sheet__kicker">10 · projector finished sheet</p>
+              <h2 id="sheet-10-title" class="sheet__title">/projector/[joinCode] — cheerful finish line</h2>
+              <p class="sheet__subline">The final board resolves into a happy, stable end state with the top 3 still visible and the classroom ready for the next round.</p>
+              <p class="sheet__meta">state covered: finished</p>
+            </div>
+            <div class="sheet__export">data-export: 10-projector-finished.png</div>
+          </div>
+
+          <div class="sheet__grid grid--projector-wide">
+            <article class="panel panel--hero screen-shell screen-shell--projector">
+              <div class="screen-title">
+                <div>
+                  <p class="panel__eyebrow">closing slate</p>
+                  <h3 class="panel__title">A warm, memorable finish</h3>
+                </div>
+                <span class="chip chip--yellow">finished</span>
+              </div>
+              <div class="join-box join-box--projector">
+                <div class="join-code__label">final message</div>
+                <div class="join-code__value" style="letter-spacing:-0.03em; font-size: clamp(2rem, 4vw, 3.4rem);">Thanks for playing</div>
+                <p class="panel__copy">The same playful color family carries through to a stable end board.</p>
+              </div>
+            </article>
+
+            <article class="panel panel--calm">
+              <p class="panel__eyebrow">final podium</p>
+              <h3 class="panel__title">Top 3 closes the experience</h3>
+              <div class="line"></div>
+              <div class="podium">
+                <div class="podium__row"><span class="podium__rank">01</span><span class="podium__name">Mina</span><span class="podium__score">Win</span><span class="podium__shift">+1</span></div>
+                <div class="podium__row"><span class="podium__rank">02</span><span class="podium__name">Ari</span><span class="podium__score">2nd</span><span class="podium__shift">-1</span></div>
+                <div class="podium__row"><span class="podium__rank">03</span><span class="podium__name">Jon</span><span class="podium__score">3rd</span><span class="podium__shift">new</span></div>
+              </div>
+              <div class="panel__footer">
+                <span class="chip chip--mint">stable board</span>
+                <span class="chip chip--pink">classroom ready</span>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

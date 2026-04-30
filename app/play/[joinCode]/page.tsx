@@ -1,6 +1,15 @@
 import { cookies } from 'next/headers'
+import Link from 'next/link'
 import { LiveSessionRefresh } from '@/components/live-session-refresh'
-import { getOptionLabel, getOptionToneClass, type PlayerSessionView, type PublicSessionView } from '@/lib/gameplay'
+import {
+  getOptionLabel,
+  getOptionToneClass,
+  getRevealOptionCount,
+  getRevealOptionPercentage,
+  getRevealTotalResponses,
+  type PlayerSessionView,
+  type PublicSessionView,
+} from '@/lib/gameplay'
 import {
   isSessionJoinOpen,
   isValidJoinCode,
@@ -39,9 +48,13 @@ export default async function PlayerJoinPage({
     return (
       <main className="page-shell">
         <div className="container stack">
-          <section className="card stack">
-            <h1>Unknown join code</h1>
-            <p className="muted">Enter a 6-character join code from the projector screen.</p>
+          <section className="card hero-card stack center-card">
+            <span className="brand-badge">Join error</span>
+            <h1 className="display-title">That code needs a second look.</h1>
+            <p className="hero-copy">Enter the 6-character join code shown on the projector screen.</p>
+            <Link className="button secondary" href="/">
+              Return home
+            </Link>
           </section>
         </div>
       </main>
@@ -59,9 +72,13 @@ export default async function PlayerJoinPage({
     return (
       <main className="page-shell">
         <div className="container stack">
-          <section className="card stack">
-            <h1>Session not found</h1>
-            <p className="muted">Check the join code and try again.</p>
+          <section className="card hero-card stack center-card">
+            <span className="brand-badge">Session not found</span>
+            <h1 className="display-title">No live room matches that code.</h1>
+            <p className="hero-copy">Check the projector code and try again.</p>
+            <Link className="button secondary" href="/">
+              Return home
+            </Link>
           </section>
         </div>
       </main>
@@ -98,6 +115,8 @@ export default async function PlayerJoinPage({
   const hasAnswered = playerState?.player?.hasAnswered ?? false
   const playerCorrect = playerState?.player?.isCorrect ?? null
   const correctOptionId = activeState.reveal?.correctOptionId ?? null
+  const revealOptionCounts = activeState.reveal?.optionCounts ?? []
+  const totalResponses = getRevealTotalResponses(revealOptionCounts)
   const finalResult = playerState?.finalResult ?? null
 
   return (
@@ -105,133 +124,151 @@ export default async function PlayerJoinPage({
       <div className="container stack">
         <LiveSessionRefresh mode="public" sessionId={publicState.sessionId} />
 
-        <section className="card stack">
-          <span className="pill">Player join</span>
-          <h1>{publicState.quizTitle}</h1>
-          <div className="muted">Join code: {publicState.joinCode}</div>
-          {query.joined === '1' ? <div className="success">Joined successfully.</div> : null}
-          {query.answered === '1' ? <div className="success">Answer submitted.</div> : null}
-          {query.error ? <div className="error">{errorMessages[query.error] ?? 'Unable to join that session.'}</div> : null}
-          {canJoin ? (
-            <form action={joinLiveSession.bind(null, publicState.joinCode)} className="stack">
-              <label className="field">
-                <span>Nickname</span>
-                <input maxLength={32} name="nickname" placeholder="Quiz hero" required />
-              </label>
-              <div className="row">
+        <div className="page-grid page-grid--play">
+          <section className="card stack hero-card">
+            <span className="brand-badge">Player join</span>
+            <h1 className="display-title">{publicState.quizTitle}</h1>
+            <div className="surface-note">Join code: {publicState.joinCode}</div>
+            {query.joined === '1' ? <div className="success">Joined successfully.</div> : null}
+            {query.answered === '1' ? <div className="success">Answer submitted.</div> : null}
+            {query.error ? <div className="error">{errorMessages[query.error] ?? 'Unable to join that session.'}</div> : null}
+            {canJoin ? (
+              <form action={joinLiveSession.bind(null, publicState.joinCode)} className="join-form">
+                <label className="field">
+                  <span>Nickname</span>
+                  <input className="auth-input" maxLength={32} name="nickname" placeholder="Quiz hero" required />
+                </label>
                 <button className="button" type="submit">
                   Join session
                 </button>
-              </div>
-            </form>
-          ) : null}
-          {!canJoin && !joinedParticipant ? (
-            <p className="muted">This lobby is closed to new joins.</p>
-          ) : null}
-        </section>
+              </form>
+            ) : null}
+            {!canJoin && !joinedParticipant ? <p className="surface-note">This lobby is closed to new joins.</p> : null}
+          </section>
 
-        <section className="card stack">
-          <div className="row-between">
-            <strong>{joinedParticipant ? `Joined as ${joinedParticipant.nickname}` : 'Join status'}</strong>
-            <span className="pill">{publicState.participantCount} in session</span>
-          </div>
+          <section className="card stack">
+            <div className="row-between">
+              <strong>{joinedParticipant ? `Joined as ${joinedParticipant.nickname}` : 'Join status'}</strong>
+              <span className="pill">{publicState.participantCount} in session</span>
+            </div>
 
-          {publicState.sessionState === 'lobby' ? (
-            <p className={joinedParticipant ? 'success' : 'muted'}>
-              {joinedParticipant ? 'You are checked in and waiting for the host.' : 'Enter a nickname to join while the lobby is open.'}
-            </p>
-          ) : null}
-
-          {joinedParticipant && activeState.question && activeState.roundState === 'question_open' ? (
-            <section className="stack">
-              <div className="pill">Question {activeState.question.position}</div>
-              <h2 className="question-prompt">{activeState.question.prompt}</h2>
-
-              {hasAnswered ? (
-                <p className="success">Your answer is locked in. Waiting for the host to close the round.</p>
-              ) : (
-                <p className="muted">Choose one answer. You only get one submission.</p>
-              )}
-
-              {hasAnswered ? (
-                <div className="option-grid">
-                  {activeState.question.options.map((option) => (
-                    <div
-                      key={option.id}
-                      className={`option-card ${getOptionToneClass(option.position)} ${selectedOptionId === option.id ? 'is-selected' : ''}`}
-                    >
-                      <div className="option-label">{getOptionLabel(option.position)}</div>
-                      <strong>{option.text}</strong>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <form action={submitPlayerAnswer.bind(null, publicState.joinCode)} className="option-grid">
-                  {activeState.question.options.map((option) => (
-                    <button
-                      key={option.id}
-                      className={`option-card option-button ${getOptionToneClass(option.position)}`}
-                      name="optionId"
-                      type="submit"
-                      value={option.id}
-                    >
-                      <div className="option-label">{getOptionLabel(option.position)}</div>
-                      <strong>{option.text}</strong>
-                    </button>
-                  ))}
-                </form>
-              )}
-            </section>
-          ) : null}
-
-          {joinedParticipant && activeState.question && activeState.roundState === 'round_results' ? (
-            <section className="stack">
-              <div className="pill">Round results</div>
-              <h2 className="question-prompt">{activeState.question.prompt}</h2>
-              <p className={playerCorrect === true ? 'success' : playerCorrect === false ? 'error' : 'muted'}>
-                {playerCorrect === true
-                  ? 'Correct.'
-                  : playerCorrect === false
-                    ? 'Incorrect.'
-                    : 'No answer was submitted for this round.'}
+            {publicState.sessionState === 'lobby' ? (
+              <p className={joinedParticipant ? 'success' : 'surface-note'}>
+                {joinedParticipant ? 'You are checked in and waiting for the host.' : 'Enter a nickname to join while the lobby is open.'}
               </p>
-              <div className="option-grid">
-                {activeState.question.options.map((option) => {
-                  const classes = [
-                    'option-card',
-                    getOptionToneClass(option.position),
-                    selectedOptionId === option.id ? 'is-selected' : '',
-                    correctOptionId === option.id ? 'is-correct' : '',
-                    selectedOptionId === option.id && correctOptionId !== option.id ? 'is-incorrect' : '',
-                  ]
+            ) : null}
 
-                  return (
-                    <div key={option.id} className={classes.filter(Boolean).join(' ')}>
-                      <div className="option-label">{getOptionLabel(option.position)}</div>
-                      <strong>{option.text}</strong>
-                    </div>
-                  )
-                })}
-              </div>
-            </section>
-          ) : null}
+            {joinedParticipant && activeState.question && activeState.roundState === 'question_open' ? (
+              <section className="stack">
+                <div className="row-between">
+                  <span className="pill">Question {activeState.question.position}</span>
+                  <span className="pill">{hasAnswered ? 'Locked in' : 'Choose one'}</span>
+                </div>
+                <h2 className="section-title">{activeState.question.prompt}</h2>
 
-          {publicState.sessionState === 'in_progress' && !joinedParticipant ? (
-            <p className="muted">This game is already in progress. New joins stay closed after the lobby.</p>
-          ) : null}
+                {hasAnswered ? (
+                  <p className="success">Your answer is locked in. Waiting for the host to close the round.</p>
+                ) : (
+                  <p className="surface-note">Pick one large color pad. You only get one submission.</p>
+                )}
 
-          {publicState.sessionState === 'finished' && joinedParticipant && finalResult ? (
-            <section className="stack">
-              <div className="pill">Final result</div>
-              <h2>You finished #{finalResult.rank}</h2>
-              <p className="success">Total score: {finalResult.totalScore}</p>
-            </section>
-          ) : null}
+                {hasAnswered ? (
+                  <div className="answer-grid">
+                    {activeState.question.options.map((option) => (
+                      <div
+                        key={option.id}
+                        className={`answer-tile ${getOptionToneClass(option.position)} ${selectedOptionId === option.id ? 'is-selected' : ''}`}
+                      >
+                        <div className="option-label">{getOptionLabel(option.position)}</div>
+                        <strong className="answer-text">{option.text}</strong>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <form action={submitPlayerAnswer.bind(null, publicState.joinCode)} className="answer-grid">
+                    {activeState.question.options.map((option) => (
+                      <button
+                        key={option.id}
+                        className={`answer-tile answer-tile--button ${getOptionToneClass(option.position)}`}
+                        name="optionId"
+                        type="submit"
+                        value={option.id}
+                      >
+                        <div className="option-label">{getOptionLabel(option.position)}</div>
+                        <strong className="answer-text">{option.text}</strong>
+                      </button>
+                    ))}
+                  </form>
+                )}
+              </section>
+            ) : null}
 
-          {publicState.sessionState === 'finished' && !joinedParticipant ? (
-            <p className="muted">This quiz is finished. New joins are closed.</p>
-          ) : null}
-        </section>
+            {joinedParticipant && activeState.question && activeState.roundState === 'round_results' ? (
+              <section className="stack">
+                <div className="row-between">
+                  <span className="pill">Round results</span>
+                  <span className={playerCorrect === true ? 'pill status-pill-success' : playerCorrect === false ? 'pill status-pill-muted' : 'pill'}>
+                    {playerCorrect === true ? 'Correct' : playerCorrect === false ? 'Incorrect' : 'No answer'}
+                  </span>
+                </div>
+                <h2 className="section-title">{activeState.question.prompt}</h2>
+                <div className={playerCorrect === true ? 'success' : playerCorrect === false ? 'error' : 'surface-note'}>
+                  {playerCorrect === true
+                    ? 'Nice work — you picked the right answer.'
+                    : playerCorrect === false
+                      ? 'Close one — the correct answer is highlighted below.'
+                      : 'No answer was submitted for this round.'}
+                </div>
+                <p className="surface-note">{totalResponses} total responses came in before the reveal closed.</p>
+                <div className="answer-grid">
+                  {activeState.question.options.map((option) => {
+                    const classes = [
+                      'answer-tile',
+                      getOptionToneClass(option.position),
+                      selectedOptionId === option.id ? 'is-selected' : '',
+                      correctOptionId === option.id ? 'is-correct' : '',
+                      selectedOptionId === option.id && correctOptionId !== option.id ? 'is-incorrect' : '',
+                    ]
+                    const optionCount = getRevealOptionCount(revealOptionCounts, option.id)
+                    const optionPercentage = getRevealOptionPercentage(revealOptionCounts, option.id)
+
+                    return (
+                      <div key={option.id} className={classes.filter(Boolean).join(' ')}>
+                        <div className="option-label">{getOptionLabel(option.position)}</div>
+                        <strong className="answer-text">{option.text}</strong>
+                        <div className="result-stat-block">
+                          <div className="result-stat-row">
+                            <strong>{optionCount}</strong>
+                            <span>{optionPercentage}%</span>
+                          </div>
+                          <div className="result-bar-track">
+                            <div className="result-bar-fill" style={{ width: `${optionPercentage}%` }} />
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              </section>
+            ) : null}
+
+            {publicState.sessionState === 'in_progress' && !joinedParticipant ? (
+              <p className="surface-note">This game is already in progress. New joins stay closed after the lobby.</p>
+            ) : null}
+
+            {publicState.sessionState === 'finished' && joinedParticipant && finalResult ? (
+              <section className="stack">
+                <span className="pill">Final result</span>
+                <h2 className="section-title">You finished #{finalResult.rank}</h2>
+                <p className="success">Total score: {finalResult.totalScore}</p>
+              </section>
+            ) : null}
+
+            {publicState.sessionState === 'finished' && !joinedParticipant ? (
+              <p className="surface-note">This quiz is finished. New joins are closed.</p>
+            ) : null}
+          </section>
+        </div>
       </div>
     </main>
   )

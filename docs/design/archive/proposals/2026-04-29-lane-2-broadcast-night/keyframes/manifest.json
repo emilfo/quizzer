@@ -1,0 +1,77 @@
+{
+  "lane": "Broadcast Night",
+  "proposal": "2026-04-29-lane-2-broadcast-night",
+  "selfContained": true,
+  "sheets": [
+    {
+      "id": "sheet-01-entry",
+      "export": "01-entry-sheet.png",
+      "title": "Entry / cold open",
+      "route": "/",
+      "state": "host entry, player join, invalid code"
+    },
+    {
+      "id": "sheet-02-host-dashboard",
+      "export": "02-host-dashboard-sheet.png",
+      "title": "Host dashboard",
+      "route": "/host",
+      "state": "quiz inventory and active session"
+    },
+    {
+      "id": "sheet-03-host-editor",
+      "export": "03-host-editor-sheet.png",
+      "title": "Host editor",
+      "route": "/host/[quizId]",
+      "state": "draft validation and publish readiness"
+    },
+    {
+      "id": "sheet-04-host-live",
+      "export": "04-host-live-sheet.png",
+      "title": "Host live session",
+      "route": "/host/session/[sessionId]",
+      "state": "lobby, question open, round results, finished"
+    },
+    {
+      "id": "sheet-05-player-join",
+      "export": "05-player-join-sheet.png",
+      "title": "Player join",
+      "route": "/play/[joinCode]",
+      "state": "join open, join closed, invalid code"
+    },
+    {
+      "id": "sheet-06-player-live",
+      "export": "06-player-live-sheet.png",
+      "title": "Player live",
+      "route": "/play/[joinCode]",
+      "state": "question open, answered, results, rejoin"
+    },
+    {
+      "id": "sheet-07-projector-lobby",
+      "export": "07-projector-lobby.png",
+      "title": "Projector lobby",
+      "route": "/projector/[joinCode]",
+      "state": "lobby"
+    },
+    {
+      "id": "sheet-08-projector-question",
+      "export": "08-projector-question.png",
+      "title": "Projector question",
+      "route": "/projector/[joinCode]",
+      "state": "question open"
+    },
+    {
+      "id": "sheet-09-projector-results",
+      "export": "09-projector-results.png",
+      "title": "Projector results",
+      "route": "/projector/[joinCode]",
+      "state": "round results"
+    },
+    {
+      "id": "sheet-10-projector-finished",
+      "export": "10-projector-finished.png",
+      "title": "Projector finished",
+      "route": "/projector/[joinCode]",
+      "state": "finished"
+    }
+  ]
+}

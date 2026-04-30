@@ -2,13 +2,13 @@
 
 Store execution plans here.
 
-Current milestone plan set:
+## Swimlanes
 
-- `2026-04-27-quizzer-v1-milestone-1-single-host-authoring.md`
-- `2026-04-27-quizzer-v1-milestone-2-joinable-live-session.md`
-- `2026-04-27-quizzer-v1-milestone-3-one-question-end-to-end.md`
-- `2026-04-27-quizzer-v1-milestone-4-full-quiz-flow.md`
-- `2026-04-27-quizzer-v1-milestone-5-hardening.md`
+- `in-progress/` — current execution plans referenced by `docs/status.md`
+- `backlog/` — planned but inactive or deferred work
+- `archive/` — completed or superseded plans
+
+When you update `docs/status.md`, move the plan file into the matching swimlane in the same change.
 
 Suggested naming:
 

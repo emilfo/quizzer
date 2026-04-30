@@ -1,0 +1,25 @@
+:root {
+  color-scheme: light;
+  --paper: #f3eee5;
+  --paper-2: #f8f5ee;
+  --surface: rgba(255, 252, 247, 0.92);
+  --surface-strong: #fffdf8;
+  --ink: #111111;
+  --ink-soft: #3a342d;
+  --muted: #6f695f;
+  --line: rgba(17, 17, 17, 0.12);
+  --line-strong: rgba(17, 17, 17, 0.2);
+  --accent: #2439ff;
+  --accent-2: #9d1f4f;
+  --accent-3: #0c7c59;
+  --accent-4: #aa6a00;
+  --shadow: 0 30px 80px rgba(18, 14, 8, 0.12);
+  --shadow-tight: 0 14px 34px rgba(18, 14, 8, 0.09);
+  --radius-xl: 32px;
+  --radius-lg: 24px;
+  --radius-md: 18px;
+  --radius-sm: 12px;
+  --display-font: "Iowan Old Style", "Palatino Linotype", "Baskerville", Georgia, serif;
+  --body-font: "Avenir Next", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono-font: "SFMono-Regular", "Menlo", "Consolas", "Liberation Mono", monospace;
+}

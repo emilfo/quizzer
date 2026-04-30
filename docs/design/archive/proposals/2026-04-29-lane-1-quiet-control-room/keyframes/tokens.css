@@ -1,0 +1,36 @@
+:root {
+  color-scheme: dark;
+
+  --bg: #0a1115;
+  --bg-2: #101a20;
+  --panel: #132028;
+  --panel-2: #182730;
+  --surface: rgba(16, 26, 32, 0.82);
+  --surface-strong: rgba(8, 14, 18, 0.94);
+  --line: rgba(191, 208, 215, 0.12);
+  --line-strong: rgba(191, 208, 215, 0.22);
+  --text: #edf4f7;
+  --muted: #91a6b0;
+  --faint: #5f7680;
+  --accent: #6cc9bf;
+  --accent-2: #8bb3ff;
+  --warn: #f4c26b;
+  --danger: #f08d8d;
+  --success: #8cddad;
+  --shadow: 0 28px 90px rgba(0, 0, 0, 0.42);
+  --shadow-soft: 0 14px 32px rgba(0, 0, 0, 0.26);
+  --radius-xl: 30px;
+  --radius-lg: 22px;
+  --radius-md: 16px;
+  --radius-sm: 12px;
+  --space-1: 8px;
+  --space-2: 12px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 44px;
+  --space-7: 64px;
+  --display-font: "SF Pro Display", "Avenir Next", "Avenir", "Segoe UI", sans-serif;
+  --body-font: "SF Pro Text", "Avenir Next", "Avenir", "Segoe UI", sans-serif;
+  --mono-font: "SF Mono", "Menlo", "Consolas", monospace;
+}

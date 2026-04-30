@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Broadcast Night — Keyframes</title>
+    <link rel="stylesheet" href="tokens.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="book">
+      <section id="sheet-01-entry" data-export="01-entry-sheet.png" class="sheet">
+        <header class="sheet-header">
+          <div>
+            <div class="sheet-kicker">Sheet 01 · Entry / cold open</div>
+            <h1 class="sheet-title">Audience → host / join / error</h1>
+          </div>
+          <p class="sheet-meta">The first screen should feel like the doors just opened: one obvious player path, one backstage host path, and a controlled recovery for invalid codes.</p>
+        </header>
+        <div class="split">
+          <article class="hero">
+            <div class="live-ribbon">Broadcast Night · pre-show standby</div>
+            <p class="copy">Join the room with a <strong class="mono">6-character code</strong>. The code field carries the brightest signal so the player path wins instantly.</p>
+            <div class="accent-line"></div>
+            <div class="big-number">LIVE</div>
+            <p class="copy">Home route framing: two on-ramps into the same event, with the join path dominant and host access clearly backstage.</p>
+          </article>
+          <div class="stack">
+            <article class="form-card panel">
+              <div class="eyebrow"><span>Player entry</span><span class="badge live">Join open</span></div>
+              <div class="form-field">
+                <span class="label">Join code</span>
+                <div class="input">AB12CD</div>
+              </div>
+              <div class="callout">Fast feedback: the room is live, the code is valid, and the next step is nickname entry.</div>
+            </article>
+            <article class="panel danger">
+              <div class="eyebrow"><span>Recovery cue</span><span class="badge error">Invalid code</span></div>
+              <h2 class="headline">Session not found</h2>
+              <p class="copy">The failure state should read like a cue gone wrong, not a technical wall.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="sheet-02-host-dashboard" data-export="02-host-dashboard-sheet.png" class="sheet">
+        <header class="sheet-header">
+          <div>
+            <div class="sheet-kicker">Sheet 02 · Host dashboard</div>
+            <h2 class="sheet-title">Backstage control board</h2>
+          </div>
+          <p class="sheet-meta">Quiz inventory is presented like production tiles: published state, launch readiness, and the one live session card with stronger emphasis.</p>
+        </header>
+        <div class="stage-grid duo">
+          <article class="panel">
+            <div class="eyebrow"><span>Production queue</span><span class="badge muted">3 quizzes</span></div>
+            <div class="list">
+              <div class="list-item"><strong>Neon Trivia</strong><span class="badge ok">Published</span></div>
+              <div class="list-item"><strong>Soundcheck Round</strong><span class="badge warn">Needs validation</span></div>
+              <div class="list-item"><strong>Afterparty Deck</strong><span class="badge muted">Draft</span></div>
+            </div>
+          </article>
+          <article class="hero">
+            <div class="live-ribbon">Active session · on air</div>
+            <h2 class="headline">Tonight’s room</h2>
+            <div class="metric-grid">
+              <div class="metric"><span>Players</span><strong class="value">42</strong></div>
+              <div class="metric"><span>State</span><strong class="value">Lobby</strong></div>
+              <div class="metric"><span>Queue</span><strong class="value">Ready</strong></div>
+            </div>
+            <div class="accent-line"></div>
+            <div class="chips">
+              <span class="chip on">Open projector</span>
+              <span class="chip on">Open player join</span>
+              <span class="chip good">Publish safe</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="sheet-03-host-editor" data-export="03-host-editor-sheet.png" class="sheet">
+        <header class="sheet-header">
+          <div>
+            <div class="sheet-kicker">Sheet 03 · Host editor</div>
+            <h2 class="sheet-title">Rundown / cue cards / validation</h2>
+          </div>
+          <p class="sheet-meta">The editor should feel like assembling a show rundown: structured cards, readable validation, and clear publish readiness.</p>
+        </header>
+        <div class="stage-grid trio">
+          <article class="step">
+            <div class="eyebrow"><span>Question 1</span><span class="badge ok">Valid</span></div>
+            <h3 class="headline">Warm-up prompt</h3>
+            <p class="copy">Four options, one correct answer, and a clean cue-card hierarchy that keeps edits fast.</p>
+          </article>
+          <article class="step">
+            <div class="eyebrow"><span>Question 2</span><span class="badge warn">Needs fix</span></div>
+            <h3 class="headline">Validation block</h3>
+            <p class="copy">A missing correct answer should stand out immediately as backstage prep, not a noisy error sheet.</p>
+          </article>
+          <article class="step">
+            <div class="eyebrow"><span>Publish</span><span class="badge live">Ready cue</span></div>
+            <h3 class="headline">Launch lock</h3>
+            <p class="copy">The readiness signal is the final green light before going live.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="sheet-04-host-live" data-export="04-host-live-sheet.png" class="sheet">
+        <header class="sheet-header">
+          <div>
+            <div class="sheet-kicker">Sheet 04 · Host live session</div>
+            <h2 class="sheet-title">Control room / live cues</h2>
+          </div>
+          <p class="sheet-meta">One sheet, four cues: lobby, question open, round results, finished. The page should read like a live production board under pressure.</p>
+        </header>
+        <div class="stage-grid duo">
+          <article class="panel">
+            <div class="eyebrow"><span>Lobby</span><span class="badge live">Waiting room</span></div>
+            <div class="status-grid">
+              <div class="status"><span><span class="dot"></span>Roster building</span><strong>42 in room</strong></div>
+              <div class="status good"><span><span class="dot"></span>Start cue</span><strong>Enabled</strong></div>
+            </div>
+          </article>
+          <article class="panel">
+            <div class="eyebrow"><span>Question open</span><span class="badge live">On air</span></div>
+            <div class="question-card">
+              <h3 class="headline">Who wrote the theme?</h3>
+              <div class="chips">
+                <span class="chip on">Close round</span>
+                <span class="chip">Answer count: 31</span>
+                <span class="chip">Live sync on</span>
+              </div>
+            </div>
+          </article>
+          <article class="panel">
+            <div class="eyebrow"><span>Round results</span><span class="badge ok">Reveal</span></div>
+            <div class="list">
+              <div class="list-item"><strong>Correct answer</strong><span>Highlighted in green</span></div>
+              <div class="list-item"><strong>Leaderboard move</strong><span>Rank changes visible</span></div>
+            </div>
+          </article>
+          <article class="panel">
+            <div class="eyebrow"><span>Finished</span><span class="badge muted">Closing slate</span></div>
+            <div class="finish-number">END</div>
+            <p class="copy">The broadcast ends with confidence, not dimmed utility.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="sheet-05-player-join" data-export="05-player-join-sheet.png" class="sheet">
+        <header class="sheet-header">
+          <div>
+            <div class="sheet-kicker">Sheet 05 · Player join</div>
+            <h2 class="sheet-title">Phone companion / quick pass</h2>
+          </div>
+          <p class="sheet-meta">The player path should feel exciting, lightweight, and unmissable: join-open, join-closed, and invalid states are all clearly separated.</p>
+        </header>
+        <div class="stage-grid trio">
+          <article class="form-card panel">
+            <div class="eyebrow"><span>Join open</span><span class="badge live">Ready</span></div>
+            <div class="form-field">
+              <span class="label">Nickname</span>
+              <div class="input">Dani</div>
+            </div>
+            <div class="callout">Tap once to enter the room. The join action should feel like a quick wristband scan.</div>
+          </article>
+          <article class="panel danger">
+            <div class="eyebrow"><span>Join closed</span><span class="badge error">Locked</span></div>
+            <h3 class="headline">Room is sealed</h3>
+            <p class="copy">Players see a controlled recovery, not a dead end.</p>
+          </article>
+          <article class="panel">
+            <div class="eyebrow"><span>Invalid code</span><span class="badge error">No match</span></div>
+            <h3 class="headline">Try another code</h3>
+            <p class="copy">The error reads as a show cue that missed, keeping the tone cinematic but clear.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="sheet-06-player-live" data-export="06-player-live-sheet.png" class="sheet">
+        <header class="sheet-header">
+          <div>
+            <div class="sheet-kicker">Sheet 06 · Player live</div>
+            <h2 class="sheet-title">Answer / lock / reveal / rejoin</h2>
+          </div>
+          <p class="sheet-meta">On mobile, the answer grid should feel stage-lit and decisive. The selected, locked, and result states keep the rhythm obvious.</p>
+        </header>
+        <div class="stage-grid duo">
+          <article class="panel question-card">
+            <div class="eyebrow"><span>Question open</span><span class="badge live">Select one</span></div>
+            <h3 class="headline">What’s the hidden track?</h3>
+            <div class="answer-grid">
+              <div class="answer selected"><strong>Alpha</strong><span class="detail">Selected</span></div>
+              <div class="answer"><strong>Bravo</strong><span class="detail">Available</span></div>
+              <div class="answer"><strong>Charlie</strong><span class="detail">Available</span></div>
+              <div class="answer"><strong>Delta</strong><span class="detail">Available</span></div>
+            </div>
+            <div class="answers-legend"><span>Tap once to lock.</span><span>Round closes when the host cues it.</span></div>
+          </article>
+          <div class="stack">
+            <article class="panel">
+              <div class="eyebrow"><span>Round results</span><span class="badge ok">Correct</span></div>
+              <div class="score"><strong>+1,240</strong><span>Speed bonus applied</span></div>
+              <div class="chips"><span class="chip good">Your answer was right</span><span class="chip">Locked in</span></div>
+            </article>
+            <article class="panel danger">
+              <div class="eyebrow"><span>Reconnect</span><span class="badge warn">Rejoin required</span></div>
+              <p class="copy">Refresh returns the player to the broadcast without breaking the story.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="sheet-07-projector-lobby" data-export="07-projector-lobby.png" class="sheet">
+        <header class="sheet-header">
+          <div>
+            <div class="sheet-kicker">Sheet 07 · Projector lobby</div>
+            <h2 class="sheet-title">Opening title card</h2>
+          </div>
+          <p class="sheet-meta">This is the room’s first big read: a distance-safe title card with the join code, QR, and participant count as the hero elements.</p>
+        </header>
+        <div class="projector-layout">
+          <article class="hero projector-hero">
+            <div>
+              <div class="live-ribbon">Projector · pre-show</div>
+              <div class="question">Join with code <span class="mono">AB12CD</span></div>
+            </div>
+            <div class="columns-3">
+              <div class="metric"><span>Scan QR</span><strong class="value">Now</strong></div>
+              <div class="metric"><span>Players</span><strong class="value">42</strong></div>
+              <div class="metric"><span>Status</span><strong class="value">Live</strong></div>
+            </div>
+          </article>
+          <article class="panel">
+            <div class="eyebrow"><span>QR / access</span><span class="badge live">Lobby</span></div>
+            <div class="poster" style="min-height: 320px; display:grid; place-items:center;">
+              <div class="finish-number">QR</div>
+            </div>
+            <p class="copy">The projector should feel like the event has started, not like an admin page.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="sheet-08-projector-question" data-export="08-projector-question.png" class="sheet">
+        <header class="sheet-header">
+          <div>
+            <div class="sheet-kicker">Sheet 08 · Projector question</div>
+            <h2 class="sheet-title">Spotlight / live question</h2>
+          </div>
+          <p class="sheet-meta">The room should see the current question instantly: giant type, minimal chrome, and answers that read from the back of the room.</p>
+        </header>
+        <div class="projector-layout">
+          <article class="hero projector-hero">
+            <div>
+              <div class="live-ribbon">On air · question open</div>
+              <div class="question">Which song opened the set?</div>
+            </div>
+            <div class="chips"><span class="chip on">Close round</span><span class="chip">Show answer count</span></div>
+          </article>
+          <article class="panel">
+            <div class="eyebrow"><span>Answers</span><span class="badge live">Audience view</span></div>
+            <div class="choice-grid">
+              <div class="choice"><strong>First Light</strong><span class="detail">A</span></div>
+              <div class="choice correct"><strong>Signal Fire</strong><span class="detail">Correct</span></div>
+              <div class="choice"><strong>Midnight Echo</strong><span class="detail">C</span></div>
+              <div class="choice"><strong>Gold Rush</strong><span class="detail">D</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="sheet-09-projector-results" data-export="09-projector-results.png" class="sheet">
+        <header class="sheet-header">
+          <div>
+            <div class="sheet-kicker">Sheet 09 · Projector results</div>
+            <h2 class="sheet-title">Reveal card / leaderboard movement</h2>
+          </div>
+          <p class="sheet-meta">Results should feel like a broadcast replay: the correct answer lands first, then the leaderboard becomes the featured graphic.</p>
+        </header>
+        <div class="projector-layout">
+          <article class="panel">
+            <div class="eyebrow"><span>Reveal</span><span class="badge ok">Correct answer</span></div>
+            <div class="finish-stack">
+              <div class="finish-number">+500</div>
+              <p class="copy">Scored for speed. The broadcast makes the result feel celebratory and immediate.</p>
+            </div>
+          </article>
+          <article class="panel">
+            <div class="eyebrow"><span>Leaderboard</span><span class="badge live">Top 3</span></div>
+            <div class="scoreboard">
+              <div class="row top"><strong>Mina</strong><span>1st · 4,520</span></div>
+              <div class="row"><strong>Jules</strong><span>2nd · 4,190</span></div>
+              <div class="row"><strong>Rae</strong><span>3rd · 3,960</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="sheet-10-projector-finished" data-export="10-projector-finished.png" class="sheet">
+        <header class="sheet-header">
+          <div>
+            <div class="sheet-kicker">Sheet 10 · Projector finished</div>
+            <h2 class="sheet-title">Closing slate / final payoff</h2>
+          </div>
+          <p class="sheet-meta">The final state should land like credits: confident, celebratory, and unmistakably complete.</p>
+        </header>
+        <div class="projector-layout">
+          <article class="hero projector-hero">
+            <div>
+              <div class="live-ribbon">Broadcast complete</div>
+              <div class="question">Thanks for playing</div>
+            </div>
+            <div class="finish-number">FINAL</div>
+          </article>
+          <article class="panel">
+            <div class="eyebrow"><span>Final standings</span><span class="badge muted">Locked</span></div>
+            <div class="scoreboard">
+              <div class="row top"><strong>Mina</strong><span>Winner</span></div>
+              <div class="row"><strong>Jules</strong><span>Runner-up</span></div>
+              <div class="row"><strong>Rae</strong><span>Third place</span></div>
+            </div>
+            <div class="accent-line"></div>
+            <p class="copy">The room ends on a bright, polished card rather than a quiet utility page.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

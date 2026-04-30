@@ -21,12 +21,12 @@ export default async function HostLayout({
     <main className="page-shell">
       <div className="container stack">
         <header className="card row-between">
-          <div className="stack" style={{ gap: '0.35rem' }}>
-            <span className="pill">Signed in</span>
-            <div>
+          <div className="stack" style={{ gap: '0.45rem' }}>
+            <span className="brand-badge">Host control room</span>
+            <div className="stack" style={{ gap: '0.15rem' }}>
               <strong>{user.user_metadata.full_name ?? user.email}</strong>
+              <div className="surface-note">{user.email}</div>
             </div>
-            <div className="muted">{user.email}</div>
           </div>
           <div className="row">
             <Link className="button secondary" href="/host">

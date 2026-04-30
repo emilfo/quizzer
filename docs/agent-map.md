@@ -8,7 +8,7 @@ This file maps the main execution surfaces an agent or operator should use.
 
 ### `commands/plan`
 - show the active milestone and plan file from `docs/status.md`
-- list available milestone plans in `docs/plans/`
+- list available plans in `docs/plans/in-progress/`, `docs/plans/backlog/`, and `docs/plans/archive/`
 - remain read-only unless explicitly extended later
 
 ### `commands/verify`
@@ -16,6 +16,7 @@ This file maps the main execution surfaces an agent or operator should use.
 - should resolve the active milestone from `docs/status.md` by default
 - should call the relevant scripts in `scripts/`
 - for M1, runs `npm run typecheck`, `npm run lint`, `npm test`, and `npm run build`
+- for follow-up implementation plans, falls back to `scripts/check-follow-up`
 
 ### `commands/status`
 - summarize active milestone, current deliverable, recent checks, blockers, and follow-ups
@@ -26,6 +27,11 @@ This file maps the main execution surfaces an agent or operator should use.
 - validate local prerequisites
 - print next steps
 - avoid mutating hidden state without explicit output
+
+### `scripts/export-proposal-keyframes.mjs`
+- export styled PNG screenshots from the static proposal `keyframes/index.html` boards
+- keep the exported pictures coupled to the finished HTML/CSS rather than separate mock files
+- validate that each proposal lane contains the expected ten export sheets
 
 ### `scripts/check-repo-context`
 - verify required docs and directories exist
@@ -54,6 +60,13 @@ Every command/script should:
 - print exact remediation steps on failure
 - avoid interactive prompts unless explicitly intended
 - prefer deriving state from repo files over hidden shell state
+
+## Plan swimlane flow
+
+- keep the active plan under `docs/plans/in-progress/`
+- move deferred or not-yet-active work to `docs/plans/backlog/`
+- move completed or superseded work to `docs/plans/archive/`
+- when `docs/status.md` changes, update `active_milestone_file` and move the plan file to the matching swimlane in the same change
 
 ## Commit policy
 

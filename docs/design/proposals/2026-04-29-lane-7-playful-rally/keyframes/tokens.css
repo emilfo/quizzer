@@ -1,0 +1,35 @@
+:root {
+  color-scheme: light;
+  --bg: #fbf7ee;
+  --bg-soft: #f5f0e6;
+  --panel: rgba(255, 255, 255, 0.86);
+  --panel-strong: rgba(255, 255, 255, 0.96);
+  --text: #25263a;
+  --muted: #6d7690;
+  --faint: #8e94a8;
+  --line: rgba(38, 38, 58, 0.12);
+  --line-strong: rgba(38, 38, 58, 0.18);
+  --mint: #37cdbb;
+  --teal: #2fb4c0;
+  --cyan: #5a78ff;
+  --violet: #7e66ff;
+  --pink: #ff6eb7;
+  --lime: #7ed957;
+  --yellow: #f8ba44;
+  --coral: #ff7b74;
+  --orange-soft: #ffa54f;
+  --cream: #fffaf0;
+  --paper: #fffdf9;
+  --shadow: 0 28px 82px rgba(58, 43, 30, 0.16);
+  --shadow-soft: 0 16px 34px rgba(58, 43, 30, 0.12);
+  --radius-xl: 34px;
+  --radius-lg: 26px;
+  --radius-md: 18px;
+  --radius-sm: 14px;
+  --page-max: 1540px;
+  --sheet-min-h: 880px;
+  --sheet-pad: 24px;
+  --sans: ui-rounded, "Avenir Next", "Trebuchet MS", system-ui, sans-serif;
+  --display: Georgia, "Times New Roman", serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}

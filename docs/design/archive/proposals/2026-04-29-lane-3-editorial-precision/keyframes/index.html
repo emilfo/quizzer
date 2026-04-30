@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lane 3 — Editorial Precision | Keyframes</title>
+    <link rel="stylesheet" href="./tokens.css" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main>
+      <header class="masthead">
+        <p class="masthead__eyebrow">Lane 3 · Editorial Precision</p>
+        <h1>Quizzer, composed like a premium editorial system.</h1>
+        <p class="masthead__lede">
+          Static keyframe sheets for the canonical inventory. This set is built for screenshot
+          automation: one section per export, stable ids, explicit state labels, and no runtime JS.
+        </p>
+        <ul class="masthead__meta">
+          <li>Inventory: 2026-04-29 canonical route/state matrix</li>
+          <li>Thesis: type-led, restrained, and exact</li>
+          <li>Capture size: desktop editorial contact sheets</li>
+        </ul>
+      </header>
+
+      <section id="sheet-01" class="sheet sheet--entry" data-export="01-entry-sheet.png" aria-labelledby="sheet-01-title">
+        <header class="sheet__head">
+          <div>
+            <p class="sheet__kicker">01 · Entry / auth / join</p>
+            <h2 id="sheet-01-title">Entry sheet</h2>
+          </div>
+          <div class="sheet__info">data-export: 01-entry-sheet.png</div>
+        </header>
+        <div class="sheet__stage sheet__stage--entry">
+          <article class="panel panel--hero">
+            <div class="stack">
+              <p class="panel__eyebrow">Host decision</p>
+              <h3 class="panel__title">Sign in to author or continue as a local host.</h3>
+              <p class="panel__text">
+                The entry screen keeps the split between host control and player join obvious,
+                with the host path framed as the lead story.
+              </p>
+            </div>
+            <div class="row">
+              <a class="cta" href="#">Sign in as host</a>
+              <span class="chip">Local auth fallback available</span>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="stack">
+              <p class="panel__eyebrow">Player decision</p>
+              <h3 class="panel__title">Join a live session with a 6-character code.</h3>
+              <p class="panel__text">Join feels like a featured input, not a form maze.</p>
+            </div>
+            <div class="field field--large">ENTER JOIN CODE</div>
+            <div class="row">
+              <a class="cta" href="#">Join session</a>
+              <span class="pill pill--soft">Keyboard-friendly</span>
+            </div>
+            <div class="notice notice--error">
+              Invalid join code stays caption-like and close to the input, with restrained copy.
+            </div>
+          </article>
+
+          <article class="panel panel--dark">
+            <div class="stack">
+              <p class="panel__eyebrow">Recovery</p>
+              <h3 class="panel__title">Auth error / invalid join code.</h3>
+              <p class="panel__text">
+                Short, exact recovery language keeps the screen calm while making the next action
+                obvious.
+              </p>
+            </div>
+            <div class="notice notice--error">
+              Check credentials or code, then return to the main entry flow.
+            </div>
+            <span class="tag">State label: invalid join code / session not found</span>
+          </article>
+        </div>
+      </section>
+
+      <section id="sheet-02" class="sheet sheet--dashboard" data-export="02-host-dashboard-sheet.png" aria-labelledby="sheet-02-title">
+        <header class="sheet__head">
+          <div>
+            <p class="sheet__kicker">02 · Host dashboard</p>
+            <h2 id="sheet-02-title">Dashboard sheet</h2>
+          </div>
+          <div class="sheet__info">data-export: 02-host-dashboard-sheet.png</div>
+        </header>
+        <div class="sheet__stage sheet__stage--dashboard">
+          <article class="panel">
+            <div class="row row--spread">
+              <div>
+                <p class="panel__eyebrow">No active session</p>
+                <h3 class="panel__title">Curated quiz index</h3>
+              </div>
+              <span class="pill pill--warning">Waiting</span>
+            </div>
+            <p class="panel__text">An empty dashboard stays composed, with the next move reduced to one clear action.</p>
+            <div class="notice">Create a quiz, publish it, then start the live session from the lead story card.</div>
+            <div class="stack">
+              <div class="card">
+                <div class="row row--spread">
+                  <strong class="card__title">North Star Quiz</strong>
+                  <span class="badge badge--success">Published</span>
+                </div>
+                <div class="card__meta">12 questions · clean ordering · ready to launch</div>
+              </div>
+              <div class="card">
+                <div class="row row--spread">
+                  <strong class="card__title">Draft Session Notes</strong>
+                  <span class="badge">Draft</span>
+                </div>
+                <div class="card__meta">Validation still blocks publish</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel panel--hero">
+            <div class="row row--spread">
+              <div>
+                <p class="panel__eyebrow">Active session present</p>
+                <h3 class="panel__title">Lead story: live at 19:45.</h3>
+              </div>
+              <span class="pill pill--success">Live</span>
+            </div>
+            <div class="metric">
+              <div class="metric__value">QLWNZ8</div>
+              <div class="metric__label">Join code, projector, and player views stay aligned on the same session.</div>
+            </div>
+            <div class="stack">
+              <div class="row row--spread">
+                <span class="chip">Open editor</span>
+                <span class="chip">Open projector</span>
+                <span class="chip">Open player join</span>
+              </div>
+              <div class="notice notice--success">One active session remains the most prominent item without becoming noisy.</div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="sheet-03" class="sheet sheet--editor" data-export="03-host-editor-sheet.png" aria-labelledby="sheet-03-title">
+        <header class="sheet__head">
+          <div>
+            <p class="sheet__kicker">03 · Host editor</p>
+            <h2 id="sheet-03-title">Editor sheet</h2>
+          </div>
+          <div class="sheet__info">data-export: 03-host-editor-sheet.png</div>
+        </header>
+        <div class="sheet__stage sheet__stage--editor">
+          <article class="panel panel--hero">
+            <div class="row row--spread">
+              <div>
+                <p class="panel__eyebrow">Publishable manuscript</p>
+                <h3 class="panel__title">A quiz laid out like a finished article.</h3>
+              </div>
+              <span class="pill pill--success">Ready to publish</span>
+            </div>
+            <div class="table">
+              <div class="table__row table__head">
+                <div>Question</div>
+                <div>Options</div>
+                <div>Correct</div>
+              </div>
+              <div class="table__row">
+                <div><strong>1.</strong> Which city hosts the editorial summit?</div>
+                <div>4 choices</div>
+                <div>1</div>
+              </div>
+              <div class="table__row">
+                <div><strong>2.</strong> Choose the cleanest headline treatment.</div>
+                <div>4 choices</div>
+                <div>1</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="row row--spread">
+              <div>
+                <p class="panel__eyebrow">Blocked by validation</p>
+                <h3 class="panel__title">Exact, visible, and non-dramatic.</h3>
+              </div>
+              <span class="pill pill--error">Needs fixes</span>
+            </div>
+            <div class="stack">
+              <div class="notice notice--error">One question has only three options.</div>
+              <div class="notice notice--error">One question has no correct answer selected.</div>
+              <div class="notice">Validation is assertive but still editorial in tone.</div>
+            </div>
+            <div class="soft-line"></div>
+            <div class="legend">
+              <span class="mini-chip mini-chip--success">Publish gate</span>
+              <span class="mini-chip mini-chip--error">Blocking issue</span>
+              <span class="mini-chip mini-chip--soft">Reorder</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="sheet-04" class="sheet sheet--live" data-export="04-host-live-sheet.png" aria-labelledby="sheet-04-title">
+        <header class="sheet__head">
+          <div>
+            <p class="sheet__kicker">04 · Host live session</p>
+            <h2 id="sheet-04-title">Live control sheet</h2>
+          </div>
+          <div class="sheet__info">data-export: 04-host-live-sheet.png</div>
+        </header>
+        <div class="sheet__stage sheet__stage--live">
+          <article class="panel">
+            <p class="panel__eyebrow">Lobby</p>
+            <h3 class="panel__title">Waiting room, calm and ready.</h3>
+            <p class="panel__text">Roster, join readiness, and start control sit in one composed panel.</p>
+            <div class="row"><span class="pill pill--warning">8 waiting</span><span class="cta">Start quiz</span></div>
+          </article>
+          <article class="panel panel--dark">
+            <p class="panel__eyebrow">Question open</p>
+            <h3 class="panel__title">Current question dominates the page.</h3>
+            <p class="panel__text">Answer count, timing, and close-round control remain close enough to read in one glance.</p>
+            <div class="metric"><div class="metric__value">34 / 41</div><div class="metric__label">Players answered</div></div>
+          </article>
+          <article class="panel">
+            <p class="panel__eyebrow">Round results</p>
+            <h3 class="panel__title">Leaderboard movement stays precise.</h3>
+            <p class="panel__text">The reveal is composed: score shift, rank movement, then continue.</p>
+            <div class="leaderboard">
+              <div class="leader"><span class="rank">1</span><span class="leader__title">Marta</span><span class="leader__score">4,500</span></div>
+              <div class="leader"><span class="rank">2</span><span class="leader__title">Jonas</span><span class="leader__score">4,100</span></div>
+            </div>
+          </article>
+          <article class="panel panel--hero">
+            <p class="panel__eyebrow">Finished</p>
+            <h3 class="panel__title">Final state reads like a closing spread.</h3>
+            <p class="panel__text">No new gameplay; just a locked, polished conclusion with one final handoff.</p>
+            <div class="row"><span class="pill pill--success">Session closed</span><span class="cta">Review results</span></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="sheet-05" class="sheet sheet--player-join" data-export="05-player-join-sheet.png" aria-labelledby="sheet-05-title">
+        <header class="sheet__head">
+          <div>
+            <p class="sheet__kicker">05 · Player join</p>
+            <h2 id="sheet-05-title">Player join sheet</h2>
+          </div>
+          <div class="sheet__info">data-export: 05-player-join-sheet.png</div>
+        </header>
+        <div class="sheet__stage sheet__stage--player-join">
+          <article class="phone">
+            <div class="phone__screen">
+              <span class="state-label">Invalid code</span>
+              <h3 class="phone__title">This code is not available.</h3>
+              <p class="phone__copy">A restrained recovery message sits close to the field so the player can correct it immediately.</p>
+              <div class="field">QLWNZ?</div>
+              <div class="notice notice--error">Session not found. Check the code and try again.</div>
+            </div>
+          </article>
+
+          <article class="phone">
+            <div class="phone__screen">
+              <span class="state-label">Join open</span>
+              <h3 class="phone__title">Join with nickname.</h3>
+              <p class="phone__copy">Only one input and one action, both large enough to feel exact on mobile.</p>
+              <div class="field field--large">NICKNAME</div>
+              <div class="cta">Join live session</div>
+              <span class="mini-chip mini-chip--soft">Lobby only</span>
+            </div>
+          </article>
+
+          <article class="phone">
+            <div class="phone__screen phone__screen--dark">
+              <span class="state-label">Join closed</span>
+              <h3 class="phone__title">This room is locked.</h3>
+              <p class="phone__copy">The closed state remains calm and exact, with no extra branch in the flow.</p>
+              <div class="card card--dark">
+                <div class="card__title">Lobby has ended</div>
+                <div class="card__meta">Wait for the next session or return to the entry screen.</div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="sheet-06" class="sheet sheet--player-live" data-export="06-player-live-sheet.png" aria-labelledby="sheet-06-title">
+        <header class="sheet__head">
+          <div>
+            <p class="sheet__kicker">06 · Player live</p>
+            <h2 id="sheet-06-title">Player live sheet</h2>
+          </div>
+          <div class="sheet__info">data-export: 06-player-live-sheet.png</div>
+        </header>
+        <div class="sheet__stage sheet__stage--player-live">
+          <article class="phone">
+            <div class="phone__screen">
+              <span class="state-label">Question open · unanswered</span>
+              <h3 class="phone__title">Choose one answer.</h3>
+              <p class="phone__copy">The reading order is obvious: prompt, options, then submit.</p>
+              <div class="answer-grid">
+                <div class="answer"><span class="answer__label">A</span><span class="answer__text">Gallery White</span></div>
+                <div class="answer"><span class="answer__label">B</span><span class="answer__text">Ink Black</span></div>
+                <div class="answer"><span class="answer__label">C</span><span class="answer__text">Signal Blue</span></div>
+                <div class="answer"><span class="answer__label">D</span><span class="answer__text">Paper Cream</span></div>
+              </div>
+              <div class="cta">Submit answer</div>
+            </div>
+          </article>
+
+          <article class="phone">
+            <div class="phone__screen">
+              <span class="state-label">Question open · answered</span>
+              <h3 class="phone__title">Your answer is locked in.</h3>
+              <p class="phone__copy">Selected state is obvious, but the layout remains stable and calm.</p>
+              <div class="answer answer--selected"><span class="answer__label">B</span><span class="answer__text">Ink Black</span></div>
+              <div class="notice">Waiting for the round to close.</div>
+              <span class="mini-chip mini-chip--success">Answer submitted</span>
+            </div>
+          </article>
+
+          <article class="phone">
+            <div class="phone__screen phone__screen--dark">
+              <span class="state-label">Round results</span>
+              <h3 class="phone__title">Correct answer revealed.</h3>
+              <div class="answer answer--correct"><span class="answer__label">B</span><span class="answer__text">Ink Black</span></div>
+              <div class="conversation">
+                <div class="conversation__bubble">You answered: <strong>B</strong></div>
+                <div class="conversation__bubble conversation__bubble--primary">+1,280 points</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="phone">
+            <div class="phone__screen">
+              <span class="state-label">Finished · restored</span>
+              <h3 class="phone__title">Resuming mid-story.</h3>
+              <p class="phone__copy">Rejoin feels like a continuation, not a technical recovery screen.</p>
+              <div class="card">
+                <div class="row row--spread"><strong class="card__title">Final rank</strong><span class="badge badge--success">#3</span></div>
+                <div class="card__meta">Score preserved after refresh and rejoin.</div>
+              </div>
+              <span class="mini-chip mini-chip--soft">Reconnect / rejoin</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="sheet-07" class="sheet sheet--projector-lobby" data-export="07-projector-lobby.png" aria-labelledby="sheet-07-title">
+        <header class="sheet__head">
+          <div>
+            <p class="sheet__kicker">07 · Projector lobby</p>
+            <h2 id="sheet-07-title">Projector lobby sheet</h2>
+          </div>
+          <div class="sheet__info">data-export: 07-projector-lobby.png</div>
+        </header>
+        <div class="sheet__stage sheet__stage--projector-lobby">
+          <article class="panel">
+            <div class="projector-hero">
+              <div class="projector-copy">
+                <p class="panel__eyebrow">Lobby / join code</p>
+                <h3 class="projector-copy__title">QLWNZ8</h3>
+                <p class="projector-copy__support">The room-facing screen keeps the code, QR, and join cue in a reading order that works from across the room.</p>
+                <div class="legend">
+                  <span class="chip">Scan QR</span>
+                  <span class="chip">Join from phone</span>
+                  <span class="chip">Lobby only</span>
+                </div>
+              </div>
+              <div class="podium">
+                <div class="qr" aria-label="Decorative QR placeholder"><div class="qr__center"></div></div>
+                <span class="mini-label">Participant count: 8 waiting</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="sheet-08" class="sheet sheet--projector-question" data-export="08-projector-question.png" aria-labelledby="sheet-08-title">
+        <header class="sheet__head">
+          <div>
+            <p class="sheet__kicker">08 · Projector question</p>
+            <h2 id="sheet-08-title">Projector question sheet</h2>
+          </div>
+          <div class="sheet__info">data-export: 08-projector-question.png</div>
+        </header>
+        <div class="sheet__stage sheet__stage--projector-question">
+          <article class="panel">
+            <div class="projector-hero">
+              <div class="projector-copy">
+                <p class="panel__eyebrow">Question open</p>
+                <h3 class="projector-copy__title">Which headline treatment is the most exact?</h3>
+                <p class="projector-copy__support">Oversized type leads the room. Supporting notes stay sparse so the prompt reads instantly at distance.</p>
+              </div>
+              <div class="stack">
+                <div class="metric"><div class="metric__value">Q 04</div><div class="metric__label">34 answered</div></div>
+                <div class="notice">Close the round when the room is ready.</div>
+              </div>
+            </div>
+            <div class="answer-grid">
+              <div class="answer answer--locked"><span class="answer__label">A</span><span class="answer__text">Tight tracking, dense copy</span></div>
+              <div class="answer answer--selected"><span class="answer__label">B</span><span class="answer__text">Balanced spacing, precise rhythm</span></div>
+              <div class="answer"><span class="answer__label">C</span><span class="answer__text">Bold color, playful shape</span></div>
+              <div class="answer"><span class="answer__label">D</span><span class="answer__text">Loose layout, large margins</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="sheet-09" class="sheet sheet--projector-results" data-export="09-projector-results.png" aria-labelledby="sheet-09-title">
+        <header class="sheet__head">
+          <div>
+            <p class="sheet__kicker">09 · Projector results</p>
+            <h2 id="sheet-09-title">Projector results sheet</h2>
+          </div>
+          <div class="sheet__info">data-export: 09-projector-results.png</div>
+        </header>
+        <div class="sheet__stage sheet__stage--projector-results">
+          <article class="panel">
+            <div class="projector-hero">
+              <div class="projector-copy">
+                <p class="panel__eyebrow">Round results</p>
+                <h3 class="projector-copy__title">Leaderboard movement, but editorial.</h3>
+                <p class="projector-copy__support">The results screen keeps score hierarchy and rank changes large enough to read from the back of the room.</p>
+              </div>
+              <div class="stack">
+                <div class="metric"><div class="metric__value">+500</div><div class="metric__label">Linear speed bonus at reveal</div></div>
+                <div class="metric"><div class="metric__value">19s</div><div class="metric__label">Round duration</div></div>
+              </div>
+            </div>
+            <div class="leaderboard">
+              <div class="leader leader--dark"><span class="rank">1</span><span class="leader__title">Marta</span><span class="leader__score">5,980</span></div>
+              <div class="leader leader--dark"><span class="rank">2</span><span class="leader__title">Jonas</span><span class="leader__score">5,420</span></div>
+              <div class="leader leader--dark"><span class="rank">3</span><span class="leader__title">Ari</span><span class="leader__score">5,110</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="sheet-10" class="sheet sheet--projector-finished" data-export="10-projector-finished.png" aria-labelledby="sheet-10-title">
+        <header class="sheet__head">
+          <div>
+            <p class="sheet__kicker">10 · Projector finished</p>
+            <h2 id="sheet-10-title">Projector finished sheet</h2>
+          </div>
+          <div class="sheet__info">data-export: 10-projector-finished.png</div>
+        </header>
+        <div class="sheet__stage sheet__stage--projector-finished">
+          <article class="panel">
+            <div class="closing">
+              <div class="closing__main">
+                <p class="panel__eyebrow">Finished</p>
+                <h3 class="hero-copy">A polished closing spread with no extra motion.</h3>
+                <p class="panel__text">The session ends with a stable final hierarchy, a clear podium, and one quiet sign-off.</p>
+                <div class="row">
+                  <span class="pill pill--success">Session complete</span>
+                  <span class="pill">View final leaderboard</span>
+                </div>
+              </div>
+              <div class="closing__aside">
+                <div class="podium__bars">
+                  <div class="podium__bar podium__bar--2">
+                    <span class="section-label">2nd</span>
+                    <p class="podium__name">Jonas</p>
+                    <p class="podium__score">5,420</p>
+                  </div>
+                  <div class="podium__bar podium__bar--1">
+                    <span class="section-label">1st</span>
+                    <p class="podium__name">Marta</p>
+                    <p class="podium__score">5,980</p>
+                  </div>
+                  <div class="podium__bar podium__bar--3">
+                    <span class="section-label">3rd</span>
+                    <p class="podium__name">Ari</p>
+                    <p class="podium__score">5,110</p>
+                  </div>
+                </div>
+                <div class="faux-divider"></div>
+                <p class="panel__text">Room-facing summary stays large, calm, and unmistakably premium.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

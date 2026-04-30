@@ -26,6 +26,12 @@ export type LeaderboardEntry = {
   movement: number
 }
 
+export type RevealOptionCount = {
+  optionId: string
+  position: number
+  count: number
+}
+
 export type PublicSessionView = {
   sessionId: string
   joinCode: string
@@ -36,6 +42,7 @@ export type PublicSessionView = {
   question: SessionQuestion | null
   reveal: {
     correctOptionId: string | null
+    optionCounts: RevealOptionCount[]
     leaderboard: LeaderboardEntry[]
   } | null
   finalResults: {
@@ -73,6 +80,21 @@ export function getOptionLabel(position: number) {
 
 export function getOptionToneClass(position: number) {
   return `option-tone-${Math.min(4, Math.max(1, position))}`
+}
+
+export function getRevealOptionCount(optionCounts: RevealOptionCount[], optionId: string) {
+  return optionCounts.find((optionCount) => optionCount.optionId === optionId)?.count ?? 0
+}
+
+export function getRevealTotalResponses(optionCounts: RevealOptionCount[]) {
+  return optionCounts.reduce((sum, optionCount) => sum + optionCount.count, 0)
+}
+
+export function getRevealOptionPercentage(optionCounts: RevealOptionCount[], optionId: string) {
+  const totalResponses = getRevealTotalResponses(optionCounts)
+  if (totalResponses === 0) return 0
+
+  return Math.round((getRevealOptionCount(optionCounts, optionId) / totalResponses) * 100)
 }
 
 export function calculateSpeedBonus(responseMs: number, roundDurationMs: number, maxBonus = 500) {
