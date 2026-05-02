@@ -123,7 +123,7 @@ as $$
 declare
   v_session public.quiz_sessions%rowtype;
   v_nickname text := btrim(coalesce(p_nickname, ''));
-  v_session_token text := encode(extensions.gen_random_bytes(24), 'base64url');
+  v_session_token text := encode(extensions.gen_random_bytes(24), 'hex');
 begin
   if v_nickname = '' then
     raise exception 'Nickname is required';
