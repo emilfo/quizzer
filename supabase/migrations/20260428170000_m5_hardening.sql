@@ -123,7 +123,7 @@ as $$
 declare
   v_session public.quiz_sessions%rowtype;
   v_nickname text := btrim(coalesce(p_nickname, ''));
-  v_session_token text := encode(gen_random_bytes(24), 'base64url');
+  v_session_token text := encode(extensions.gen_random_bytes(24), 'base64url');
 begin
   if v_nickname = '' then
     raise exception 'Nickname is required';
@@ -146,7 +146,7 @@ begin
   end if;
 
   insert into public.participants (session_id, nickname, session_token_hash)
-  values (v_session.id, v_nickname, encode(digest(v_session_token, 'sha256'), 'hex'))
+  values (v_session.id, v_nickname, encode(extensions.digest(v_session_token, 'sha256'), 'hex'))
   returning participants.session_id, participants.id, participants.nickname
   into session_id, participant_id, nickname;
 
@@ -166,7 +166,7 @@ as $$
   join public.quiz_sessions on quiz_sessions.id = participants.session_id
   where participants.session_id = p_session_id
     and participants.id = p_participant_id
-    and participants.session_token_hash = encode(digest(coalesce(p_session_token, ''), 'sha256'), 'hex')
+    and participants.session_token_hash = encode(extensions.digest(coalesce(p_session_token, ''), 'sha256'), 'hex')
     and quiz_sessions.state in ('lobby', 'in_progress', 'finished');
 $$;
 
@@ -196,7 +196,7 @@ begin
     from public.participants
     where participants.id = p_participant_id
       and participants.session_id = v_session_id
-      and participants.session_token_hash = encode(digest(coalesce(p_session_token, ''), 'sha256'), 'hex')
+      and participants.session_token_hash = encode(extensions.digest(coalesce(p_session_token, ''), 'sha256'), 'hex')
   ) then
     return v_public_state;
   end if;
@@ -289,7 +289,7 @@ begin
   from public.participants
   where id = p_participant_id
     and session_id = v_session.id
-    and session_token_hash = encode(digest(coalesce(p_session_token, ''), 'sha256'), 'hex');
+    and session_token_hash = encode(extensions.digest(coalesce(p_session_token, ''), 'sha256'), 'hex');
 
   if v_participant.id is null then
     raise exception 'Participant not found';
