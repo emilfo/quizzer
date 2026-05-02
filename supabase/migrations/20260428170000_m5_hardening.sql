@@ -3,6 +3,7 @@ add column session_token_hash text;
 
 drop function if exists public.get_player_session_state(text, uuid);
 drop function if exists public.get_session_participant(uuid, uuid);
+drop function if exists public.join_live_session(text, text);
 drop function if exists public.submit_player_answer(text, uuid, uuid);
 
 drop policy if exists "public can read session lobbies" on public.public_session_lobbies;
