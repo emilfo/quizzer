@@ -4,6 +4,10 @@
 
 Expose public per-option counts during round results so projector and player reveal states can show how the room answered.
 
+## resolution
+
+Archived as complete enough for the current product state. Projector/player counts shipped; the remaining host-graph and added integration-test follow-ups were intentionally dropped.
+
 ## scope
 
 - extend the public session reveal payload with per-option response counts for the active question
@@ -34,5 +38,4 @@ Expose public per-option counts during round results so projector and player rev
 
 ## follow-ups
 
-- decide whether the host controls should show the same public per-option count graph later
-- consider adding an integration-level check for public reveal payload shape if the test surface grows
+- none; remaining follow-up ideas were retired when future planning was closed

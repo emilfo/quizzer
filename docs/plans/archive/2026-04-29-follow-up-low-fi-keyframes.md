@@ -6,6 +6,10 @@ Convert the selected design direction into low-fi keyframes for all canonical qu
 
 This phase should lock the structural design language before any high-fi polish begins.
 
+## resolution
+
+Archived without execution. Future design planning was intentionally retired in favor of keeping the current shipped app state as-is.
+
 ## scope
 
 ### base direction
@@ -99,7 +103,4 @@ Promotion confirmation:
 
 ## follow-ups
 
-- Convert approved low-fi frames into the high-fi design brief.
-- Capture any component or layout dependencies discovered during low-fi.
-- Resolve unanswered system rules before polish work begins.
-- Update milestone/status docs if the design phase scope or sequence changes.
+- none; future design follow-up work was retired

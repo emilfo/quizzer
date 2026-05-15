@@ -2,11 +2,11 @@
 
 This file is the active execution pointer for the current quizzer milestone.
 
-active_plan_set: quizzer-v1-follow-up-implementation
-active_milestone: follow-up-public-option-counts
-active_milestone_file: docs/plans/in-progress/2026-04-30-follow-up-public-option-counts.md
-current_deliverable: D35-public-option-counts
-last_completed_deliverable: D34-lane-7-app-implementation
+active_plan_set: none
+active_milestone: none
+active_milestone_file: none
+current_deliverable: none
+last_completed_deliverable: D35-public-option-counts
 last_verification: 2026-04-30-commands-verify-pass
 open_blockers: none
 
@@ -30,7 +30,8 @@ open_blockers: none
 - Added a sixth, feedback-driven proposal lane: `docs/design/archive/proposals/2026-04-29-lane-6-classroom-rally.md`, built around projector-led questions, color-only answer pads, and a more classroom-friendly player tone
 - Added a seventh merged lane: `2026-04-29-lane-7-playful-rally`, combining Lane 5’s visual character with Lane 6’s projector-led, color-first form factor
 - Lane 7 is now the preferred direction: use Lane 5’s look/feel as the dominant visual reference and Lane 6’s projector-led form factor as the dominant interaction model
-- The low-fi keyframes follow-up was moved to `docs/plans/backlog/2026-04-29-follow-up-low-fi-keyframes.md`
+- The low-fi keyframes follow-up was moved to `docs/plans/archive/2026-04-29-follow-up-low-fi-keyframes.md` and retired without execution
 - Lane 7 app implementation shipped and verified with `commands/verify`
 - Public round-results payloads now include per-option counts, and player/projector reveal screens render those counts with percentages and bars
-- Next action: decide whether host controls should render the same per-option count graph and whether public reveal payloads need integration-level test coverage
+- Public option counts follow-up closed with the current shipped behavior; host-count graph and extra integration coverage were explicitly dropped from the plan
+- There are currently no active or backlog plans; the project is intentionally paused at the current shipped state
