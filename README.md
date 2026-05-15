@@ -22,6 +22,61 @@ Live quiz app repository with milestone-based docs, checks, and support tooling.
 
 For local development, start Supabase with `supabase start`, apply the repo migrations with `supabase db reset`, set `QUIZZER_ENABLE_LOCAL_AUTH=true` in `.env.local`, copy the local URL and anon key into `.env.local`, then run `npm run local:user` once to create the default local host account.
 
+## Run locally for testing
+
+1. install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+2. start local Supabase:
+
+   ```bash
+   supabase start
+   supabase db reset
+   ```
+
+3. create `.env.local` with your local Supabase values:
+
+   ```bash
+   NEXT_PUBLIC_SUPABASE_URL="http://127.0.0.1:54321"
+   NEXT_PUBLIC_SUPABASE_ANON_KEY="<your local publishable key>"
+   QUIZZER_ENABLE_LOCAL_AUTH="true"
+   ```
+
+   You can get the local publishable key from `supabase status`.
+
+4. create the default local host user:
+
+   ```bash
+   npm run local:user
+   ```
+
+5. start the app:
+
+   ```bash
+   npm run dev
+   ```
+
+6. open `http://localhost:3000`
+
+7. sign in with the default local host account:
+
+   - email: `host@example.com`
+   - password: `quizzer-local-password`
+
+8. test the live flow:
+
+   - open the host dashboard
+   - start or resume a live session
+   - open the projector view and player join view
+   - verify that `/host/session/[sessionId]` now shows the projector-style session view with only subtle host controls for advancing the quiz
+
+### Local auth note
+
+If the home page shows **Continue with Google** instead of the local email/password form, your shell likely has remote Supabase environment variables overriding `.env.local`. Restart `npm run dev` with the local Supabase values in scope.
+
 ## Current focus
 
 - Milestone 1: single-host authoring

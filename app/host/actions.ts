@@ -3,7 +3,7 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { buildProjectorPath } from '@/lib/live-session'
-import { buildFinalLeaderboard, buildLeaderboard } from '@/lib/gameplay'
+import { buildFinalLeaderboard, buildLeaderboard, type RevealOptionCount } from '@/lib/gameplay'
 import { createClient } from '@/lib/supabase/server'
 import { validateQuizForPublish, type QuizDraft } from '@/lib/quiz-validation'
 
@@ -365,7 +365,21 @@ export async function getHostSessionControlData(sessionId: string) {
   const allAnswers = answersResult.data ?? []
   const currentQuestionAnswers = allAnswers.filter((answer) => answer.question_id === session.current_question_id)
   const answersByParticipant = new Map(currentQuestionAnswers.map((answer) => [answer.participant_id, answer]))
+  const revealOptionCounts = new Map<string, RevealOptionCount>()
   const totalsByParticipant = new Map<string, number>()
+
+  for (const answer of currentQuestionAnswers) {
+    const existing = revealOptionCounts.get(answer.question_option_id)
+    if (existing) {
+      existing.count += 1
+    } else {
+      revealOptionCounts.set(answer.question_option_id, {
+        optionId: answer.question_option_id,
+        position: 0,
+        count: 1,
+      })
+    }
+  }
 
   for (const answer of allAnswers) {
     totalsByParticipant.set(answer.participant_id, (totalsByParticipant.get(answer.participant_id) ?? 0) + answer.awarded_score)
@@ -434,6 +448,18 @@ export async function getHostSessionControlData(sessionId: string) {
           })),
         }
       : null,
+    reveal:
+      session.round_state === 'round_results' && questionResult.data
+        ? {
+            correctOptionId: (optionsResult.data ?? []).find((option) => option.is_correct)?.id ?? null,
+            optionCounts: (optionsResult.data ?? []).map((option) => ({
+              optionId: option.id,
+              position: option.position,
+              count: revealOptionCounts.get(option.id)?.count ?? 0,
+            })),
+            leaderboard,
+          }
+        : null,
   }
 }
 
