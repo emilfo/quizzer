@@ -54,8 +54,8 @@ Minimum visual coverage per proposal:
 
 Inputs that remain authoritative:
 
-- `docs/design/2026-04-29-keyframe-inventory-and-matrix.md`
-- `docs/design/2026-04-29-parallel-design-lanes-and-rubric.md`
+- `docs/design/archived/2026-04-29-keyframe-inventory-and-matrix.md`
+- `docs/design/archived/2026-04-29-parallel-design-lanes-and-rubric.md`
 - the five lane proposal docs under `docs/design/proposals/`
 
 Out of scope:

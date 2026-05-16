@@ -40,6 +40,8 @@
 - correct answers must not be exposed before reveal
 - participant reconnect relies on a signed cookie carrying an opaque session token, not raw client-trusted identity
 - hosts may only manage their own quizzes and sessions
+- projector screens are room-display surfaces, not app-shell pages: they should render in a fixed 16:9 frame, always fill that frame, avoid scrolling, and omit headers/chrome so the question-and-answer content stays dominant
+- player screens are mobile-first fullscreen surfaces: they should avoid scrolling, prioritize nickname entry in join, keep lobby messaging minimal, hide question/answer text during live answering, delay answer-button reveal by 2 seconds, use the same 2-by-2 color grid as the projector, avoid correctness feedback until results, and show result points plus the gap to the next player ahead
 
 ## Escalation cases
 

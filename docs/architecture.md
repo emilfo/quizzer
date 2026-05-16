@@ -10,7 +10,9 @@ The repository should make the quiz product, its milestones, and its verificatio
 
 - `AGENTS.md`
 - `docs/*.md`
-- `docs/design/*.md`
+- `docs/design/current/`
+- `docs/design/proposals/`
+- `docs/design/archived/`
 - `docs/plans/in-progress/`, `docs/plans/backlog/`, and `docs/plans/archive/`
 
 Purpose: provide stable orientation, boundaries, milestones, recovery paths, and design-planning artifacts.

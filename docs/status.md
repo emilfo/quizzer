@@ -21,17 +21,20 @@ open_blockers: none
 - Local Supabase end-to-end visual verification completed across host, projector, and multiple player sessions
 - Milestone 4 shipped: host advances between rounds manually, final leaderboard appears after the host continues past the last reveal, projector final results show top 3, players see personal final placement only, and finished sessions reject further gameplay mutations
 - Milestone 5 shipped: refresh/rejoin restores player state with a signed participant cookie plus opaque session token, finished sessions keep existing player views readable, and pre-reveal correctness stays out of public/player/projector payloads
-- Follow-up design planning produced the keyframe/state inventory and parallel design-lanes brief under `docs/design/`
-- Follow-up design proposal drafting is complete under `docs/design/archive/proposals/`, including five lane docs and a comparison worksheet
+- Follow-up design planning produced the keyframe/state inventory and parallel design-lanes brief now kept under `docs/design/archived/`
+- Follow-up design proposal drafting is complete under `docs/design/archived/proposals/`, including five lane docs and a comparison worksheet
 - Proposal selection originally favored Modular Lab, with Quiet Control Room as the fallback, before later feedback-driven lane exploration
 - Proposal keyframe drafting is complete for all five lanes, with sibling `keyframes/` folders that include finished HTML/CSS boards plus exported PNG sheets
 - Picture-based review kept Modular Lab as the winner, with Quiet Control Room as fallback and Editorial Precision as the strongest visual-polish reference
 - Corrected styled 16:9 export review kept the same winner: Modular Lab remains the base lane, while Editorial Precision is the main hierarchy/polish reference
-- Added a sixth, feedback-driven proposal lane: `docs/design/archive/proposals/2026-04-29-lane-6-classroom-rally.md`, built around projector-led questions, color-only answer pads, and a more classroom-friendly player tone
+- Added a sixth, feedback-driven proposal lane: `docs/design/archived/proposals/2026-04-29-lane-6-classroom-rally.md`, built around projector-led questions, color-only answer pads, and a more classroom-friendly player tone
 - Added a seventh merged lane: `2026-04-29-lane-7-playful-rally`, combining Lane 5’s visual character with Lane 6’s projector-led, color-first form factor
 - Lane 7 is now the preferred direction: use Lane 5’s look/feel as the dominant visual reference and Lane 6’s projector-led form factor as the dominant interaction model
+- Current design docs now use the `docs/design/{proposals,current,archived}/` flow, with the shipped projector page documented at `docs/design/current/pages/projector-view.md`
+- Current player-page rules are documented at `docs/design/current/pages/player-view.md`: mobile-first fullscreen flow, nickname-first join, minimal lobby, delayed 2-second color-grid answering with no question/answer text, answer-registered waiting state, and result feedback with points plus the gap to the next player ahead
 - The low-fi keyframes follow-up was moved to `docs/plans/archive/2026-04-29-follow-up-low-fi-keyframes.md` and retired without execution
 - Lane 7 app implementation shipped and verified with `commands/verify`
+- Projector-frame decision locked: projector views are fixed 16:9 room-display frames that should fill the screen, avoid scrolling, and omit header chrome so questions and answers stay central
 - Public round-results payloads now include per-option counts, and player/projector reveal screens render those counts with percentages and bars
 - Public option counts follow-up closed with the current shipped behavior; host-count graph and extra integration coverage were explicitly dropped from the plan
 - There are currently no active or backlog plans; the project is intentionally paused at the current shipped state

@@ -23,8 +23,8 @@ Working artifacts created from this plan:
 
 Inputs that remain authoritative:
 
-- `docs/design/2026-04-29-keyframe-inventory-and-matrix.md`
-- `docs/design/2026-04-29-parallel-design-lanes-and-rubric.md`
+- `docs/design/archived/2026-04-29-keyframe-inventory-and-matrix.md`
+- `docs/design/archived/2026-04-29-parallel-design-lanes-and-rubric.md`
 
 Out of scope:
 

@@ -22,7 +22,7 @@ Implement the selected Lane 7 Playful Rally direction in the shipped app so the 
 ## steps
 
 1. Move completed plans into `docs/plans/archive/` and inactive follow-up work into `docs/plans/backlog/`.
-2. Move non-selected design proposals into `docs/design/archive/` while keeping Lane 7 active.
+2. Move non-selected design proposals into `docs/design/archived/` while keeping Lane 7 active.
 3. Update the docs and command harness to explain the new plan swimlane flow.
 4. Implement the Lane 7 visual system across home, auth recovery, host, player, and projector routes.
 5. Verify the app with the standard follow-up implementation checks.

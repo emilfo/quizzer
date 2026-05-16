@@ -51,7 +51,7 @@ Promotion confirmation:
 
 ## constraints
 
-- Preserve the route/state inventory as the comparison baseline from `docs/design/2026-04-29-keyframe-inventory-and-matrix.md`.
+- Preserve the route/state inventory as the comparison baseline from `docs/design/archived/2026-04-29-keyframe-inventory-and-matrix.md`.
 - Treat Lane 7 as a **future-direction lane** that intentionally changes some interaction/display assumptions from the currently shipped MVP.
 - Keep the player answer flow faster and simpler than the current MVP by using large color-only tap targets on phone and iPad.
 - Keep projector screens distance-readable, highly color-distinct, and clearly ordered.

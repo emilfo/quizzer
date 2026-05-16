@@ -4,7 +4,7 @@
 
 Create a clear, repeatable plan for auditing the shipped MVP, identifying all key user-facing frames, and drafting five distinct design proposals that stay consistent across host, player, and projector experiences.
 
-The canonical route/state inventory for this plan lives in `docs/design/2026-04-29-keyframe-inventory-and-matrix.md`.
+The canonical route/state inventory for this plan lives in `docs/design/archived/2026-04-29-keyframe-inventory-and-matrix.md`.
 
 ## 2. scope
 
@@ -17,8 +17,8 @@ Includes these deliverables:
 
 Working artifacts created from this plan:
 
-- `docs/design/2026-04-29-keyframe-inventory-and-matrix.md`
-- `docs/design/2026-04-29-parallel-design-lanes-and-rubric.md`
+- `docs/design/archived/2026-04-29-keyframe-inventory-and-matrix.md`
+- `docs/design/archived/2026-04-29-parallel-design-lanes-and-rubric.md`
 
 In scope keyframes:
 
