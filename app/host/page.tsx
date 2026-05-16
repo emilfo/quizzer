@@ -9,8 +9,8 @@ export default async function HostDashboardPage() {
     <section className="stack">
       <section className="card hero-card stack">
         <span className="brand-badge">Host dashboard</span>
-        <h1 className="display-title">Calm, vivid quiz control.</h1>
-        <p className="hero-copy">Create quizzes, publish them, and run one live lobby at a time without losing the room’s energy.</p>
+        <h1 className="display-title">What exists, what is ready, what is live.</h1>
+        <p className="hero-copy">Create a quiz fast, check its status at a glance, and launch one live session when the room is ready.</p>
         <form action={createQuiz} className="control-row">
           <input className="editor-input" name="title" placeholder="New quiz title" />
           <button className="button" type="submit">
@@ -26,15 +26,13 @@ export default async function HostDashboardPage() {
               <div className="stack" style={{ gap: '0.25rem' }}>
                 <span className="kicker">Active session</span>
                 <h2 className="section-title">{activeSession.quiz_title}</h2>
-                <div className="surface-note">Join code: {activeSession.join_code}</div>
+                <div className="surface-note">Join code {activeSession.join_code} · {activeSession.state}</div>
               </div>
               <span className="pill">{activeSession.state}</span>
             </div>
+            <p className="surface-note">The live room is already open. Use the projector and player-join links as the main public surfaces.</p>
             <div className="join-cta">
-              <Link className="button" href={`/host/session/${activeSession.id}`}>
-                Open controls
-              </Link>
-              <Link className="button secondary" href={buildProjectorPath(activeSession.join_code)}>
+              <Link className="button" href={buildProjectorPath(activeSession.join_code)}>
                 Projector
               </Link>
               <Link className="button secondary" href={buildPlayerJoinPath(activeSession.join_code)}>
@@ -46,7 +44,7 @@ export default async function HostDashboardPage() {
           <section className="card stack">
             <span className="kicker">No live session</span>
             <h2 className="section-title">Nothing on air yet.</h2>
-            <p className="surface-note">Publish a quiz to launch a live lobby and generate a join code.</p>
+            <p className="surface-note">Publish a quiz, then start a live session to generate a join code.</p>
           </section>
         )}
 
@@ -63,7 +61,10 @@ export default async function HostDashboardPage() {
             {quizzes.map((quiz) => (
               <article key={quiz.id} className="card stack">
                 <div className="row-between">
-                  <strong>{quiz.title}</strong>
+                  <div className="stack" style={{ gap: '0.25rem' }}>
+                    <strong>{quiz.title}</strong>
+                    <span className="surface-note">{quiz.status === 'published' ? 'Ready to launch.' : 'Needs editing before publishing.'}</span>
+                  </div>
                   <span className="pill">{quiz.status}</span>
                 </div>
                 <div className="join-cta">

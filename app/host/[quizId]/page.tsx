@@ -27,11 +27,11 @@ export default async function QuizEditorPage({
         <div className="row-between">
           <div className="stack" style={{ gap: '0.3rem' }}>
             <span className="brand-badge">Quiz editor</span>
-            <h1 className="display-title">Build the round without friction.</h1>
+            <h1 className="display-title">Build quickly. Publish only when ready.</h1>
           </div>
           <span className="pill">{quiz.status}</span>
         </div>
-        <p className="hero-copy">Keep each question crisp, validate the answer set clearly, and publish when the quiz is ready for a live room.</p>
+        <p className="hero-copy">Edit the title, keep each question modular, and use the validation summary to fix publish blockers directly.</p>
         <div className="control-row">
           <form action={updateQuizTitle.bind(null, quiz.id)} className="control-row" style={{ gridColumn: '1 / -1' }}>
             <input className="editor-input" name="title" defaultValue={quiz.title} />
@@ -45,24 +45,42 @@ export default async function QuizEditorPage({
             </button>
           </form>
         </div>
-        {!validation.isPublishable ? (
-          <div className="error stack">
-            {validation.errors.map((error) => (
-              <div key={error}>{error}</div>
-            ))}
-          </div>
-        ) : (
-          <div className="success">Quiz is ready to publish.</div>
-        )}
       </section>
 
-      <div className="row-between">
-        <form action={addQuestion.bind(null, quiz.id)}>
-          <button className="button" type="submit">
-            Add question
-          </button>
-        </form>
-        <span className="surface-note">Questions stay modular so the host can edit quickly between live rounds.</span>
+      <div className="page-grid page-grid--editor">
+        <section className="card stack">
+          <div className="row-between">
+            <div className="stack" style={{ gap: '0.25rem' }}>
+              <span className="kicker">Publish readiness</span>
+              <h2 className="section-title">Validation summary</h2>
+            </div>
+            <span className="pill">{validation.isPublishable ? 'Ready' : 'Blocked'}</span>
+          </div>
+          {validation.isPublishable ? (
+            <div className="success">This quiz is ready to publish.</div>
+          ) : (
+            <div className="error stack">
+              {validation.errors.map((error) => (
+                <div key={error}>{error}</div>
+              ))}
+            </div>
+          )}
+        </section>
+
+        <section className="card stack">
+          <div className="row-between">
+            <div className="stack" style={{ gap: '0.25rem' }}>
+              <span className="kicker">Question list</span>
+              <h2 className="section-title">Modular editing</h2>
+            </div>
+            <form action={addQuestion.bind(null, quiz.id)}>
+              <button className="button" type="submit">
+                Add question
+              </button>
+            </form>
+          </div>
+          <p className="surface-note">Each question can be edited, saved, deleted, and reordered on its own.</p>
+        </section>
       </div>
 
       <div className="subtle-grid">
@@ -73,7 +91,7 @@ export default async function QuizEditorPage({
               <div className="row-between">
                 <div className="stack" style={{ gap: '0.2rem' }}>
                   <span className="kicker">Question {index + 1}</span>
-                  <strong>{question.prompt ? 'Live question' : 'Draft question'}</strong>
+                  <strong>{question.prompt ? 'Question ready for editing' : 'Draft question'}</strong>
                 </div>
                 <div className="join-cta">
                   <form action={moveQuestion.bind(null, quiz.id, question.id, 'up')}>
