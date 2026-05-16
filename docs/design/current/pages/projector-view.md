@@ -26,6 +26,8 @@ The current projector view has six public states:
 
 ## Current behavior
 
+When the signed-in host is using the projector route, the projector view is also the live control surface.
+
 ### Invalid join code
 
 - Shows a projector-specific error card.
@@ -41,12 +43,16 @@ The current projector view has six public states:
 - Shows quiz title, join code, join QR, and join link.
 - Shows participant count in a secondary panel.
 - Communicates that the lobby is open and ready.
+- For the signed-in host, shows a start control in the bottom-right corner.
+- For the signed-in host, shows an end-quiz control in the bottom-left corner.
 
 ### Question open
 
 - Shows the active question prompt.
 - Shows all four answer options in the projector answer grid.
 - Uses the same option/color order the player answer surface is expected to follow.
+- For the signed-in host, shows a reveal/close-round control in the bottom-right corner.
+- For the signed-in host, keeps the end-quiz control visible in the bottom-left corner.
 
 ### Round results
 
@@ -54,11 +60,14 @@ The current projector view has six public states:
 - Shows per-option counts and percentages.
 - Highlights the correct option.
 - Shows the live top-3 leaderboard after the room-response reveal.
+- For the signed-in host, shows the next/continue control in the bottom-right corner.
+- For the signed-in host, keeps the end-quiz control visible in the bottom-left corner.
 
 ### Finished
 
 - Shows final-results framing.
 - Shows the final top-3 leaderboard.
+- No further advance control is needed after the quiz is finished.
 
 ## Projector rules
 
@@ -68,6 +77,9 @@ The current projector view has six public states:
 - Do not show header chrome or app-shell navigation.
 - Keep question and answer content as the visual priority.
 - Preserve fast room readability over secondary detail.
+- Host controls should overlay the projector frame rather than moving the main content.
+- The primary forward action belongs in the bottom-right corner.
+- The explicit end-quiz action belongs in the bottom-left corner and stays available until the session is finished.
 
 ## Layout notes for implementation
 
@@ -76,9 +88,10 @@ The current projector view has six public states:
 - Answer tiles render through `.projector-answer-tile` and `.projector-answer-text`.
 - Lobby currently uses `.page-grid--projector` with a primary hero card plus a secondary participant-count panel.
 - Live projector updates are driven by `LiveSessionRefresh` in public mode.
+- Host overlay controls currently use `.host-control-strip`, with a left-anchored variant for the end-quiz action.
 
 ## Scope boundary
 
 This file documents the current shipped projector page, not a future proposal lane.
 
-Host live controls may still exist in implementation as `/host/session/[sessionId]`, but that page is deprecated in the design model and should be removed from the product flow.
+`/host/session/[sessionId]` may still exist in implementation, but the intended product flow is for the signed-in host to control the room directly from the projector page.

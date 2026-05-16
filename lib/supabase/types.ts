@@ -298,6 +298,12 @@ export type Database = {
         }
         Returns: undefined
       }
+      end_live_session: {
+        Args: {
+          p_session_id: string
+        }
+        Returns: undefined
+      }
       get_player_session_state: {
         Args: {
           p_join_code: string

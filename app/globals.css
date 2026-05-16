@@ -701,6 +701,11 @@ form {
   backdrop-filter: blur(14px);
 }
 
+.host-control-strip--left {
+  right: auto;
+  left: 1.5rem;
+}
+
 .host-control-copy {
   display: grid;
   gap: 0.35rem;
@@ -836,6 +841,12 @@ form {
     right: 0.9rem;
     bottom: 0.9rem;
     width: calc(100vw - 1.8rem);
+  }
+
+  .host-control-strip--left {
+    right: auto;
+    left: 0.9rem;
+    width: auto;
   }
 
   .leaderboard-row,

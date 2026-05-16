@@ -510,3 +510,19 @@ export async function advanceQuizSession(sessionId: string) {
   revalidatePath(buildProjectorPath(session.join_code))
   revalidatePath(`/play/${session.join_code}`)
 }
+
+export async function endQuizSession(sessionId: string) {
+  const { supabase, session } = await ensureHostSessionOwnership(sessionId)
+  const { error } = await supabase.rpc('end_live_session', {
+    p_session_id: sessionId,
+  })
+
+  if (error) {
+    throw new Error(error.message)
+  }
+
+  revalidatePath('/host')
+  revalidatePath(`/host/session/${sessionId}`)
+  revalidatePath(buildProjectorPath(session.join_code))
+  revalidatePath(`/play/${session.join_code}`)
+}
