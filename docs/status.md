@@ -32,6 +32,9 @@ open_blockers: none
 - Lane 7 is now the preferred direction: use Lane 5’s look/feel as the dominant visual reference and Lane 6’s projector-led form factor as the dominant interaction model
 - Current design docs now use the `docs/design/{proposals,current,archived}/` flow, with the shipped projector page documented at `docs/design/current/pages/projector-view.md`
 - Current player-page rules are documented at `docs/design/current/pages/player-view.md`: mobile-first fullscreen flow, nickname-first join, minimal lobby, delayed 2-second color-grid answering with no question/answer text, answer-registered waiting state, and result feedback with points plus the gap to the next player ahead
+- Current home-page rules are documented at `docs/design/current/pages/home.md`: simple brand+slogan, join-code input with join as the primary action, and login for quiz creation as the secondary action
+- Current auth, host-dashboard, and quiz-editor pages are also documented under `docs/design/current/pages/` so all remaining non-deprecated app pages have a current design reference
+- Current live-page model: projector is the only live room page in `docs/design/current/pages/`; `/host/session/[sessionId]` is now treated as a deprecated page to be removed from the product flow
 - The low-fi keyframes follow-up was moved to `docs/plans/archive/2026-04-29-follow-up-low-fi-keyframes.md` and retired without execution
 - Lane 7 app implementation shipped and verified with `commands/verify`
 - Projector-frame decision locked: projector views are fixed 16:9 room-display frames that should fill the screen, avoid scrolling, and omit header chrome so questions and answers stay central

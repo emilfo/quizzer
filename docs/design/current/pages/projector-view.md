@@ -4,6 +4,8 @@
 
 Document the current shipped projector-facing page and the layout rules it should follow.
 
+This is the only live room page in the current design model.
+
 ## Route
 
 - Page: `/projector/[joinCode]`
@@ -78,3 +80,5 @@ The current projector view has six public states:
 ## Scope boundary
 
 This file documents the current shipped projector page, not a future proposal lane.
+
+Host live controls may still exist in implementation as `/host/session/[sessionId]`, but that page is deprecated in the design model and should be removed from the product flow.

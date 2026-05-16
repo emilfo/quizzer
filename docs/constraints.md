@@ -42,6 +42,8 @@
 - hosts may only manage their own quizzes and sessions
 - projector screens are room-display surfaces, not app-shell pages: they should render in a fixed 16:9 frame, always fill that frame, avoid scrolling, and omit headers/chrome so the question-and-answer content stays dominant
 - player screens are mobile-first fullscreen surfaces: they should avoid scrolling, prioritize nickname entry in join, keep lobby messaging minimal, hide question/answer text during live answering, delay answer-button reveal by 2 seconds, use the same 2-by-2 color grid as the projector, avoid correctness feedback until results, and show result points plus the gap to the next player ahead
+- the home page should stay very simple: show Quizzer, a short slogan, a join-quiz input plus join action as the primary path, and a login path for creating quizzes as the secondary path
+- projector is the only live room page in the current design model; the host live controls route is deprecated as a page and should be removed from the product flow
 
 ## Escalation cases
 
