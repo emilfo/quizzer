@@ -1,6 +1,7 @@
 import { cookies } from 'next/headers'
 import Link from 'next/link'
 import { LiveSessionRefresh } from '@/components/live-session-refresh'
+import { PlayerQuestionPanel } from '@/components/player-question-panel'
 import {
   getOptionLabel,
   getOptionToneClass,
@@ -46,12 +47,12 @@ export default async function PlayerJoinPage({
 
   if (!isValidJoinCode(normalizedJoinCode)) {
     return (
-      <main className="page-shell">
-        <div className="container stack">
-          <section className="card hero-card stack center-card">
+      <main className="page-shell player-shell">
+        <div className="container player-frame stack">
+          <section className="card hero-card stack center-card player-state-card">
             <span className="brand-badge">Join error</span>
-            <h1 className="display-title">That code needs a second look.</h1>
-            <p className="hero-copy">Enter the 6-character join code shown on the projector screen.</p>
+            <h1 className="display-title">Invalid join code.</h1>
+            <p className="hero-copy">Enter the 6-character code shown on the projector.</p>
             <Link className="button secondary" href="/">
               Return home
             </Link>
@@ -70,9 +71,9 @@ export default async function PlayerJoinPage({
 
   if (!publicState) {
     return (
-      <main className="page-shell">
-        <div className="container stack">
-          <section className="card hero-card stack center-card">
+      <main className="page-shell player-shell">
+        <div className="container player-frame stack">
+          <section className="card hero-card stack center-card player-state-card">
             <span className="brand-badge">Session not found</span>
             <h1 className="display-title">No live room matches that code.</h1>
             <p className="hero-copy">Check the projector code and try again.</p>
@@ -86,7 +87,6 @@ export default async function PlayerJoinPage({
   }
 
   const cookieStore = await cookies()
-
   const participantCookie = parseParticipantCookie(cookieStore.get(PARTICIPANT_COOKIE_NAME)?.value)
   const joinedParticipant =
     participantCookie?.sessionId === publicState.sessionId
@@ -114,116 +114,91 @@ export default async function PlayerJoinPage({
   const selectedOptionId = playerState?.player?.selectedOptionId ?? null
   const hasAnswered = playerState?.player?.hasAnswered ?? false
   const playerCorrect = playerState?.player?.isCorrect ?? null
+  const playerRoundScore = playerState?.player?.roundScore ?? null
+  const pointsBehindNext = playerState?.player?.pointsBehindNext ?? null
   const correctOptionId = activeState.reveal?.correctOptionId ?? null
   const revealOptionCounts = activeState.reveal?.optionCounts ?? []
   const totalResponses = getRevealTotalResponses(revealOptionCounts)
   const finalResult = playerState?.finalResult ?? null
 
   return (
-    <main className="page-shell">
-      <div className="container stack">
+    <main className="page-shell player-shell">
+      <div className="container player-frame stack">
         <LiveSessionRefresh mode="public" sessionId={publicState.sessionId} />
 
-        <div className="page-grid page-grid--play">
-          <section className="card stack hero-card">
-            <span className="brand-badge">Player join</span>
-            <h1 className="display-title">{publicState.quizTitle}</h1>
-            <div className="surface-note">Join code: {publicState.joinCode}</div>
-            {query.joined === '1' ? <div className="success">Joined successfully.</div> : null}
-            {query.answered === '1' ? <div className="success">Answer submitted.</div> : null}
+        {canJoin ? (
+          <section className="card stack hero-card player-state-card">
+            <span className="brand-badge">Join quiz</span>
+            <h1 className="display-title">{publicState.joinCode}</h1>
+            <p className="hero-copy">Pick a nickname to join {publicState.quizTitle}.</p>
             {query.error ? <div className="error">{errorMessages[query.error] ?? 'Unable to join that session.'}</div> : null}
-            {canJoin ? (
-              <form action={joinLiveSession.bind(null, publicState.joinCode)} className="join-form">
-                <label className="field">
-                  <span>Nickname</span>
-                  <input className="auth-input" maxLength={32} name="nickname" placeholder="Quiz hero" required />
-                </label>
-                <button className="button" type="submit">
-                  Join session
-                </button>
-              </form>
-            ) : null}
-            {!canJoin && !joinedParticipant ? <p className="surface-note">This lobby is closed to new joins.</p> : null}
+            <form action={joinLiveSession.bind(null, publicState.joinCode)} className="join-form">
+              <label className="field">
+                <span>Nickname</span>
+                <input className="auth-input" maxLength={32} name="nickname" placeholder="Quiz hero" required />
+              </label>
+              <button className="button" type="submit">
+                Join quiz
+              </button>
+            </form>
           </section>
+        ) : null}
 
-          <section className="card stack">
-            <div className="row-between">
-              <strong>{joinedParticipant ? `Joined as ${joinedParticipant.nickname}` : 'Join status'}</strong>
-              <span className="pill">{publicState.participantCount} in session</span>
-            </div>
-
-            {publicState.sessionState === 'lobby' ? (
-              <p className={joinedParticipant ? 'success' : 'surface-note'}>
-                {joinedParticipant ? 'You are checked in and waiting for the host.' : 'Enter a nickname to join while the lobby is open.'}
-              </p>
-            ) : null}
+        {joinedParticipant ? (
+          <section className="stack player-active-stack">
+            <section className="card stack player-state-card player-state-card--compact">
+              <div className="row-between player-state-heading">
+                <strong>{joinedParticipant.nickname}</strong>
+                <span className="pill">{publicState.participantCount} in room</span>
+              </div>
+              {query.error ? <div className="error">{errorMessages[query.error] ?? 'Unable to update your player state.'}</div> : null}
+              {publicState.sessionState === 'lobby' ? <p className="surface-note">Waiting for the host to start the quiz.</p> : null}
+            </section>
 
             {joinedParticipant && activeState.question && activeState.roundState === 'question_open' ? (
-              <section className="stack">
-                <div className="row-between">
-                  <span className="pill">Question {activeState.question.position}</span>
-                  <span className="pill">{hasAnswered ? 'Locked in' : 'Choose one'}</span>
-                </div>
-                <h2 className="section-title">{activeState.question.prompt}</h2>
-
-                {hasAnswered ? (
-                  <p className="success">Your answer is locked in. Waiting for the host to close the round.</p>
-                ) : (
-                  <p className="surface-note">Pick one large color pad. You only get one submission.</p>
-                )}
-
-                {hasAnswered ? (
-                  <div className="answer-grid">
-                    {activeState.question.options.map((option) => (
-                      <div
-                        key={option.id}
-                        className={`answer-tile ${getOptionToneClass(option.position)} ${selectedOptionId === option.id ? 'is-selected' : ''}`}
-                      >
-                        <div className="option-label">{getOptionLabel(option.position)}</div>
-                        <strong className="answer-text">{option.text}</strong>
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <form action={submitPlayerAnswer.bind(null, publicState.joinCode)} className="answer-grid">
-                    {activeState.question.options.map((option) => (
-                      <button
-                        key={option.id}
-                        className={`answer-tile answer-tile--button ${getOptionToneClass(option.position)}`}
-                        name="optionId"
-                        type="submit"
-                        value={option.id}
-                      >
-                        <div className="option-label">{getOptionLabel(option.position)}</div>
-                        <strong className="answer-text">{option.text}</strong>
-                      </button>
-                    ))}
-                  </form>
-                )}
-              </section>
+              <PlayerQuestionPanel
+                hasAnswered={hasAnswered}
+                question={activeState.question}
+                selectedOptionId={selectedOptionId}
+                submitAction={submitPlayerAnswer.bind(null, publicState.joinCode)}
+              />
             ) : null}
 
             {joinedParticipant && activeState.question && activeState.roundState === 'round_results' ? (
               <section className="stack">
-                <div className="row-between">
-                  <span className="pill">Round results</span>
-                  <span className={playerCorrect === true ? 'pill status-pill-success' : playerCorrect === false ? 'pill status-pill-muted' : 'pill'}>
-                    {playerCorrect === true ? 'Correct' : playerCorrect === false ? 'Incorrect' : 'No answer'}
-                  </span>
-                </div>
-                <h2 className="section-title">{activeState.question.prompt}</h2>
-                <div className={playerCorrect === true ? 'success' : playerCorrect === false ? 'error' : 'surface-note'}>
-                  {playerCorrect === true
-                    ? 'Nice work — you picked the right answer.'
-                    : playerCorrect === false
-                      ? 'Close one — the correct answer is highlighted below.'
-                      : 'No answer was submitted for this round.'}
-                </div>
-                <p className="surface-note">{totalResponses} total responses came in before the reveal closed.</p>
-                <div className="answer-grid">
+                <section className="card stack player-state-card">
+                  <div className="row-between player-state-heading">
+                    <span className="pill">Round results</span>
+                    <span className={playerCorrect === true ? 'pill status-pill-success' : playerCorrect === false ? 'pill status-pill-muted' : 'pill'}>
+                      {playerCorrect === true ? 'Correct' : playerCorrect === false ? 'Incorrect' : 'No answer'}
+                    </span>
+                  </div>
+                  <div className="player-result-summary">
+                    <div className={playerCorrect === true ? 'success' : playerCorrect === false ? 'error' : 'surface-note'}>
+                      {playerCorrect === true
+                        ? 'You got it right.'
+                        : playerCorrect === false
+                          ? 'Not this round.'
+                          : 'No answer was submitted.'}
+                    </div>
+                    <div className="stat-strip">
+                      <div className="stat-chip">
+                        <strong>{playerRoundScore ?? 0}</strong>
+                        <span>points this round</span>
+                      </div>
+                      <div className="stat-chip">
+                        <strong>{pointsBehindNext ?? 0}</strong>
+                        <span>{pointsBehindNext === null ? 'currently leading' : 'points to next ahead'}</span>
+                      </div>
+                    </div>
+                    <p className="surface-note">{totalResponses} responses were recorded before the reveal closed.</p>
+                  </div>
+                </section>
+
+                <div className="player-answer-grid">
                   {activeState.question.options.map((option) => {
                     const classes = [
-                      'answer-tile',
+                      'player-answer-pad',
                       getOptionToneClass(option.position),
                       selectedOptionId === option.id ? 'is-selected' : '',
                       correctOptionId === option.id ? 'is-correct' : '',
@@ -234,8 +209,7 @@ export default async function PlayerJoinPage({
 
                     return (
                       <div key={option.id} className={classes.filter(Boolean).join(' ')}>
-                        <div className="option-label">{getOptionLabel(option.position)}</div>
-                        <strong className="answer-text">{option.text}</strong>
+                        <span className="player-answer-label">{getOptionLabel(option.position)}</span>
                         <div className="result-stat-block">
                           <div className="result-stat-row">
                             <strong>{optionCount}</strong>
@@ -252,23 +226,36 @@ export default async function PlayerJoinPage({
               </section>
             ) : null}
 
-            {publicState.sessionState === 'in_progress' && !joinedParticipant ? (
-              <p className="surface-note">This game is already in progress. New joins stay closed after the lobby.</p>
-            ) : null}
-
-            {publicState.sessionState === 'finished' && joinedParticipant && finalResult ? (
-              <section className="stack">
-                <span className="pill">Final result</span>
+            {publicState.sessionState === 'finished' && finalResult ? (
+              <section className="card stack player-state-card player-state-card--compact">
+                <span className="pill">Finished</span>
                 <h2 className="section-title">You finished #{finalResult.rank}</h2>
                 <p className="success">Total score: {finalResult.totalScore}</p>
               </section>
             ) : null}
-
-            {publicState.sessionState === 'finished' && !joinedParticipant ? (
-              <p className="surface-note">This quiz is finished. New joins are closed.</p>
-            ) : null}
           </section>
-        </div>
+        ) : null}
+
+        {publicState.sessionState === 'lobby' && !joinedParticipant && !canJoin ? (
+          <section className="card stack player-state-card player-state-card--compact">
+            <span className="pill">Lobby closed</span>
+            <p className="surface-note">This lobby is no longer accepting new players.</p>
+          </section>
+        ) : null}
+
+        {publicState.sessionState === 'in_progress' && !joinedParticipant ? (
+          <section className="card stack player-state-card player-state-card--compact">
+            <span className="pill">Game in progress</span>
+            <p className="surface-note">New joins close after the lobby.</p>
+          </section>
+        ) : null}
+
+        {publicState.sessionState === 'finished' && !joinedParticipant ? (
+          <section className="card stack player-state-card player-state-card--compact">
+            <span className="pill">Finished</span>
+            <p className="surface-note">This quiz has ended. New joins are closed.</p>
+          </section>
+        ) : null}
       </div>
     </main>
   )

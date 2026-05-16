@@ -15,12 +15,12 @@ export default async function ProjectorPage({
 
   if (!isValidJoinCode(normalizedJoinCode)) {
     return (
-      <main className="page-shell">
-        <div className="container stack">
+      <main className="page-shell page-shell--projector">
+        <div className="container container--projector stack">
           <section className="card hero-card stack center-card">
             <span className="brand-badge">Projector error</span>
-            <h1 className="display-title">That code looks off.</h1>
-            <p className="hero-copy">Use the 6-character join code shown on the host screen.</p>
+            <h1 className="display-title">Invalid join code.</h1>
+            <p className="hero-copy">Use the 6-character code shown by the host.</p>
           </section>
         </div>
       </main>
@@ -36,11 +36,11 @@ export default async function ProjectorPage({
 
   if (!session) {
     return (
-      <main className="page-shell">
-        <div className="container stack">
+      <main className="page-shell page-shell--projector">
+        <div className="container container--projector stack">
           <section className="card hero-card stack center-card">
             <span className="brand-badge">Session not found</span>
-            <h1 className="display-title">No live session matches that code.</h1>
+            <h1 className="display-title">Session not found.</h1>
             <p className="hero-copy">Check the projector join code and try again.</p>
           </section>
         </div>
@@ -54,8 +54,8 @@ export default async function ProjectorPage({
   const joinUrl = buildPlayerJoinUrl(origin, session.joinCode)
   const qrSrc = `https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${encodeURIComponent(joinUrl)}`
   return (
-    <main className="page-shell">
-      <div className="container stack">
+    <main className="page-shell page-shell--projector">
+      <div className="container container--projector stack">
         <LiveSessionRefresh mode="public" sessionId={session.sessionId} />
         <LiveSessionStage
           joinQrSrc={qrSrc}

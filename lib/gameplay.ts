@@ -56,6 +56,8 @@ export type PlayerSessionView = PublicSessionView & {
     hasAnswered: boolean
     selectedOptionId: string | null
     isCorrect: boolean | null
+    roundScore: number | null
+    pointsBehindNext: number | null
   } | null
   finalResult: {
     participantId: string

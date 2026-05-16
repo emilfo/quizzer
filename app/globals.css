@@ -71,6 +71,16 @@ textarea {
   padding: 1.25rem;
 }
 
+.player-shell {
+  display: flex;
+  align-items: center;
+}
+
+.page-shell--projector {
+  padding: 0;
+  overflow: hidden;
+}
+
 .stack {
   display: flex;
   flex-direction: column;
@@ -98,6 +108,18 @@ textarea {
 .container {
   width: min(100%, 1280px);
   margin: 0 auto;
+}
+
+.player-frame {
+  width: min(100%, 34rem);
+  min-height: calc(100vh - 2.5rem);
+  justify-content: center;
+}
+
+.container--projector {
+  width: 100%;
+  max-width: none;
+  min-height: 100vh;
 }
 
 .row {
@@ -425,6 +447,58 @@ form {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
+.player-answer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.player-answer-pad {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: center;
+  min-height: 8.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 12px 24px rgba(58, 43, 30, 0.08);
+}
+
+.player-answer-pad--button {
+  appearance: none;
+  background: none;
+  cursor: pointer;
+}
+
+.player-answer-pad.is-selected {
+  border-color: rgba(38, 38, 58, 0.3);
+  box-shadow: inset 0 0 0 2px rgba(38, 38, 58, 0.08), 0 18px 30px rgba(58, 43, 30, 0.1);
+}
+
+.player-answer-pad.is-correct {
+  border-color: rgba(22, 101, 52, 0.24);
+  box-shadow: inset 0 0 0 2px rgba(34, 197, 94, 0.18), 0 18px 30px rgba(58, 43, 30, 0.1);
+}
+
+.player-answer-pad.is-incorrect {
+  border-color: rgba(185, 28, 28, 0.24);
+}
+
+.player-answer-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
 .answer-tile,
 .projector-answer-tile {
   display: flex;
@@ -540,6 +614,40 @@ form {
 
 .live-session-stage {
   position: relative;
+}
+
+.page-shell--projector .live-session-stage {
+  min-height: 100vh;
+  justify-content: center;
+}
+
+.page-shell--projector .projector-stage {
+  min-height: calc(100vh - 2rem);
+}
+
+.page-shell--projector .page-grid--projector {
+  min-height: 100vh;
+  padding: 1rem;
+  align-items: stretch;
+}
+
+.page-grid--projector-results {
+  grid-template-columns: minmax(0, 1.6fr) minmax(20rem, 0.8fr);
+  align-items: stretch;
+}
+
+.page-shell--projector .page-grid--projector > * {
+  min-height: calc(100vh - 2rem);
+  justify-content: center;
+}
+
+.page-shell--projector .page-grid--projector-results {
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.page-shell--projector .page-grid--projector-results > * {
+  min-height: calc(100vh - 2rem);
 }
 
 .host-session-page {
@@ -669,6 +777,27 @@ form {
 .stat-chip strong { display:block; font-family: var(--font-display), Georgia, serif; font-size: 1.2rem; }
 .stat-chip span { color: var(--muted); font-size: 0.9rem; }
 
+.player-active-stack {
+  gap: 1rem;
+}
+
+.player-state-card {
+  width: 100%;
+}
+
+.player-state-card--compact {
+  gap: 0.75rem;
+}
+
+.player-state-heading {
+  align-items: center;
+}
+
+.player-result-summary {
+  display: grid;
+  gap: 0.85rem;
+}
+
 .help-card {
   padding: 1rem;
   border-radius: var(--radius-md);
@@ -682,12 +811,12 @@ form {
   .page-grid--editor,
   .page-grid--live,
   .page-grid--play,
-  .page-grid--projector,
+  .page-grid--projector-results,
   .projector-answers {
     grid-template-columns: 1fr;
   }
 
-  .page-shell {
+  .page-shell:not(.page-shell--projector) {
     padding: 0.9rem;
   }
 
@@ -713,6 +842,18 @@ form {
   .podium-row {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .page-shell--projector .page-grid--projector {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .page-shell--projector .page-grid--projector-results {
+    grid-template-columns: minmax(0, 1.6fr) minmax(18rem, 0.8fr);
+  }
+
+  .page-shell--projector {
+    padding: 0;
   }
 }
 
@@ -899,7 +1040,7 @@ form {
 }
 
 @media (max-width: 640px) {
-  .page-shell {
+  .page-shell:not(.page-shell--projector) {
     padding: 1rem;
   }
 

@@ -65,7 +65,7 @@ function QuestionCard({ question, roundState }: { question: SessionQuestion; rou
           <div key={option.id} className={`projector-answer-tile ${getOptionToneClass(option.position)}`}>
             <div className="row-between">
               <div className="option-key">{getOptionLabel(option.position)}</div>
-              <span className="pill">{reveal ? 'Reveal' : 'Tap color'}</span>
+              <span className="pill">{reveal ? 'Reveal' : 'Answer pad'}</span>
             </div>
             <strong className="projector-answer-text">{option.text}</strong>
           </div>
@@ -87,7 +87,7 @@ export function LiveSessionStage({ session, participants = [], joinUrl, joinQrSr
             <span className="brand-badge">Public projector</span>
             <h1 className="display-title">{session.quizTitle}</h1>
             <div className="projector-code">{session.joinCode}</div>
-            <p className="hero-copy">Scan the QR code or enter the join code at home to join the lobby.</p>
+            <p className="hero-copy">Scan the QR code or enter the join code to join the lobby.</p>
             {joinQrSrc ? (
               // eslint-disable-next-line @next/next/no-img-element -- QR image is served by an external generator URL.
               <img alt={`QR code for ${joinUrl ?? session.joinCode}`} className="qr-image" height="240" src={joinQrSrc} width="240" />
@@ -102,7 +102,7 @@ export function LiveSessionStage({ session, participants = [], joinUrl, joinQrSr
             <span className="pill">Lobby open</span>
             <div className="metric">{session.participantCount}</div>
             <div className="metric-label">participants</div>
-            <p className="surface-note">Friendly, quick join flow. The room feels ready before the quiz starts.</p>
+            <p className="surface-note">The room is open and ready.</p>
           </section>
         </div>
       ) : null}
@@ -112,7 +112,7 @@ export function LiveSessionStage({ session, participants = [], joinUrl, joinQrSr
       ) : null}
 
       {session.sessionState === 'in_progress' && session.question && session.roundState === 'round_results' ? (
-        <>
+        <div className="page-grid page-grid--projector-results">
           <section className="card projector-stage stack">
             <div className="row-between">
               <div className="stack" style={{ gap: '0.2rem' }}>
@@ -122,7 +122,6 @@ export function LiveSessionStage({ session, participants = [], joinUrl, joinQrSr
               <span className="pill">{totalResponses} responses</span>
             </div>
             <h2 className="section-title">{session.question.prompt}</h2>
-            <p className="surface-note">The reveal shows how the room answered before shifting to the live standings.</p>
             <div className="projector-answer-grid answer-grid">
               {session.question.options.map((option) => {
                 const optionCount = getRevealOptionCount(revealOptionCounts, option.id)
@@ -155,7 +154,7 @@ export function LiveSessionStage({ session, participants = [], joinUrl, joinQrSr
             </div>
             <Leaderboard entries={session.reveal?.leaderboard ?? []} showRoundScore />
           </section>
-        </>
+        </div>
       ) : null}
 
       {session.sessionState === 'finished' ? (
